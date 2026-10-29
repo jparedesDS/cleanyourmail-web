@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CleanYourMail — your inbox, minus the noise</title>
+  <meta name="description" content="An open-source, agent-friendly skill that reads email headers only, files newsletters, promos and spam, unsubscribes safely, and undoes every move. No permanent deletion.">
+  <meta name="theme-color" content="#07100d">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CleanYourMail — your inbox, minus the noise">
+  <meta property="og:description" content="Headers only. Plan first. Protected mail. No permanent deletion. Undo every move.">
+  <meta property="og:image" content="https://jparedesds.github.io/clean-your-mail-web/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CleanYourMail — your inbox, minus the noise">
+  <meta name="twitter:description" content="An open-source, agent-friendly skill for a cleaner inbox. Reversible by design.">
+  <meta name="twitter:image" content="https://jparedesds.github.io/clean-your-mail-web/assets/og.png">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="CleanYourMail home">
+      <img src="assets/logo.svg" alt="" width="34" height="34">
+      <span>CleanYourMail</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#setup">Set up</a>
+      <a href="#providers">Providers</a>
+      <a href="#safety">Safety</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav-github" href="https://github.com/jparedesDS/clean-your-mail" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+      <a class="lang" href="es.html" hreflang="es" lang="es">ES</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="pulse"></span> Open source · IMAP/SMTP · reversible</p>
+        <h1>Your inbox,<br><em>minus the noise.</em></h1>
+        <p class="lede">CleanYourMail reads headers only, finds the newsletters, promos, social noise and spam, files them into folders or labels, and unsubscribes when it is safe. Review the plan. Undo the moves.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#setup">Clean my inbox <span aria-hidden="true">→</span></a>
+          <a class="button button-ghost" href="https://github.com/jparedesDS/clean-your-mail/blob/master/SKILL.md" rel="noopener">Read SKILL.md</a>
+        </div>
+        <ul class="badges" aria-label="Key properties">
+          <li>No bodies read</li>
+          <li>No permanent delete</li>
+          <li>144 tests</li>
+        </ul>
+      </div>
+
+      <div class="hero-demo reveal" aria-label="Before and after inbox comparison">
+        <div class="demo-top">
+          <span class="demo-kicker">The same inbox</span>
+          <div class="demo-toggle" role="group" aria-label="Inbox view">
+            <button type="button" data-view="before" aria-pressed="false">Before</button>
+            <button type="button" data-view="after" aria-pressed="true">After</button>
+          </div>
+        </div>
+        <div class="inbox-compare" id="inboxCompare" data-view="after">
+          <div class="inbox inbox-before" hidden>
+            <div class="inbox-head"><span>INBOX</span><span>47 unread</span></div>
+            <div class="mail-row"><span class="dot dot-pink"></span><span class="mail-main"><b>Last chance: 50% off</b><small>shop.example · promotion</small></span><span class="mail-time">09:41</span></div>
+            <div class="mail-row"><span class="dot dot-purple"></span><span class="mail-main"><b>You have a new connection</b><small>linkedin.com · social</small></span><span class="mail-time">09:12</span></div>
+            <div class="mail-row"><span class="dot dot-pink"></span><span class="mail-main"><b>Weekly blah: issue #204</b><small>news.example · newsletter</small></span><span class="mail-time">08:55</span></div>
+            <div class="mail-row"><span class="dot dot-orange"></span><span class="mail-main"><b>You are a winner, act now</b><small>spam.example · spam</small></span><span class="mail-time">08:31</span></div>
+            <div class="mail-row"><span class="dot dot-pink"></span><span class="mail-main"><b>Don't miss this deal</b><small>deals.example · promotion</small></span><span class="mail-time">07:58</span></div>
+            <div class="mail-row mail-important"><span class="dot dot-green"></span><span class="mail-main"><b>Your statement is ready</b><small>bank.example · protected</small></span><span class="mail-time">07:20</span></div>
+            <div class="mail-row"><span class="dot dot-purple"></span><span class="mail-main"><b>New episode of something</b><small>stream.example · notification</small></span><span class="mail-time">06:44</span></div>
+            <div class="mail-row mail-important"><span class="dot dot-green"></span><span class="mail-main"><b>Re: lunch tomorrow</b><small>friend@example.com · personal</small></span><span class="mail-time">06:12</span></div>
+          </div>
+          <div class="inbox inbox-after">
+            <div class="inbox-head"><span>INBOX</span><span>3 unread</span></div>
+            <div class="mail-row mail-important"><span class="dot dot-green"></span><span class="mail-main"><b>Your statement is ready</b><small>bank.example · protected</small></span><span class="mail-time">07:20</span></div>
+            <div class="mail-row mail-important"><span class="dot dot-green"></span><span class="mail-main"><b>Re: lunch tomorrow</b><small>friend@example.com · personal</small></span><span class="mail-time">06:12</span></div>
+            <div class="mail-row mail-important"><span class="dot dot-green"></span><span class="mail-main"><b>Your order shipped</b><small>shop.example · transactional</small></span><span class="mail-time">05:48</span></div>
+            <div class="folder-row"><span class="folder-icon" aria-hidden="true">▾</span><span>CleanYourMail/Newsletters</span><span class="folder-count">42</span></div>
+            <div class="folder-row"><span class="folder-icon" aria-hidden="true">▾</span><span>CleanYourMail/Promotions</span><span class="folder-count">28</span></div>
+            <div class="folder-row"><span class="folder-icon" aria-hidden="true">▾</span><span>Junk</span><span class="folder-count">6</span></div>
+            <div class="after-note"><span class="check">✓</span> Moves journaled · undo available</div>
+          </div>
+        </div>
+        <div class="demo-foot">
+          <span><i class="mini-dot green"></i> protected</span>
+          <span><i class="mini-dot pink"></i> filed</span>
+          <span><i class="mini-dot orange"></i> junk</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>HEADERS ONLY</span><span>·</span><span>PLAN FIRST</span><span>·</span><span>PROTECTED MAIL</span><span>·</span><span>NO PERMANENT DELETE</span><span>·</span><span>UNDO ALWAYS</span><span>·</span><span>RFC 8058</span><span>·</span><span>GMAIL LABELS</span><span>·</span><span>SIEVE RULES</span><span>·</span>
+        <span>HEADERS ONLY</span><span>·</span><span>PLAN FIRST</span><span>·</span><span>PROTECTED MAIL</span><span>·</span><span>NO PERMANENT DELETE</span><span>·</span><span>UNDO ALWAYS</span><span>·</span><span>RFC 8058</span><span>·</span><span>GMAIL LABELS</span><span>·</span><span>SIEVE RULES</span><span>·</span>
+      </div>
+    </div>
+
+    <section class="section" id="how">
+      <div class="section-head reveal">
+        <p class="kicker">CH 01 · How it works</p>
+        <h2>Read. Protect. Plan. Clean.</h2>
+        <p>No black-box “AI inbox cleaner”. A small CLI, a reviewable plan and an undo journal.</p>
+      </div>
+      <div class="card-grid">
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></svg></span>
+          <h3>Scan headers</h3>
+          <p>Sender, subject, date, flags and <code>List-Unsubscribe</code>. No bodies, no attachments, no full-mailbox download.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 7.7 7 9 4-1.3 7-4.5 7-9V6l-7-3Z"/><path d="m9.5 12 1.8 1.8 3.5-3.6"/></svg></span>
+          <h3>Protect what matters</h3>
+          <p>Banks, security codes, invoices, travel, medical, government, personal, starred, answered and recent mail stay put.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></span>
+          <h3>Build a plan</h3>
+          <p>Exact UIDs, destinations and unsubscribe targets in <code>plan.json</code>. Nothing changes until you apply it.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/></svg></span>
+          <h3>File or archive</h3>
+          <p>Folders or Gmail labels, Junk, Trash, or archive. COPY first, then <code>UID EXPUNGE</code>. Never a mailbox-wide expunge.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/><path d="m4 4 16 16"/></svg></span>
+          <h3>Unsubscribe safely</h3>
+          <p>RFC 8058 one-click POST, <code>mailto:</code>, or a manual link. Header targets only. Spam is never unsubscribed.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></span>
+          <h3>Undo the moves</h3>
+          <p>The journal records COPYUID and Message-ID. One command restores moves and Gmail archives. Unsubscribe cannot be unsent.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-split" id="setup">
+      <div class="section-head reveal">
+        <p class="kicker">CH 02 · Set up</p>
+        <h2>Three steps. Your coding agent does the typing.</h2>
+        <p>Python 3.11+. No packages. An app password or OAuth token. A terminal.</p>
+      </div>
+      <div class="setup-grid">
+        <ol class="steps">
+          <li class="reveal">
+            <span class="step-num">01</span>
+            <div><h3>Connect</h3><p>Clone the repo, write a config, put the secret in <code>CYM_PASSWORD</code>, then run <code>doctor</code>.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="step-num">02</span>
+            <div><h3>Review</h3><p>Scan headers, read the report, and generate a plan. Correct protected senders before anything moves.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="step-num">03</span>
+            <div><h3>Clean</h3><p>Apply moves first. Verify. Then send unsubscribe requests separately. Keep the undo command.</p></div>
+          </li>
+        </ol>
+        <div class="terminal reveal" aria-label="Quick start commands">
+          <div class="terminal-bar"><span></span><span></span><span></span><em>powershell</em></div>
+          <pre><code><span class="prompt">$</span> git clone https://github.com/jparedesDS/clean-your-mail.git
+<span class="prompt">$</span> cd clean-your-mail
+<span class="prompt">$</span> python tools/mail.py init --email you@example.com
+<span class="prompt">$</span> $env:CYM_PASSWORD = "app-password"
+<span class="prompt">$</span> python tools/mail.py doctor
+<span class="prompt">$</span> python tools/mail.py scan --days 365
+<span class="prompt">$</span> python tools/mail.py report --top 30
+<span class="prompt">$</span> python tools/mail.py plan --mode folders</code></pre>
+          <div class="terminal-actions">
+            <button class="copy-button" type="button" data-copy="git clone https://github.com/jparedesDS/clean-your-mail.git&#10;cd clean-your-mail&#10;python tools/mail.py init --email you@example.com&#10;$env:CYM_PASSWORD = &quot;app-password&quot;&#10;python tools/mail.py doctor&#10;python tools/mail.py scan --days 365&#10;python tools/mail.py report --top 30&#10;python tools/mail.py plan --mode folders">Copy commands</button>
+            <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/PROMPT.md" rel="noopener">Copy the agent prompt ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="agent-note reveal">
+        <span class="agent-mark" aria-hidden="true">✦</span>
+        <p><b>Using a coding agent?</b> Paste <code>PROMPT.md</code>. It will read <code>SKILL.md</code>, show you the plan, move first, and give you the undo command. It will not skip the review.</p>
+        <button class="button button-small" type="button" data-copy="Read SKILL.md from this repo and follow it exactly. Use python tools/mail.py. Headers only. Never permanently delete. Show me the plan before applying. Move first, verify, then unsubscribe separately. Give me the undo command. My provider is &lt;PROVIDER&gt; and my address is &lt;EMAIL&gt;.">Copy the prompt</button>
+      </div>
+    </section>
+
+    <section class="section" id="providers">
+      <div class="section-head reveal">
+        <p class="kicker">CH 03 · Providers</p>
+        <h2>Works with the mailbox you already have.</h2>
+        <p>IMAP and SMTP, app passwords or OAuth2. No hosted service, no mailbox migration.</p>
+      </div>
+      <div class="provider-shell reveal">
+        <div class="provider-tabs" role="tablist" aria-label="Email providers">
+          <button type="button" role="tab" aria-selected="true" aria-controls="provider-gmail" id="tab-gmail" data-provider="gmail">Gmail</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="provider-outlook" id="tab-outlook" data-provider="outlook">Outlook</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="provider-yahoo" id="tab-yahoo" data-provider="yahoo">Yahoo</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="provider-icloud" id="tab-icloud" data-provider="icloud">iCloud</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="provider-fastmail" id="tab-fastmail" data-provider="fastmail">Fastmail</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="provider-proton" id="tab-proton" data-provider="proton">Proton</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="provider-other" id="tab-other" data-provider="other">Other IMAP</button>
+        </div>
+        <div class="provider-panels">
+          <article class="provider-panel" role="tabpanel" id="provider-gmail" aria-labelledby="tab-gmail" data-panel="gmail">
+            <div><span class="provider-tag">Recommended for Gmail</span><h3>App Password + IMAP</h3><p>Turn on 2-Step Verification, create an App Password, enable IMAP. Folders are labels; archive removes the Inbox label and keeps the message in All Mail.</p></div>
+            <div class="provider-meta"><span><b>Auth</b> App Password</span><span><b>Archive</b> Label removal</span><span><b>Rules</b> Gmail XML</span></div>
+          </article>
+          <article class="provider-panel" role="tabpanel" id="provider-outlook" aria-labelledby="tab-outlook" data-panel="outlook" hidden>
+            <div><span class="provider-tag">Microsoft 365</span><h3>OAuth2 access token</h3><p>Basic auth is disabled. Put a valid access token in <code>CYM_PASSWORD</code> with <code>auth = "xoauth2"</code>. The CLI does not refresh tokens; SMTP AUTH may be disabled by the tenant, so a mailto unsubscribe can fail.</p></div>
+            <div class="provider-meta"><span><b>Auth</b> XOAUTH2</span><span><b>Token</b> Short-lived</span><span><b>Mailto</b> May be blocked</span></div>
+          </article>
+          <article class="provider-panel" role="tabpanel" id="provider-yahoo" aria-labelledby="tab-yahoo" data-panel="yahoo" hidden>
+            <div><span class="provider-tag">Yahoo Mail</span><h3>App password</h3><p>Enable 2-Step Verification and generate an app password in Account Security. Standard IMAP folders; the CLI resolves Trash, Junk and Archive.</p></div>
+            <div class="provider-meta"><span><b>Auth</b> App Password</span><span><b>Folders</b> IMAP</span><span><b>Rules</b> Sieve</span></div>
+          </article>
+          <article class="provider-panel" role="tabpanel" id="provider-icloud" aria-labelledby="tab-icloud" data-panel="icloud" hidden>
+            <div><span class="provider-tag">iCloud Mail</span><h3>App-specific password</h3><p>Apple requires 2FA. Create an app-specific password at appleid.apple.com. The CLI resolves Deleted Messages, Junk and Archive.</p></div>
+            <div class="provider-meta"><span><b>Auth</b> App-specific</span><span><b>Folders</b> IMAP</span><span><b>Rules</b> Sieve</span></div>
+          </article>
+          <article class="provider-panel" role="tabpanel" id="provider-fastmail" aria-labelledby="tab-fastmail" data-panel="fastmail" hidden>
+            <div><span class="provider-tag">Fastmail</span><h3>Scoped app password</h3><p>Create an app password with IMAP/SMTP access. Fastmail supports Sieve natively; export the script and review it before uploading.</p></div>
+            <div class="provider-meta"><span><b>Auth</b> App Password</span><span><b>Archive</b> Folder</span><span><b>Rules</b> Sieve</span></div>
+          </article>
+          <article class="provider-panel" role="tabpanel" id="provider-proton" aria-labelledby="tab-proton" data-panel="proton" hidden>
+            <div><span class="provider-tag">Proton Mail</span><h3>Proton Bridge</h3><p>Run Bridge locally, enable the account, and use the Bridge password. Default IMAP is <code>127.0.0.1:1143</code> with STARTTLS; SMTP is <code>127.0.0.1:1025</code>.</p></div>
+            <div class="provider-meta"><span><b>Auth</b> Bridge password</span><span><b>Host</b> localhost</span><span><b>IMAP</b> STARTTLS</span></div>
+          </article>
+          <article class="provider-panel" role="tabpanel" id="provider-other" aria-labelledby="tab-other" data-panel="other" hidden>
+            <div><span class="provider-tag">Any IMAP server</span><h3>Bring your own host</h3><p>Set host, port, TLS/STARTTLS and SMTP. The server must support UIDPLUS or MOVE; otherwise moves are refused rather than risk a mailbox-wide expunge.</p></div>
+            <div class="provider-meta"><span><b>Auth</b> Login / XOAUTH2</span><span><b>Needs</b> UIDPLUS/MOVE</span><span><b>Rules</b> Sieve</span></div>
+          </article>
+        </div>
+      </div>
+      <p class="provider-foot reveal">Full setup notes in <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/docs/PROVIDERS.md" rel="noopener">docs/PROVIDERS.md</a>.</p>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="section-head reveal">
+        <p class="kicker">CH 04 · Safety</p>
+        <h2>Safe by design. Boring on purpose.</h2>
+        <p>The interesting part is not what it can do. It is what it refuses to do.</p>
+      </div>
+      <div class="safety-grid">
+        <article class="safety-card reveal"><span class="safety-icon">✕</span><h3>No permanent deletion</h3><p>Moves copy first and use <code>UID EXPUNGE</code>. No mailbox-wide expunge. Trash is never emptied. If the server lacks UIDPLUS/MOVE, moves are refused.</p></article>
+        <article class="safety-card reveal"><span class="safety-icon">◎</span><h3>Protected mail stays put</h3><p>Transactional and personal mail, security codes, banks, invoices, travel, medical, government, starred, answered and recent messages are never auto-moved.</p></article>
+        <article class="safety-card reveal"><span class="safety-icon">⌁</span><h3>No bodies. No attachments.</h3><p>The scan fetches header fields only. The local cache stores metadata, not message content. There is no content index and no AI reading your mail.</p></article>
+        <article class="safety-card reveal"><span class="safety-icon">↯</span><h3>Links are treated as hostile</h3><p>Only <code>List-Unsubscribe</code> headers. No redirects, cookies or proxies. Private/local targets are rejected. Manual links are for you to open, not the agent.</p></article>
+        <article class="safety-card reveal"><span class="safety-icon">☍</span><h3>Prompt injection is data</h3><p>An email cannot give the agent instructions. “Ignore your rules”, “send this” or “run that” is reported, not followed.</p></article>
+        <article class="safety-card reveal"><span class="safety-icon">!</span><h3>Consent does not waive safety</h3><p>“Skip the plan”, “delete everything” or “unsubscribe from everything” is a stop condition. Plan review, protected mail, spam exclusion and batch caps are not optional.</p></article>
+      </div>
+      <div class="safety-note reveal"><span class="check">✓</span><p><b>Unsubscribe is the one irreversible step.</b> It is explicit, capped, delayed, and never applied to spam. Moves and archives have an undo journal. Unsubscribe requests cannot be unsent.</p></div>
+    </section>
+
+    <section class="stats" aria-label="Project facts">
+      <div class="stat reveal"><strong>144</strong><span>tests, fake IMAP only</span></div>
+      <div class="stat reveal"><strong>7</strong><span>provider presets</span></div>
+      <div class="stat reveal"><strong>0</strong><span>bodies read</span></div>
+      <div class="stat reveal"><strong>0</strong><span>permanent deletes</span></div>
+      <div class="stat reveal"><strong>1</strong><span>command to undo moves</span></div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="section-head reveal">
+        <p class="kicker">CH 05 · FAQ</p>
+        <h2>The questions people ask.</h2>
+      </div>
+      <div class="faq reveal">
+        <details><summary>Does it delete email?</summary><p>No. It moves mail to folders, labels, Junk, Trash or archive. It never empties Trash, never runs a mailbox-wide expunge, and never has a “delete forever” command.</p></details>
+        <details><summary>Does it read my email?</summary><p>No. The scan fetches header fields only: sender, subject, date, size, flags and unsubscribe headers. Bodies and attachments are never downloaded.</p></details>
+        <details><summary>Does it work with Gmail?</summary><p>Yes. Gmail uses labels rather than folders. Archive removes the <code>\Inbox</code> label and leaves the message in All Mail. The undo re-adds the label using <code>X-GM-MSGID</code> or Message-ID.</p></details>
+        <details><summary>Will unsubscribing stop spam?</summary><p>No. Spam is never unsubscribed: a spam unsubscribe link can confirm that the address is live. Spam goes to Junk. For legitimate lists, unsubscribe is a request, not a guarantee.</p></details>
+        <details><summary>What about Outlook and Microsoft 365?</summary><p>Use an OAuth2 access token with <code>auth = "xoauth2"</code>. The CLI does not acquire or refresh tokens. Some tenants disable SMTP AUTH, so a <code>mailto:</code> unsubscribe may need to be done manually.</p></details>
+        <details><summary>Is it safe to run on my real inbox?</summary><p>The workflow is dry-run first: scan, report, plan, review. Apply moves only after reviewing the plan. Start with <code>--limit</code> or a single category. Keep the undo command. It is still software: review the plan.</p></details>
+        <details><summary>What if my server has no UIDPLUS or MOVE?</summary><p>Moves are refused. The only fallback would be a mailbox-wide expunge, which could permanently delete another client’s message. Use a client that supports UIDPLUS/MOVE or move manually.</p></details>
+        <details><summary>Can I use it without an agent?</summary><p>Yes. The CLI is the product. The skill and prompt just teach a coding agent to use it safely. Every command is documented in <code>SKILL.md</code> and <code>README.md</code>.</p></details>
+        <details><summary>Is there a hosted service?</summary><p>No. There is no account, no server, no telemetry and no third-party API. The only network calls are IMAP, SMTP for a mailto unsubscribe, and a validated one-click HTTPS request.</p></details>
+      </div>
+    </section>
+
+    <section class="cta" id="start">
+      <div class="cta-copy reveal">
+        <p class="kicker">Ready when you are</p>
+        <h2>Make the inbox quiet.<br>Keep the important mail.</h2>
+        <p>Read the safety rules, run the dry run, and start with a small batch.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/jparedesDS/clean-your-mail" rel="noopener">Open on GitHub <span aria-hidden="true">↗</span></a>
+          <a class="button button-ghost" href="https://github.com/jparedesDS/clean-your-mail/blob/master/docs/SAFETY.md" rel="noopener">Read the safety rules</a>
+        </div>
+      </div>
+      <div class="cta-terminal reveal">
+        <div class="terminal-bar"><span></span><span></span><span></span><em>start here</em></div>
+        <pre><code><span class="prompt">$</span> python tools/mail.py scan --days 365
+<span class="prompt">$</span> python tools/mail.py report --top 30
+<span class="prompt">$</span> python tools/mail.py plan --mode folders
+<span class="prompt">$</span> python tools/mail.py apply &lt;plan.json&gt; --yes --action move</code></pre>
+        <div class="terminal-actions"><button class="copy-button" type="button" data-copy="python tools/mail.py scan --days 365&#10;python tools/mail.py report --top 30&#10;python tools/mail.py plan --mode folders&#10;python tools/mail.py apply &lt;plan.json&gt; --yes --action move">Copy</button><span class="terminal-caption">then unsubscribe separately</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><img src="assets/logo.svg" alt="" width="28" height="28"><span>CleanYourMail</span></div>
+    <p>Your inbox, minus the noise. No account. No telemetry. MIT.</p>
+    <nav aria-label="Footer">
+      <a href="https://github.com/jparedesDS/clean-your-mail" rel="noopener">GitHub</a>
+      <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/SKILL.md" rel="noopener">SKILL.md</a>
+      <a href="https://github.com/jparedesDS/clean-your-mail/tree/master/docs" rel="noopener">Docs</a>
+      <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/SECURITY.md" rel="noopener">Security</a>
+      <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/LICENSE" rel="noopener">MIT</a>
+      <a href="es.html" hreflang="es" lang="es">Español</a>
+    </nav>
+    <p class="footer-note">Inspired by cleanyour.tv. Not affiliated with any mail provider.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

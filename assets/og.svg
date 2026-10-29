@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="glow" cx="80%" cy="10%" r="70%">
+      <stop offset="0" stop-color="#6ee7c8" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#6ee7c8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="10%" cy="90%" r="60%">
+      <stop offset="0" stop-color="#b9f36a" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#b9f36a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#07100d"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+  <g stroke="#eef8ee" stroke-opacity=".045" stroke-width="1">
+    <path d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200"/>
+    <path d="M120 0v630M240 0v630M360 0v630M480 0v630M600 0v630M720 0v630M840 0v630M960 0v630M1080 0v630"/>
+  </g>
+  <g transform="translate(92 88)">
+    <rect width="76" height="76" rx="19" fill="#b9f36a"/>
+    <rect x="15" y="24" width="46" height="29" rx="5" fill="none" stroke="#07100d" stroke-width="3.5"/>
+    <path d="m16 26 22 16 22-16" fill="none" stroke="#07100d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="59" cy="18" r="5" fill="#07100d"/>
+  </g>
+  <text x="188" y="142" fill="#eef8ee" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="-0.5">CleanYourMail</text>
+  <text x="92" y="286" fill="#eef8ee" font-family="Segoe UI, Arial, sans-serif" font-size="78" font-weight="800" letter-spacing="-4">Your inbox,</text>
+  <text x="92" y="374" fill="#b9f36a" font-family="Segoe UI, Arial, sans-serif" font-size="78" font-weight="800" letter-spacing="-4">minus the noise.</text>
+  <text x="94" y="444" fill="#9eb4a7" font-family="Segoe UI, Arial, sans-serif" font-size="26">Headers only. Plan first. Protected mail.</text>
+  <text x="94" y="484" fill="#9eb4a7" font-family="Segoe UI, Arial, sans-serif" font-size="26">No permanent deletion. Undo every move.</text>
+  <g font-family="Cascadia Code, Consolas, monospace" font-size="18" fill="#b9f36a">
+    <rect x="92" y="528" width="196" height="38" rx="19" fill="#b9f36a" fill-opacity=".08" stroke="#b9f36a" stroke-opacity=".3"/>
+    <text x="112" y="553">NO BODIES READ</text>
+    <rect x="304" y="528" width="214" height="38" rx="19" fill="#b9f36a" fill-opacity=".08" stroke="#b9f36a" stroke-opacity=".3"/>
+    <text x="324" y="553">NO PERMANENT DELETE</text>
+    <rect x="534" y="528" width="112" height="38" rx="19" fill="#b9f36a" fill-opacity=".08" stroke="#b9f36a" stroke-opacity=".3"/>
+    <text x="554" y="553">144 TESTS</text>
+  </g>
+  <g transform="translate(850 190)">
+    <rect width="260" height="250" rx="26" fill="#0d1a15" stroke="#eef8ee" stroke-opacity=".16"/>
+    <text x="22" y="38" fill="#eef8ee" font-family="Cascadia Code, Consolas, monospace" font-size="13" letter-spacing="2">INBOX</text>
+    <text x="212" y="38" fill="#6f8578" font-family="Cascadia Code, Consolas, monospace" font-size="11">3 unread</text>
+    <g font-family="Segoe UI, Arial, sans-serif">
+      <rect x="18" y="58" width="224" height="38" rx="9" fill="#b9f36a" fill-opacity=".07"/>
+      <circle cx="32" cy="77" r="4" fill="#b9f36a"/>
+      <text x="46" y="74" fill="#b9f36a" font-size="12" font-weight="600">Your statement is ready</text>
+      <text x="46" y="88" fill="#6f8578" font-size="9">bank.example · protected</text>
+      <rect x="18" y="104" width="224" height="38" rx="9" fill="#b9f36a" fill-opacity=".07"/>
+      <circle cx="32" cy="123" r="4" fill="#b9f36a"/>
+      <text x="46" y="120" fill="#b9f36a" font-size="12" font-weight="600">Re: lunch tomorrow</text>
+      <text x="46" y="134" fill="#6f8578" font-size="9">friend@example.com · personal</text>
+      <text x="22" y="174" fill="#9eb4a7" font-size="11">CleanYourMail/Newsletters</text>
+      <text x="224" y="174" fill="#6f8578" font-family="Cascadia Code, Consolas, monospace" font-size="10">42</text>
+      <text x="22" y="198" fill="#9eb4a7" font-size="11">CleanYourMail/Promotions</text>
+      <text x="224" y="198" fill="#6f8578" font-family="Cascadia Code, Consolas, monospace" font-size="10">28</text>
+      <text x="22" y="222" fill="#9eb4a7" font-size="11">Junk</text>
+      <text x="232" y="222" fill="#6f8578" font-family="Cascadia Code, Consolas, monospace" font-size="10">6</text>
+    </g>
+  </g>
+</svg>
