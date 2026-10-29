@@ -3,7 +3,7 @@
 Static landing page for [CleanYourMail](https://github.com/jparedesDS/clean-your-mail), the
 open-source, reversible email cleanup skill.
 
-Live site: **https://jparedesds.github.io/clean-your-mail-web/**  
+Published site (after enabling Pages): **https://jparedesds.github.io/clean-your-mail-web/**  
 Spanish: **https://jparedesds.github.io/clean-your-mail-web/es.html**
 
 No framework, no build step, no external fonts, no analytics.
