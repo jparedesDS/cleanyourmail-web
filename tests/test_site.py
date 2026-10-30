@@ -144,8 +144,9 @@ class SiteTest(unittest.TestCase):
 
     def test_brand_assets(self):
         self.assertEqual(png_size(ROOT / "assets" / "og.png"), (1280, 640))
-        self.assertEqual(png_size(ROOT / "assets" / "banner.png"), (1600, 480))
-        for name in ("banner-a-editorial.png", "banner-b-light.png", "banner-c-terminal.png"):
+        self.assertEqual(png_size(ROOT / "assets" / "banner.png"), (1600, 440))
+        for name in ("banner-web.png", "banner-skill.png", "banner-light.png",
+                     "social-web.png", "social-skill.png"):
             with self.subTest(asset=name):
                 self.assertTrue((ROOT / "assets" / "brand" / name).is_file())
 

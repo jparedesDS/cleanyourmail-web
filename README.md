@@ -38,9 +38,9 @@ Open <http://localhost:8080/>.
 | `styles.css` | Shared styles. |
 | `app.js` | Provider tabs, before/after toggle, copy buttons. |
 | `assets/logo.svg`, `assets/favicon.svg` | Brand mark. |
-| `assets/banner.png` | Repository banner (1600×480). |
+| `assets/banner.png` | Repository banner (1600×440). |
 | `assets/og.png` | Social preview image (1280×640). |
-| `assets/brand/` | Three banner directions and social previews explored for this update. |
+| `assets/brand/` | Banner and social-preview directions explored for this update. |
 | `robots.txt`, `sitemap.xml` | Crawler metadata. |
 | `.well-known/security.txt` | Security contact and policy. |
 | `404.html` | Not-found page. |
@@ -48,13 +48,13 @@ Open <http://localhost:8080/>.
 
 ## Brand assets
 
-The website uses the **editorial dark** direction (`assets/banner.png`). The other directions are
-kept for reference:
+The website uses the **dark editorial** direction (`assets/banner.png`). The skill repository uses
+the terminal-first variant.
 
-- `assets/brand/banner-a-editorial.png` — chosen for the website and this repository.
-- `assets/brand/banner-b-light.png` — light “paper” alternate.
-- `assets/brand/banner-c-terminal.png` — terminal-first alternate, used by the skill repository.
-- `assets/brand/social-editorial.png`, `assets/brand/social-terminal.png` — social preview sources.
+- `assets/brand/banner-web.png` — chosen for the website and this repository.
+- `assets/brand/banner-skill.png` — chosen for the skill repository.
+- `assets/brand/banner-light.png` — light “paper” alternate.
+- `assets/brand/social-web.png`, `assets/brand/social-skill.png` — 1280×640 social previews.
 
 ## Deploy
 
