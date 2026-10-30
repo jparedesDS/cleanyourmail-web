@@ -1,0 +1,5 @@
+Contact: https://github.com/jparedesDS/clean-your-mail/security/advisories/new
+Expires: 2027-10-30T00:00:00.000Z
+Preferred-Languages: en, es
+Canonical: https://jparedesds.github.io/clean-your-mail-web/.well-known/security.txt
+Policy: https://github.com/jparedesDS/clean-your-mail/blob/master/SECURITY.md

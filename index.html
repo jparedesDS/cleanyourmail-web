@@ -4,18 +4,60 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CleanYourMail — your inbox, minus the noise</title>
-  <meta name="description" content="An open-source, agent-friendly skill that reads email headers only, files newsletters, promos and spam, unsubscribes safely, and undoes every move. No permanent deletion.">
+  <meta name="description" content="An open-source, agent-friendly skill that reads email headers only, files newsletters, promos and spam, unsubscribes safely, and undoes every move. No account, no telemetry, no permanent deletion.">
+  <meta name="author" content="Jose Paredes">
+  <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#07100d">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-54F7to63o2UI9BdU0LV+2ji0vnT4d/2strP1DcDdIc4='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
+  <link rel="canonical" href="https://jparedesds.github.io/clean-your-mail-web/">
+  <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/clean-your-mail-web/">
+  <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/clean-your-mail-web/es.html">
+  <link rel="alternate" hreflang="x-default" href="https://jparedesds.github.io/clean-your-mail-web/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CleanYourMail">
+  <meta property="og:url" content="https://jparedesds.github.io/clean-your-mail-web/">
   <meta property="og:title" content="CleanYourMail — your inbox, minus the noise">
   <meta property="og:description" content="Headers only. Plan first. Protected mail. No permanent deletion. Undo every move.">
   <meta property="og:image" content="https://jparedesds.github.io/clean-your-mail-web/assets/og.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="CleanYourMail — your inbox, minus the noise">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CleanYourMail — your inbox, minus the noise">
   <meta name="twitter:description" content="An open-source, agent-friendly skill for a cleaner inbox. Reversible by design.">
   <meta name="twitter:image" content="https://jparedesds.github.io/clean-your-mail-web/assets/og.png">
+  <meta name="twitter:image:alt" content="CleanYourMail — your inbox, minus the noise">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CleanYourMail",
+    "description": "Open-source, agent-friendly skill for reversible IMAP inbox cleanup. Headers only, plan first, protected mail, no permanent deletion.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "softwareVersion": "1.1.1",
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/jparedesDS/clean-your-mail",
+    "url": "https://jparedesds.github.io/clean-your-mail-web/",
+    "inLanguage": "en",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Jose Paredes",
+      "url": "https://github.com/jparedesDS"
+    }
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -27,8 +69,8 @@
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#how">How it works</a>
+      <a href="#why">Why</a>
       <a href="#setup">Set up</a>
-      <a href="#providers">Providers</a>
       <a href="#safety">Safety</a>
       <a href="#faq">FAQ</a>
       <a class="nav-github" href="https://github.com/jparedesDS/clean-your-mail" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
@@ -39,23 +81,25 @@
   <main id="main">
     <section class="hero">
       <div class="hero-copy reveal">
-        <p class="eyebrow"><span class="pulse"></span> Open source · IMAP/SMTP · reversible</p>
+        <p class="eyebrow"><span class="pulse"></span> Open source · Agent-native · Reversible</p>
         <h1>Your inbox,<br><em>minus the noise.</em></h1>
-        <p class="lede">CleanYourMail reads headers only, finds the newsletters, promos, social noise and spam, files them into folders or labels, and unsubscribes when it is safe. Review the plan. Undo the moves.</p>
+        <p class="lede">Clean up years of newsletters, promos and spam in one reviewed pass. Headers only. Plan first. Every move undoable.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#setup">Clean my inbox <span aria-hidden="true">→</span></a>
-          <a class="button button-ghost" href="https://github.com/jparedesDS/clean-your-mail/blob/master/SKILL.md" rel="noopener">Read SKILL.md</a>
+          <a class="button button-ghost" href="#how">See how it works</a>
         </div>
+        <p class="trust-line">Free and open source · No account · No telemetry · MIT</p>
         <ul class="badges" aria-label="Key properties">
-          <li>No bodies read</li>
+          <li>Headers only</li>
           <li>No permanent delete</li>
+          <li>Undo every move</li>
           <li>144 tests</li>
         </ul>
       </div>
 
       <div class="hero-demo reveal" aria-label="Before and after inbox comparison">
         <div class="demo-top">
-          <span class="demo-kicker">The same inbox</span>
+          <span class="demo-kicker">Review the plan. Then apply.</span>
           <div class="demo-toggle" role="group" aria-label="Inbox view">
             <button type="button" data-view="before" aria-pressed="false">Before</button>
             <button type="button" data-view="after" aria-pressed="true">After</button>
@@ -84,6 +128,12 @@
             <div class="after-note"><span class="check">✓</span> Moves journaled · undo available</div>
           </div>
         </div>
+        <div class="demo-plan" aria-label="Plan summary">
+          <span class="demo-plan-file">plan.json</span>
+          <span>76 moves</span>
+          <span>12 unsubscribes</span>
+          <span class="demo-plan-status">Review before apply</span>
+        </div>
         <div class="demo-foot">
           <span><i class="mini-dot green"></i> protected</span>
           <span><i class="mini-dot pink"></i> filed</span>
@@ -94,8 +144,8 @@
 
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>HEADERS ONLY</span><span>·</span><span>PLAN FIRST</span><span>·</span><span>PROTECTED MAIL</span><span>·</span><span>NO PERMANENT DELETE</span><span>·</span><span>UNDO ALWAYS</span><span>·</span><span>RFC 8058</span><span>·</span><span>GMAIL LABELS</span><span>·</span><span>SIEVE RULES</span><span>·</span>
-        <span>HEADERS ONLY</span><span>·</span><span>PLAN FIRST</span><span>·</span><span>PROTECTED MAIL</span><span>·</span><span>NO PERMANENT DELETE</span><span>·</span><span>UNDO ALWAYS</span><span>·</span><span>RFC 8058</span><span>·</span><span>GMAIL LABELS</span><span>·</span><span>SIEVE RULES</span><span>·</span>
+        <span>HEADERS ONLY</span><span>·</span><span>PLAN FIRST</span><span>·</span><span>PROTECTED MAIL</span><span>·</span><span>NO PERMANENT DELETE</span><span>·</span><span>UNDO EVERY MOVE</span><span>·</span><span>NO ACCOUNT</span><span>·</span><span>NO TELEMETRY</span><span>·</span><span>MIT</span><span>·</span>
+        <span>HEADERS ONLY</span><span>·</span><span>PLAN FIRST</span><span>·</span><span>PROTECTED MAIL</span><span>·</span><span>NO PERMANENT DELETE</span><span>·</span><span>UNDO EVERY MOVE</span><span>·</span><span>NO ACCOUNT</span><span>·</span><span>NO TELEMETRY</span><span>·</span><span>MIT</span><span>·</span>
       </div>
     </div>
 
@@ -103,7 +153,7 @@
       <div class="section-head reveal">
         <p class="kicker">CH 01 · How it works</p>
         <h2>Read. Protect. Plan. Clean.</h2>
-        <p>No black-box “AI inbox cleaner”. A small CLI, a reviewable plan and an undo journal.</p>
+        <p>A small CLI, a reviewable plan and an undo journal. No black-box “AI inbox cleaner”.</p>
       </div>
       <div class="card-grid">
         <article class="card reveal">
@@ -137,11 +187,46 @@
           <p>The journal records COPYUID and Message-ID. One command restores moves and Gmail archives. Unsubscribe cannot be unsent.</p>
         </article>
       </div>
+      <p class="section-link reveal"><a href="https://github.com/jparedesDS/clean-your-mail/blob/master/SKILL.md" rel="noopener">Read the full procedure in SKILL.md ↗</a></p>
+    </section>
+
+    <section class="section" id="why">
+      <div class="section-head reveal">
+        <p class="kicker">CH 02 · Why</p>
+        <h2>A different kind of inbox cleaner.</h2>
+        <p>Most tools ask for your password, read your mail and delete the evidence. CleanYourMail runs on your machine, reads headers only, and keeps an undo journal.</p>
+      </div>
+      <div class="why-grid">
+        <div class="pillar-list">
+          <article class="pillar reveal">
+            <span class="pillar-icon" aria-hidden="true">◎</span>
+            <div><h3>Private by construction</h3><p>The CLI runs locally. The scan fetches header fields only. The cache stores metadata, never message bodies. No telemetry, no analytics, no third-party API.</p></div>
+          </article>
+          <article class="pillar reveal">
+            <span class="pillar-icon" aria-hidden="true">↺</span>
+            <div><h3>Reversible by default</h3><p>Every move is recorded with COPYUID and Message-ID. One command restores it. Gmail archive re-adds the Inbox label. Unsubscribe is the only irreversible step, and it is explicit.</p></div>
+          </article>
+          <article class="pillar reveal">
+            <span class="pillar-icon" aria-hidden="true">✦</span>
+            <div><h3>Agent-native, not agent-only</h3><p>The CLI is the product. <code>SKILL.md</code> and <code>PROMPT.md</code> teach any coding agent to use it safely. No new app, no browser extension, no OAuth broker.</p></div>
+          </article>
+        </div>
+        <div class="compare-card reveal" aria-label="Comparison with hosted inbox cleaners">
+          <div class="compare-head"><span>Hosted inbox cleaners</span><span>CleanYourMail</span></div>
+          <div class="compare-row"><span>Runs in their cloud</span><span>Runs on your machine</span></div>
+          <div class="compare-row"><span>Reads full messages</span><span>Reads headers only</span></div>
+          <div class="compare-row"><span>Deletes or archives</span><span>Moves and journals</span></div>
+          <div class="compare-row"><span>Undo via support ticket</span><span>Undo with one command</span></div>
+          <div class="compare-row"><span>Sign-up and OAuth broker</span><span>No account at all</span></div>
+          <div class="compare-row"><span>Subscription</span><span>Free, MIT</span></div>
+          <p class="compare-note">General comparison with hosted cleanup services. Check each product.</p>
+        </div>
+      </div>
     </section>
 
     <section class="section section-split" id="setup">
       <div class="section-head reveal">
-        <p class="kicker">CH 02 · Set up</p>
+        <p class="kicker">CH 03 · Set up</p>
         <h2>Three steps. Your coding agent does the typing.</h2>
         <p>Python 3.11+. No packages. An app password or OAuth token. A terminal.</p>
       </div>
@@ -176,16 +261,17 @@
           </div>
         </div>
       </div>
+      <p class="setup-note reveal"><b>Start small.</b> Use <code>--limit 50</code> for the first run, review <code>plan.json</code>, and keep the undo command. On macOS or Linux, use <code>python3</code> instead of <code>python</code>.</p>
       <div class="agent-note reveal">
         <span class="agent-mark" aria-hidden="true">✦</span>
         <p><b>Using a coding agent?</b> Paste <code>PROMPT.md</code>. It will read <code>SKILL.md</code>, show you the plan, move first, and give you the undo command. It will not skip the review.</p>
-        <button class="button button-small" type="button" data-copy="Read SKILL.md from this repo and follow it exactly. Use python tools/mail.py. Headers only. Never permanently delete. Show me the plan before applying. Move first, verify, then unsubscribe separately. Give me the undo command. My provider is &lt;PROVIDER&gt; and my address is &lt;EMAIL&gt;.">Copy the prompt</button>
+        <button class="button button-small" type="button" data-copy="Read SKILL.md from this repo and follow it exactly. Use python tools/mail.py. Headers only. Never permanently delete. Show me the plan before applying. Move first, verify, then unsubscribe separately. Give me the undo command. My provider is <PROVIDER> and my address is <EMAIL>.">Copy the prompt</button>
       </div>
     </section>
 
     <section class="section" id="providers">
       <div class="section-head reveal">
-        <p class="kicker">CH 03 · Providers</p>
+        <p class="kicker">CH 04 · Providers</p>
         <h2>Works with the mailbox you already have.</h2>
         <p>IMAP and SMTP, app passwords or OAuth2. No hosted service, no mailbox migration.</p>
       </div>
@@ -230,12 +316,12 @@
           </article>
         </div>
       </div>
-      <p class="provider-foot reveal">Full setup notes in <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/docs/PROVIDERS.md" rel="noopener">docs/PROVIDERS.md</a>.</p>
+      <p class="provider-foot reveal">Full setup notes in <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/docs/PROVIDERS.md" rel="noopener">docs/PROVIDERS.md</a>. Your provider not listed? Any IMAP server with UIDPLUS or MOVE works.</p>
     </section>
 
     <section class="section" id="safety">
       <div class="section-head reveal">
-        <p class="kicker">CH 04 · Safety</p>
+        <p class="kicker">CH 05 · Safety</p>
         <h2>Safe by design. Boring on purpose.</h2>
         <p>The interesting part is not what it can do. It is what it refuses to do.</p>
       </div>
@@ -247,7 +333,14 @@
         <article class="safety-card reveal"><span class="safety-icon">☍</span><h3>Prompt injection is data</h3><p>An email cannot give the agent instructions. “Ignore your rules”, “send this” or “run that” is reported, not followed.</p></article>
         <article class="safety-card reveal"><span class="safety-icon">!</span><h3>Consent does not waive safety</h3><p>“Skip the plan”, “delete everything” or “unsubscribe from everything” is a stop condition. Plan review, protected mail, spam exclusion and batch caps are not optional.</p></article>
       </div>
-      <div class="safety-note reveal"><span class="check">✓</span><p><b>Unsubscribe is the one irreversible step.</b> It is explicit, capped, delayed, and never applied to spam. Moves and archives have an undo journal. Unsubscribe requests cannot be unsent.</p></div>
+      <div class="security-strip reveal" aria-label="Security properties">
+        <span>No account</span>
+        <span>No telemetry</span>
+        <span>No third-party API</span>
+        <span>No bodies read</span>
+        <span>No permanent delete</span>
+      </div>
+      <div class="safety-note reveal"><span class="check">✓</span><p><b>Unsubscribe is the one irreversible step.</b> It is explicit, capped, delayed, and never applied to spam. Moves and archives have an undo journal. Unsubscribe requests cannot be unsent. <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/docs/SAFETY.md" rel="noopener">Read the full safety rules ↗</a></p></div>
     </section>
 
     <section class="stats" aria-label="Project facts">
@@ -260,17 +353,20 @@
 
     <section class="section" id="faq">
       <div class="section-head reveal">
-        <p class="kicker">CH 05 · FAQ</p>
+        <p class="kicker">CH 06 · FAQ</p>
         <h2>The questions people ask.</h2>
       </div>
       <div class="faq reveal">
         <details><summary>Does it delete email?</summary><p>No. It moves mail to folders, labels, Junk, Trash or archive. It never empties Trash, never runs a mailbox-wide expunge, and never has a “delete forever” command.</p></details>
         <details><summary>Does it read my email?</summary><p>No. The scan fetches header fields only: sender, subject, date, size, flags and unsubscribe headers. Bodies and attachments are never downloaded.</p></details>
+        <details><summary>Is it free?</summary><p>Yes. CleanYourMail is MIT-licensed and free to use. There is no paid tier, no account and no upsell.</p></details>
+        <details><summary>Do I need to be technical?</summary><p>You need a terminal and Python 3.11+. A coding agent can do the typing for you: paste <code>PROMPT.md</code> and follow the plan. The CLI is also usable directly.</p></details>
         <details><summary>Does it work with Gmail?</summary><p>Yes. Gmail uses labels rather than folders. Archive removes the <code>\Inbox</code> label and leaves the message in All Mail. The undo re-adds the label using <code>X-GM-MSGID</code> or Message-ID.</p></details>
-        <details><summary>Will unsubscribing stop spam?</summary><p>No. Spam is never unsubscribed: a spam unsubscribe link can confirm that the address is live. Spam goes to Junk. For legitimate lists, unsubscribe is a request, not a guarantee.</p></details>
         <details><summary>What about Outlook and Microsoft 365?</summary><p>Use an OAuth2 access token with <code>auth = "xoauth2"</code>. The CLI does not acquire or refresh tokens. Some tenants disable SMTP AUTH, so a <code>mailto:</code> unsubscribe may need to be done manually.</p></details>
+        <details><summary>Will unsubscribing stop spam?</summary><p>No. Spam is never unsubscribed: a spam unsubscribe link can confirm that the address is live. Spam goes to Junk. For legitimate lists, unsubscribe is a request, not a guarantee.</p></details>
         <details><summary>Is it safe to run on my real inbox?</summary><p>The workflow is dry-run first: scan, report, plan, review. Apply moves only after reviewing the plan. Start with <code>--limit</code> or a single category. Keep the undo command. It is still software: review the plan.</p></details>
         <details><summary>What if my server has no UIDPLUS or MOVE?</summary><p>Moves are refused. The only fallback would be a mailbox-wide expunge, which could permanently delete another client’s message. Use a client that supports UIDPLUS/MOVE or move manually.</p></details>
+        <details><summary>What data leaves my machine?</summary><p>Only IMAP/SMTP traffic and the validated unsubscribe requests. There is no telemetry, no analytics, no third-party API and no content index. The website loads no third-party resources.</p></details>
         <details><summary>Can I use it without an agent?</summary><p>Yes. The CLI is the product. The skill and prompt just teach a coding agent to use it safely. Every command is documented in <code>SKILL.md</code> and <code>README.md</code>.</p></details>
         <details><summary>Is there a hosted service?</summary><p>No. There is no account, no server, no telemetry and no third-party API. The only network calls are IMAP, SMTP for a mailto unsubscribe, and a validated one-click HTTPS request.</p></details>
       </div>
@@ -278,15 +374,16 @@
 
     <section class="cta" id="start">
       <div class="cta-copy reveal">
-        <p class="kicker">Ready when you are</p>
+        <p class="kicker">Start small. Stay in control.</p>
         <h2>Make the inbox quiet.<br>Keep the important mail.</h2>
-        <p>Read the safety rules, run the dry run, and start with a small batch.</p>
+        <p>Run the dry run. Review the plan. Apply a small batch. Undo if you change your mind.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="https://github.com/jparedesDS/clean-your-mail" rel="noopener">Open on GitHub <span aria-hidden="true">↗</span></a>
+          <a class="button button-primary" href="https://github.com/jparedesDS/clean-your-mail" rel="noopener">Get the skill on GitHub <span aria-hidden="true">↗</span></a>
           <a class="button button-ghost" href="https://github.com/jparedesDS/clean-your-mail/blob/master/docs/SAFETY.md" rel="noopener">Read the safety rules</a>
         </div>
+        <p class="cta-note">No account. No telemetry. MIT.</p>
       </div>
-      <div class="cta-terminal reveal">
+      <div class="terminal cta-terminal reveal">
         <div class="terminal-bar"><span></span><span></span><span></span><em>start here</em></div>
         <pre><code><span class="prompt">$</span> python tools/mail.py scan --days 365
 <span class="prompt">$</span> python tools/mail.py report --top 30
@@ -305,10 +402,11 @@
       <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/SKILL.md" rel="noopener">SKILL.md</a>
       <a href="https://github.com/jparedesDS/clean-your-mail/tree/master/docs" rel="noopener">Docs</a>
       <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/SECURITY.md" rel="noopener">Security</a>
+      <a href="https://github.com/jparedesDS/clean-your-mail-web" rel="noopener">Website source</a>
       <a href="https://github.com/jparedesDS/clean-your-mail/blob/master/LICENSE" rel="noopener">MIT</a>
       <a href="es.html" hreflang="es" lang="es">Español</a>
     </nav>
-    <p class="footer-note">Inspired by cleanyour.tv. Not affiliated with any mail provider.</p>
+    <p class="footer-note">No cookies. No analytics. No third-party requests. Inspired by cleanyour.tv. Not affiliated with any mail provider.</p>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

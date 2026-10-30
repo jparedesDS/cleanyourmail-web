@@ -5,13 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page not found — CleanYourMail</title>
   <meta name="robots" content="noindex">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'none'; font-src 'self'">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="section" style="min-height:70vh;display:grid;align-content:center">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="CleanYourMail home">
+      <img src="assets/logo.svg" alt="" width="34" height="34">
+      <span>CleanYourMail</span>
+    </a>
+  </header>
+  <main class="section not-found">
     <p class="kicker">404 · Not found</p>
-    <h1 style="font-size:clamp(3rem,9vw,7rem)">This folder is empty.</h1>
+    <h1>This folder is empty.</h1>
     <p class="lede">The page you asked for is not here. The inbox, however, can still be cleaned.</p>
     <div class="hero-actions">
       <a class="button button-primary" href="index.html">Back to CleanYourMail <span aria-hidden="true">→</span></a>
