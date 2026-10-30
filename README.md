@@ -4,11 +4,11 @@
 
 # CleanYourMail — website
 
-Static landing page for [CleanYourMail](https://github.com/jparedesDS/clean-your-mail), the
+Static landing page for [CleanYourMail](https://github.com/jparedesDS/cleanyourmail), the
 open-source, reversible inbox cleanup skill for coding agents.
 
-**Live site:** <https://jparedesds.github.io/clean-your-mail-web/>  
-**Spanish:** <https://jparedesds.github.io/clean-your-mail-web/es.html>
+**Live site:** <https://jparedesds.github.io/cleanyourmail-web/>  
+**Spanish:** <https://jparedesds.github.io/cleanyourmail-web/es.html>
 
 No framework, no build step, no external fonts, no analytics, no third-party requests.
 
@@ -83,10 +83,10 @@ requests, canonical/hreflang metadata, PNG dimensions and `security.txt`.
 
 ## Links
 
-- Skill repository: <https://github.com/jparedesDS/clean-your-mail>
-- Safety rules: <https://github.com/jparedesDS/clean-your-mail/blob/master/docs/SAFETY.md>
-- Prompt: <https://github.com/jparedesDS/clean-your-mail/blob/master/PROMPT.md>
-- Spanish prompt: <https://github.com/jparedesDS/clean-your-mail/blob/master/PROMPT.es.md>
+- Skill repository: <https://github.com/jparedesDS/cleanyourmail>
+- Safety rules: <https://github.com/jparedesDS/cleanyourmail/blob/master/docs/SAFETY.md>
+- Prompt: <https://github.com/jparedesDS/cleanyourmail/blob/master/PROMPT.md>
+- Spanish prompt: <https://github.com/jparedesDS/cleanyourmail/blob/master/PROMPT.es.md>
 
 ## License
 

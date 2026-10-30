@@ -121,8 +121,8 @@ class SiteTest(unittest.TestCase):
 
     def test_canonical_and_alternates(self):
         cases = {
-            "index.html": "https://jparedesds.github.io/clean-your-mail-web/",
-            "es.html": "https://jparedesds.github.io/clean-your-mail-web/es.html",
+            "index.html": "https://jparedesds.github.io/cleanyourmail-web/",
+            "es.html": "https://jparedesds.github.io/cleanyourmail-web/es.html",
         }
         for name, canonical in cases.items():
             text = (ROOT / name).read_text(encoding="utf-8")
