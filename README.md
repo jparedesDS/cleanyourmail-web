@@ -15,7 +15,8 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 ## What is here
 
 - A bilingual English/Spanish landing page with a terminal quick start and a provider grid.
-- A compact CLI reference and copyable setup commands.
+- A two-route start section: with a coding agent or with the terminal.
+- A compact CLI reference, copyable setup commands and a safe quick start that stops at `plan`.
 - A plain-language safety section: headers only, protected mail, no permanent deletion, undo.
 - A short FAQ and clear calls to action.
 - A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
@@ -86,8 +87,8 @@ python -m unittest discover -s tests -v
 
 The suite checks local links and assets, duplicate IDs, the language switch, analytics absence,
 inline-style absence (CSP compatibility), the CSP hash against the JSON-LD block, third-party
-requests, canonical/hreflang metadata, PNG dimensions, unrelated-project references and
-`security.txt`.
+requests, canonical/hreflang metadata, PNG dimensions, unrelated-project references, the start
+routes, the safe quick start and `security.txt`.
 
 ## Links
 
