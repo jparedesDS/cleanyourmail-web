@@ -1,12 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="cym-tile" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#b9f36a"/>
-      <stop offset="1" stop-color="#6ee7c8"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="url(#cym-tile)"/>
-  <rect x="13" y="21" width="38" height="24" rx="4" fill="none" stroke="#07100d" stroke-width="3"/>
-  <path d="m14 23 18 13 18-13" fill="none" stroke="#07100d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M48.6 10.6 50 14l3.4 1.4-3.4 1.4-1.4 3.4-1.4-3.4-3.4-1.4 3.4-1.4Z" fill="#07100d"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">CleanYourMail Spectrum favicon</title>
+  <desc id="desc">Simplified 16 to 32 px Return Fold symbol on a solid yellow (#FFC400) tile with near-black (#121316) ink.</desc>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#FFC400"/>
+  <g fill="none" stroke="#121316" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 35 V20 A4 4 0 0 1 16 16 H48 A4 4 0 0 1 52 20 V42 A4 4 0 0 1 48 46 H23"/>
+    <path d="M14 18 L32 31 L50 18"/>
+    <path d="M29 40 L22 46 L29 52"/>
+  </g>
 </svg>

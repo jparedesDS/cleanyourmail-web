@@ -50,13 +50,20 @@ Open <http://localhost:8080/>.
 
 ## Brand assets
 
-The website uses the **dark editorial** direction (`assets/banner.png`). The skill repository uses
-the terminal-first variant.
+The website uses the app-first **Spectrum** direction: carbon canvas `#121316`, yellow `#FFC400`
+Return Fold, purple `#9650FF` journal/undo and orange `#FF5500` attention. The primary brand package
+lives in the skill repository at `brand/final-spectrum/`; the Forest/Lime palette is kept as the
+classic CLI alternate in `brand/final/`.
 
-- `assets/brand/banner-web.png` — chosen for the website and this repository.
-- `assets/brand/banner-skill.png` — chosen for the skill repository.
-- `assets/brand/banner-light.png` — light “paper” alternate.
-- `assets/brand/social-web.png`, `assets/brand/social-skill.png` — 1280×640 social previews.
+The files in `assets/brand/` are earlier Forest/Lime explorations kept for reference.
+
+- `assets/banner.png` — current 1600×440 Spectrum repository banner.
+- `assets/og.png` — current 1280×640 Spectrum social card.
+- `assets/logo.svg`, `assets/favicon.svg` — current Return Fold mark.
+- `assets/brand/banner-web.png` — earlier Forest/Lime website banner.
+- `assets/brand/banner-skill.png` — earlier Forest/Lime skill banner.
+- `assets/brand/banner-light.png` — earlier light “paper” alternate.
+- `assets/brand/social-web.png`, `assets/brand/social-skill.png` — earlier 1280×640 social previews.
 
 ## Release sync
 

@@ -1,59 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
-  <defs>
-    <radialGradient id="glow" cx="80%" cy="10%" r="70%">
-      <stop offset="0" stop-color="#6ee7c8" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#6ee7c8" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow2" cx="10%" cy="90%" r="60%">
-      <stop offset="0" stop-color="#b9f36a" stop-opacity=".14"/>
-      <stop offset="1" stop-color="#b9f36a" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="#07100d"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
-  <rect width="1200" height="630" fill="url(#glow2)"/>
-  <g stroke="#eef8ee" stroke-opacity=".045" stroke-width="1">
-    <path d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200"/>
-    <path d="M120 0v630M240 0v630M360 0v630M480 0v630M600 0v630M720 0v630M840 0v630M960 0v630M1080 0v630"/>
-  </g>
-  <g transform="translate(92 88)">
-    <rect width="76" height="76" rx="19" fill="#b9f36a"/>
-    <rect x="15" y="24" width="46" height="29" rx="5" fill="none" stroke="#07100d" stroke-width="3.5"/>
-    <path d="m16 26 22 16 22-16" fill="none" stroke="#07100d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="59" cy="18" r="5" fill="#07100d"/>
-  </g>
-  <text x="188" y="142" fill="#eef8ee" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="-0.5">CleanYourMail</text>
-  <text x="92" y="286" fill="#eef8ee" font-family="Segoe UI, Arial, sans-serif" font-size="78" font-weight="800" letter-spacing="-4">Your inbox,</text>
-  <text x="92" y="374" fill="#b9f36a" font-family="Segoe UI, Arial, sans-serif" font-size="78" font-weight="800" letter-spacing="-4">minus the noise.</text>
-  <text x="94" y="444" fill="#9eb4a7" font-family="Segoe UI, Arial, sans-serif" font-size="26">Headers only. Plan first. Protected mail.</text>
-  <text x="94" y="484" fill="#9eb4a7" font-family="Segoe UI, Arial, sans-serif" font-size="26">No permanent deletion. Undo every move.</text>
-  <g font-family="Cascadia Code, Consolas, monospace" font-size="18" fill="#b9f36a">
-    <rect x="92" y="528" width="196" height="38" rx="19" fill="#b9f36a" fill-opacity=".08" stroke="#b9f36a" stroke-opacity=".3"/>
-    <text x="112" y="553">NO BODIES READ</text>
-    <rect x="304" y="528" width="214" height="38" rx="19" fill="#b9f36a" fill-opacity=".08" stroke="#b9f36a" stroke-opacity=".3"/>
-    <text x="324" y="553">NO PERMANENT DELETE</text>
-    <rect x="534" y="528" width="112" height="38" rx="19" fill="#b9f36a" fill-opacity=".08" stroke="#b9f36a" stroke-opacity=".3"/>
-    <text x="554" y="553">MIT</text>
-  </g>
-  <g transform="translate(850 190)">
-    <rect width="260" height="250" rx="26" fill="#0d1a15" stroke="#eef8ee" stroke-opacity=".16"/>
-    <text x="22" y="38" fill="#eef8ee" font-family="Cascadia Code, Consolas, monospace" font-size="13" letter-spacing="2">INBOX</text>
-    <text x="212" y="38" fill="#6f8578" font-family="Cascadia Code, Consolas, monospace" font-size="11">3 unread</text>
-    <g font-family="Segoe UI, Arial, sans-serif">
-      <rect x="18" y="58" width="224" height="38" rx="9" fill="#b9f36a" fill-opacity=".07"/>
-      <circle cx="32" cy="77" r="4" fill="#b9f36a"/>
-      <text x="46" y="74" fill="#b9f36a" font-size="12" font-weight="600">Your statement is ready</text>
-      <text x="46" y="88" fill="#6f8578" font-size="9">bank.example · protected</text>
-      <rect x="18" y="104" width="224" height="38" rx="9" fill="#b9f36a" fill-opacity=".07"/>
-      <circle cx="32" cy="123" r="4" fill="#b9f36a"/>
-      <text x="46" y="120" fill="#b9f36a" font-size="12" font-weight="600">Re: lunch tomorrow</text>
-      <text x="46" y="134" fill="#6f8578" font-size="9">friend@example.com · personal</text>
-      <text x="22" y="174" fill="#9eb4a7" font-size="11">CleanYourMail/Newsletters</text>
-      <text x="224" y="174" fill="#6f8578" font-family="Cascadia Code, Consolas, monospace" font-size="10">42</text>
-      <text x="22" y="198" fill="#9eb4a7" font-size="11">CleanYourMail/Promotions</text>
-      <text x="224" y="198" fill="#6f8578" font-family="Cascadia Code, Consolas, monospace" font-size="10">28</text>
-      <text x="22" y="222" fill="#9eb4a7" font-size="11">Junk</text>
-      <text x="232" y="222" fill="#6f8578" font-family="Cascadia Code, Consolas, monospace" font-size="10">6</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">CleanYourMail — Your inbox, minus the noise.</title>
+  <desc id="desc">CleanYourMail Spectrum social preview card showing the local desktop app, CLI engine, and semantic yellow/purple/orange workflow roles.</desc>
+  <rect width="1280" height="640" fill="#121316"/>
+  <!-- Restrained top structural three-stripe ribbon -->
+  <rect x="0" y="0" width="768" height="6" fill="#FFC400"/>
+  <rect x="768" y="0" width="256" height="6" fill="#FF5500"/>
+  <rect x="1024" y="0" width="256" height="6" fill="#9650FF"/>
+  <g transform="translate(56 56) scale(0.3125)">
+    <rect x="40" y="40" width="432" height="432" rx="112" fill="#FFC400"/>
+    <g fill="none" stroke="#121316" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M116 276 V168 A28 28 0 0 1 144 140 H368 A28 28 0 0 1 396 168 V320 A28 28 0 0 1 368 348 H184"/>
+    <path d="M124 152 L240 238 Q256 250 272 238 L388 152"/>
+    <path d="M224 304 L178 348 L224 392"/>
     </g>
+  </g>
+  <g transform="translate(228 82) scale(0.82)">
+    <path fill="#F3F1EC" d="M59.4 73.8Q52.7 77.1 41.7 77.1Q27.5 77.1 19.3 68.7Q11.2 60.3 11.2 46.4Q11.2 31.5 20.4 22.3Q29.5 13.1 44.2 13.1Q53.2 13.1 59.4 15.4V28.8Q53.2 25.1 45.3 25.1Q36.6 25.1 31.2 30.6Q25.9 36 25.9 45.4Q25.9 54.4 30.9 59.7Q36 65 44.5 65Q52.7 65 59.4 61.1Z M81.6 76H67.9V10.6H81.6Z M131.8 57.8H103Q103.7 67.4 115.1 67.4Q122.4 67.4 127.9 64V73.8Q121.8 77.1 112 77.1Q101.3 77.1 95.4 71.1Q89.5 65.2 89.5 54.6Q89.5 43.6 95.9 37.2Q102.3 30.7 111.6 30.7Q121.2 30.7 126.5 36.5Q131.8 42.2 131.8 52ZM119.2 49.4Q119.2 39.9 111.5 39.9Q108.2 39.9 105.8 42.6Q103.4 45.4 102.9 49.4Z M175.7 76H162.8V69.7H162.7Q158.2 77.1 149.5 77.1Q143.1 77.1 139.4 73.4Q135.7 69.8 135.7 63.7Q135.7 50.8 150.9 48.9L162.9 47.3Q162.9 40 155.1 40Q147.2 40 140.1 44.7V34.4Q142.9 33 147.8 31.9Q152.8 30.7 156.8 30.7Q175.7 30.7 175.7 49.6ZM162.9 58V55.1L154.9 56.1Q148.3 57 148.3 62.1Q148.3 64.4 149.9 65.9Q151.5 67.4 154.3 67.4Q158.1 67.4 160.5 64.8Q162.9 62.1 162.9 58Z M228.3 76H214.7V51.4Q214.7 41.2 207.3 41.2Q203.8 41.2 201.5 43.9Q199.2 46.6 199.2 50.8V76H185.6V31.8H199.2V38.8H199.4Q204.3 30.7 213.6 30.7Q228.3 30.7 228.3 48.9Z M286.1 14.1 265.9 54V76H252V54.2L232.4 14.1H248.3L258.3 37.2Q258.5 37.9 259.7 42.3H259.9Q260.4 39.1 261.2 37.4L271.3 14.1Z M303.9 77.1Q292.9 77.1 286.5 70.9Q280.2 64.7 280.2 54.1Q280.2 43.1 286.8 36.9Q293.3 30.7 304.5 30.7Q315.5 30.7 321.8 36.9Q328 43.1 328 53.3Q328 64.3 321.6 70.7Q315.1 77.1 303.9 77.1ZM304.3 41.2Q299.4 41.2 296.8 44.5Q294.1 47.8 294.1 53.9Q294.1 66.6 304.4 66.6Q314.1 66.6 314.1 53.6Q314.1 41.2 304.3 41.2Z M377.9 76H364.3V69.3H364.1Q359.1 77.1 350.6 77.1Q335.3 77.1 335.3 58.5V31.8H348.8V57.3Q348.8 66.6 356.3 66.6Q359.9 66.6 362.1 64.1Q364.3 61.5 364.3 57.1V31.8H377.9Z M417.3 44.1Q414.8 42.8 411.5 42.8Q407.1 42.8 404.6 46Q402.1 49.3 402.1 54.9V76H388.5V31.8H402.1V40H402.3Q405.5 31 413.9 31Q416.1 31 417.3 31.5Z"/>
+    <path fill="#FFC400" d="M494.5 76H480.8V39Q480.8 33 481.3 25.7H480.9Q479.9 31.4 479 33.9L464.5 76H453.1L438.3 34.4Q437.7 32.7 436.4 25.7H436Q436.6 34.9 436.6 41.8V76H424V14.1H444.4L457.1 50.8Q458.6 55.2 459.3 59.6H459.5Q460.7 54.5 462 50.7L474.6 14.1H494.5Z M543.1 76H530.2V69.7H530Q525.6 77.1 516.8 77.1Q510.4 77.1 506.7 73.4Q503 69.8 503 63.7Q503 50.8 518.3 48.9L530.3 47.3Q530.3 40 522.4 40Q514.5 40 507.4 44.7V34.4Q510.2 33 515.2 31.9Q520.1 30.7 524.2 30.7Q543.1 30.7 543.1 49.6ZM530.3 58V55.1L522.2 56.1Q515.6 57 515.6 62.1Q515.6 64.4 517.2 65.9Q518.8 67.4 521.6 67.4Q525.4 67.4 527.9 64.8Q530.3 62.1 530.3 58Z M559.8 24.8Q556.4 24.8 554.2 22.8Q552 20.7 552 17.7Q552 14.7 554.2 12.7Q556.4 10.8 559.8 10.8Q563.3 10.8 565.5 12.7Q567.7 14.7 567.7 17.7Q567.7 20.8 565.5 22.8Q563.3 24.8 559.8 24.8ZM566.6 76H552.9V31.8H566.6Z M590.7 76H577.1V10.6H590.7Z"/>
+  </g>
+  <g transform="translate(234 166)">
+    <rect x="0" y="0" width="52" height="4" rx="2" fill="#FFC400"/>
+    <rect x="60" y="0" width="26" height="4" rx="2" fill="#FF5500"/>
+    <rect x="94" y="0" width="26" height="4" rx="2" fill="#9650FF"/>
+  </g>
+  <g font-family="Segoe UI, Helvetica Neue, Arial, sans-serif">
+    <text x="68" y="284" fill="#F3F1EC" font-size="44" font-weight="600">Your inbox, minus the noise.</text>
+    <text x="68" y="340" fill="#A19E96" font-size="24">Headers only. Plan first. Undo every move.</text>
+    <text x="68" y="392" fill="#FFC400" font-size="22" font-weight="600">Tu bandeja, sin el ruido.</text>
+    <rect x="68" y="432" width="224" height="38" rx="10" fill="#FFC400"/>
+    <text x="180" y="456" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">LOCAL DESKTOP APP</text>
+    <rect x="308" y="432" width="212" height="38" rx="10" fill="#2A2C31"/>
+    <text x="414" y="456" text-anchor="middle" fill="#F3F1EC" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">PYTHON CLI ENGINE</text>
+    <path d="M68 502 H716" stroke="#2A2C31" stroke-width="2"/>
+    <text x="68" y="540" fill="#A19E96" font-family="Consolas, Menlo, monospace" font-size="14" letter-spacing="1.4">LOCAL BY CONSTRUCTION · NO TELEMETRY · MIT</text>
+    <text x="68" y="572" fill="#F3F1EC" font-size="15">Reversible moves with journal verification. Separate, irreversible unsubscribe.</text>
+  </g>
+  <!-- Right workflow card -->
+  <rect x="768" y="56" width="456" height="528" rx="26" fill="#2A2C31"/>
+  <rect x="770" y="58" width="452" height="524" rx="24" fill="#121316"/>
+  <rect x="770" y="58" width="452" height="48" rx="24" fill="#2A2C31"/>
+  <rect x="770" y="82" width="452" height="24" fill="#2A2C31"/>
+  <circle cx="802" cy="82" r="6" fill="#FFC400"/>
+  <circle cx="822" cy="82" r="6" fill="#FF5500"/>
+  <circle cx="842" cy="82" r="6" fill="#9650FF"/>
+  <text x="866" y="87" fill="#F3F1EC" font-family="Consolas, Menlo, monospace" font-size="12" letter-spacing="1.2">CLEANYOURMAIL · PLAN &amp; JOURNAL</text>
+  <g font-family="Segoe UI, Helvetica Neue, Arial, sans-serif">
+    <text x="812" y="148" fill="#FFC400" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700" letter-spacing="1.8">THE REVERSIBLE MOVE LOOP</text>
+    <path d="M828 196 V396" stroke="#2A2C31" stroke-width="4"/>
+    <circle cx="828" cy="196" r="14" fill="#FFC400"/>
+    <text x="828" y="201" text-anchor="middle" fill="#121316" font-size="13" font-weight="700">1</text>
+    <text x="862" y="202" fill="#F3F1EC" font-size="20" font-weight="600">Review the plan</text>
+    <text x="862" y="228" fill="#A19E96" font-size="15">Headers only; protected mail stays untouched.</text>
+    <circle cx="828" cy="296" r="14" fill="#9650FF"/>
+    <text x="828" y="301" text-anchor="middle" fill="#121316" font-size="13" font-weight="700">2</text>
+    <text x="862" y="302" fill="#F3F1EC" font-size="20" font-weight="600">Journal &amp; undo moves</text>
+    <text x="862" y="328" fill="#A19E96" font-size="15">Every move verified by Message-ID on restore.</text>
+    <circle cx="828" cy="396" r="14" fill="#FF5500"/>
+    <text x="828" y="401" text-anchor="middle" fill="#121316" font-size="13" font-weight="700">!</text>
+    <text x="862" y="402" fill="#F3F1EC" font-size="20" font-weight="600">Separate unsubscribe</text>
+    <text x="862" y="428" fill="#A19E96" font-size="15">Explicitly isolated because unsubscribe is irreversible.</text>
+    <path d="M812 468 H1184" stroke="#2A2C31" stroke-width="2"/>
+    <text x="812" y="510" fill="#FFC400" font-size="20" font-weight="600">Control, not magic.</text>
+    <text x="812" y="540" fill="#A19E96" font-size="14">Local desktop app + Python CLI engine.</text>
   </g>
 </svg>
