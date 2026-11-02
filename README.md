@@ -20,6 +20,7 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 - A comparison against hosted inbox cleaners.
 - A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
   Open Graph metadata, JSON-LD and a sitemap.
+- Footer links to the repository, docs, security policy, discussions and the website source.
 
 ## Preview locally
 
@@ -56,6 +57,12 @@ the terminal-first variant.
 - `assets/brand/banner-light.png` — light “paper” alternate.
 - `assets/brand/social-web.png`, `assets/brand/social-skill.png` — 1280×640 social previews.
 
+## Release sync
+
+`softwareVersion` in `index.html` and `es.html` must match `tools/cym_version.py` in the skill
+repository. When the JSON-LD block changes, recompute the CSP `sha256` hash in both pages and run the
+test suite again.
+
 ## Deploy
 
 This repository is a static site at the root. In GitHub:
@@ -79,11 +86,13 @@ python -m unittest discover -s tests -v
 
 The suite checks local links and assets, duplicate IDs, the language switch, analytics absence,
 inline-style absence (CSP compatibility), the CSP hash against the JSON-LD block, third-party
-requests, canonical/hreflang metadata, PNG dimensions and `security.txt`.
+requests, canonical/hreflang metadata, PNG dimensions, unrelated-project references and
+`security.txt`.
 
 ## Links
 
 - Skill repository: <https://github.com/jparedesDS/cleanyourmail>
+- Discussions: <https://github.com/jparedesDS/cleanyourmail/discussions>
 - Safety rules: <https://github.com/jparedesDS/cleanyourmail/blob/master/docs/SAFETY.md>
 - Prompt: <https://github.com/jparedesDS/cleanyourmail/blob/master/PROMPT.md>
 - Spanish prompt: <https://github.com/jparedesDS/cleanyourmail/blob/master/PROMPT.es.md>

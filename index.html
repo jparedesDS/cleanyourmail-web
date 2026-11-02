@@ -93,7 +93,7 @@
           <li>Headers only</li>
           <li>No permanent delete</li>
           <li>Undo every move</li>
-          <li>144 tests</li>
+          <li>146 tests</li>
         </ul>
       </div>
 
@@ -234,7 +234,7 @@
         <ol class="steps">
           <li class="reveal">
             <span class="step-num">01</span>
-            <div><h3>Connect</h3><p>Clone the repo, write a config, put the secret in <code>CYM_PASSWORD</code>, then run <code>doctor</code>.</p></div>
+            <div><h3>Connect</h3><p>Clone the repo, write a config, put the secret in <code>CYM_PASSWORD</code> or a local <code>password_file</code>, then run <code>doctor</code>.</p></div>
           </li>
           <li class="reveal">
             <span class="step-num">02</span>
@@ -261,7 +261,7 @@
           </div>
         </div>
       </div>
-      <p class="setup-note reveal"><b>Start small.</b> Use <code>--limit 50</code> for the first run, review <code>plan.json</code>, and keep the undo command. On macOS or Linux, use <code>python3</code> instead of <code>python</code>.</p>
+      <p class="setup-note reveal"><b>Start small.</b> Use <code>--limit 50</code> for the first run, review <code>plan.json</code>, and keep the undo command. <code>folders</code> lists or creates mail folders; <code>unsubs</code> shows unsubscribe history. On macOS or Linux, use <code>python3</code> instead of <code>python</code>.</p>
       <div class="agent-note reveal">
         <span class="agent-mark" aria-hidden="true">✦</span>
         <p><b>Using a coding agent?</b> Paste <code>PROMPT.md</code>. It will read <code>SKILL.md</code>, show you the plan, move first, and give you the undo command. It will not skip the review.</p>
@@ -296,11 +296,11 @@
           </article>
           <article class="provider-panel" role="tabpanel" id="provider-yahoo" aria-labelledby="tab-yahoo" data-panel="yahoo" hidden>
             <div><span class="provider-tag">Yahoo Mail</span><h3>App password</h3><p>Enable 2-Step Verification and generate an app password in Account Security. Standard IMAP folders; the CLI resolves Trash, Junk and Archive.</p></div>
-            <div class="provider-meta"><span><b>Auth</b> App Password</span><span><b>Folders</b> IMAP</span><span><b>Rules</b> Sieve</span></div>
+            <div class="provider-meta"><span><b>Auth</b> App Password</span><span><b>Folders</b> IMAP</span><span><b>Rules</b> Sieve export</span></div>
           </article>
           <article class="provider-panel" role="tabpanel" id="provider-icloud" aria-labelledby="tab-icloud" data-panel="icloud" hidden>
             <div><span class="provider-tag">iCloud Mail</span><h3>App-specific password</h3><p>Apple requires 2FA. Create an app-specific password at appleid.apple.com. The CLI resolves Deleted Messages, Junk and Archive.</p></div>
-            <div class="provider-meta"><span><b>Auth</b> App-specific</span><span><b>Folders</b> IMAP</span><span><b>Rules</b> Sieve</span></div>
+            <div class="provider-meta"><span><b>Auth</b> App-specific</span><span><b>Folders</b> IMAP</span><span><b>Rules</b> Sieve export</span></div>
           </article>
           <article class="provider-panel" role="tabpanel" id="provider-fastmail" aria-labelledby="tab-fastmail" data-panel="fastmail" hidden>
             <div><span class="provider-tag">Fastmail</span><h3>Scoped app password</h3><p>Create an app password with IMAP/SMTP access. Fastmail supports Sieve natively; export the script and review it before uploading.</p></div>
@@ -311,12 +311,12 @@
             <div class="provider-meta"><span><b>Auth</b> Bridge password</span><span><b>Host</b> localhost</span><span><b>IMAP</b> STARTTLS</span></div>
           </article>
           <article class="provider-panel" role="tabpanel" id="provider-other" aria-labelledby="tab-other" data-panel="other" hidden>
-            <div><span class="provider-tag">Any IMAP server</span><h3>Bring your own host</h3><p>Set host, port, TLS/STARTTLS and SMTP. The server must support UIDPLUS or MOVE; otherwise moves are refused rather than risk a mailbox-wide expunge.</p></div>
-            <div class="provider-meta"><span><b>Auth</b> Login / XOAUTH2</span><span><b>Needs</b> UIDPLUS/MOVE</span><span><b>Rules</b> Sieve</span></div>
+            <div><span class="provider-tag">Any IMAP server</span><h3>Bring your own host</h3><p>Set host, port, TLS/STARTTLS and SMTP. The server must support UIDPLUS or MOVE and provide resolvable Trash, Junk and Archive; otherwise moves are refused rather than risk a mailbox-wide expunge.</p></div>
+            <div class="provider-meta"><span><b>Auth</b> Login / XOAUTH2</span><span><b>Needs</b> UIDPLUS/MOVE</span><span><b>Rules</b> Sieve export</span></div>
           </article>
         </div>
       </div>
-      <p class="provider-foot reveal">Full setup notes in <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/PROVIDERS.md" rel="noopener">docs/PROVIDERS.md</a>. Your provider not listed? Any IMAP server with UIDPLUS or MOVE works.</p>
+      <p class="provider-foot reveal">Full setup notes in <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/PROVIDERS.md" rel="noopener">docs/PROVIDERS.md</a>. Your provider not listed? Any IMAP server with UIDPLUS or MOVE and resolvable Trash, Junk and Archive works.</p>
     </section>
 
     <section class="section" id="safety">
@@ -344,8 +344,8 @@
     </section>
 
     <section class="stats" aria-label="Project facts">
-      <div class="stat reveal"><strong>144</strong><span>tests, fake IMAP only</span></div>
-      <div class="stat reveal"><strong>7</strong><span>provider presets</span></div>
+      <div class="stat reveal"><strong>146</strong><span>tests, fake IMAP only</span></div>
+      <div class="stat reveal"><strong>6</strong><span>providers + custom IMAP</span></div>
       <div class="stat reveal"><strong>0</strong><span>bodies read</span></div>
       <div class="stat reveal"><strong>0</strong><span>permanent deletes</span></div>
       <div class="stat reveal"><strong>1</strong><span>command to undo moves</span></div>
@@ -401,12 +401,13 @@
       <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">GitHub</a>
       <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener">SKILL.md</a>
       <a href="https://github.com/jparedesDS/cleanyourmail/tree/master/docs" rel="noopener">Docs</a>
+      <a href="https://github.com/jparedesDS/cleanyourmail/discussions" rel="noopener">Discussions</a>
       <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/SECURITY.md" rel="noopener">Security</a>
       <a href="https://github.com/jparedesDS/cleanyourmail-web" rel="noopener">Website source</a>
       <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/LICENSE" rel="noopener">MIT</a>
       <a href="es.html" hreflang="es" lang="es">Español</a>
     </nav>
-    <p class="footer-note">No cookies. No analytics. No third-party requests. Inspired by cleanyour.tv. Not affiliated with any mail provider.</p>
+    <p class="footer-note">No cookies. No analytics. No third-party requests. Not affiliated with any mail provider.</p>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
