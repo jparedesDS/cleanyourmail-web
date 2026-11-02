@@ -5,7 +5,7 @@
 # CleanYourMail — website
 
 Static landing page for [CleanYourMail](https://github.com/jparedesDS/cleanyourmail), the
-open-source, reversible inbox cleanup app and agent skill.
+open-source, reversible inbox cleanup agent skill, with an optional local app and CLI.
 
 **Live site:** <https://jparedesds.github.io/cleanyourmail-web/>  
 **Spanish:** <https://jparedesds.github.io/cleanyourmail-web/es.html>
@@ -14,11 +14,11 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 
 ## What is here
 
-- A bilingual English/Spanish, app-first landing page with a “Choose your path” section.
-- App download and agent-skill paths, with the CLI kept as a small GitHub link for power users.
-- A provider grid with official full-color provider marks.
+- A bilingual English/Spanish, skill-first landing page with a “Choose your path” section.
+- The agent skill as the primary offer, the local app second, and the CLI as a small GitHub link.
+- A provider grid with official full-color PNG marks and no white backing chip.
 - A plain-language safety section: headers only, protected mail, no permanent deletion, undo.
-- A short FAQ and clear calls to action.
+- A short FAQ, inline icons and clear calls to action.
 - A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
   Open Graph metadata, JSON-LD and a sitemap.
 - Footer links to the app, CLI, repository, docs, security policy and discussions.
@@ -47,7 +47,7 @@ Open <http://localhost:8080/>.
 | `robots.txt`, `sitemap.xml` | Crawler metadata. |
 | `.well-known/security.txt` | Security contact and policy. |
 | `404.html` | Not-found page. |
-| `tests/test_site.py` | Link, ID, language, CSP, metadata and brand-asset checks. |
+| `tests/test_site.py` | Link, ID, language, CSP, metadata, icon and brand-asset checks. |
 
 ## Brand assets
 
@@ -95,12 +95,14 @@ python -m unittest discover -s tests -v
 
 The suite checks local links and assets, duplicate IDs, the language switch, analytics absence,
 inline-style absence (CSP compatibility), the CSP hash against the JSON-LD block, third-party
-requests, canonical/hreflang metadata, PNG dimensions, unrelated-project references, the start
-routes, the safe quick start and `security.txt`.
+requests, canonical/hreflang metadata, PNG dimensions, unrelated-project references, the skill and
+app routes, provider PNGs, the GitHub icon and `security.txt`.
 
 ## Links
 
 - Skill repository: <https://github.com/jparedesDS/cleanyourmail>
+- Skill entry point: <https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md>
+- App: <https://github.com/jparedesDS/cleanyourmail-app>
 - Discussions: <https://github.com/jparedesDS/cleanyourmail/discussions>
 - Safety rules: <https://github.com/jparedesDS/cleanyourmail/blob/master/docs/SAFETY.md>
 - Prompt: <https://github.com/jparedesDS/cleanyourmail/blob/master/PROMPT.md>

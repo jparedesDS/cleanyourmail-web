@@ -70,23 +70,29 @@ class SiteTest(unittest.TestCase):
                                "matomo", "hotjar", "segment.com"):
                     self.assertNotIn(marker, text)
 
-    def test_start_routes_and_app_link(self):
-        prompts = {
-            "index.html": "PROMPT.md",
-            "es.html": "PROMPT.es.md",
-        }
-        for name, prompt in prompts.items():
+    def test_start_routes_and_skill_link(self):
+        for name in ("index.html", "es.html"):
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 self.assertIn('id="start"', text)
                 self.assertIn('id="why"', text)
-                self.assertIn(prompt, text)
+                self.assertIn("SKILL.md", text)
                 self.assertIn("cleanyourmail-app", text)
                 self.assertIn("docs/VALIDATION.md", text)
                 self.assertEqual(text.count("<details>"), 6)
+                self.assertIn('id="i-github"', text)
+                self.assertIn('href="#i-github"', text)
 
                 for value in re.findall(r'data-copy="([^"]*)"', text):
                     self.assertNotIn("apply", value)
+
+    def test_provider_logos_are_png(self):
+        for name in ("index.html", "es.html"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                for provider in ("gmail", "outlook", "yahoo", "icloud", "fastmail", "proton"):
+                    self.assertIn(f"assets/providers/{provider}.png", text)
+                    self.assertTrue((ROOT / "assets" / "providers" / f"{provider}.png").is_file())
 
     def test_no_unrelated_project_reference(self):
         """The site must not claim an unrelated project as its inspiration."""
