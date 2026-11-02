@@ -2,38 +2,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="440" viewBox="0 0 1600 440" role="img" aria-labelledby="title desc">
   <title id="title">CleanYourMail — Your inbox, minus the noise.</title>
   <desc id="desc">CleanYourMail family banner: lavender Return Fold envelope, gold return arrow and the CleanYourPhone palette.</desc>
-  <rect width="1600" height="440" fill="#15161A"/>
-  <rect x="80" y="100" width="160" height="160" rx="35" fill="#15161A"/>
+  <rect width="1600" height="440" fill="#121316"/>
+  <rect x="80" y="100" width="160" height="160" rx="35" fill="#1B1C21" stroke="#2A2C31" stroke-width="2"/>
   <g transform="translate(80 100) scale(2.5)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 35 V20 A4 4 0 0 1 16 16 H48 A4 4 0 0 1 52 20 V42 A4 4 0 0 1 48 46 H23" stroke="#A78BFA" stroke-width="4.5"/>
-    <path d="M14 18 L32 31 L50 18" stroke="#A78BFA" stroke-width="4.5"/>
-    <path d="M29 40 L22 46 L29 52" stroke="#E2C15C" stroke-width="4.5"/>
+    <path d="M12 35 V20 A4 4 0 0 1 16 16 H48 A4 4 0 0 1 52 20 V42 A4 4 0 0 1 48 46 H23" stroke="#FFB38A" stroke-width="4.5"/>
+    <path d="M14 18 L32 31 L50 18" stroke="#FFB38A" stroke-width="4.5"/>
+    <path d="M29 40 L22 46 L29 52" stroke="#A8E6CF" stroke-width="4.5"/>
   </g>
-  <text x="280" y="185" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="-2">CleanYour<tspan fill="#C4B5FD">Mail</tspan></text>
-  <text x="280" y="245" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="34" font-weight="600">Your inbox, minus the noise.</text>
-  <text x="280" y="292" fill="#A8A39B" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="21">Headers only. Plan first. Undo every move.</text>
-  <text x="280" y="330" fill="#C4B5FD" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="19">Tu bandeja, sin el ruido.</text>
-  <text x="80" y="402" fill="#8E8A82" font-family="Consolas, Menlo, monospace" font-size="13" letter-spacing="1.5">LOCAL-FIRST IMAP CLEANUP + PYTHON CLI · MIT · PYTHON 3.11+</text>
+  <text x="280" y="185" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="-2">CleanYour<tspan fill="#FFB38A">Mail</tspan></text>
+  <text x="280" y="245" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="34" font-weight="600">Your inbox, minus the noise.</text>
+  <text x="280" y="292" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="21">Headers only. Plan first. Undo every move.</text>
+  <text x="280" y="330" fill="#FFB38A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="19">Tu bandeja, sin el ruido.</text>
+  <text x="80" y="402" fill="#8B8881" font-family="Consolas, Menlo, monospace" font-size="13" letter-spacing="1.5">LOCAL-FIRST IMAP CLEANUP + PYTHON CLI · MIT · PYTHON 3.11+</text>
 
-  <rect x="1030" y="70" width="490" height="300" rx="18" fill="#1C1E24" stroke="#23252D" stroke-width="2"/>
-  <text x="1054" y="100" fill="#ECE9E2" font-family="Consolas, Menlo, monospace" font-size="12" letter-spacing="1.2">CLEANYOURMAIL · LOCAL IMAP</text>
-  <text x="1054" y="140" fill="#E2C15C" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700" letter-spacing="1.8">CONTROL, NOT MAGIC.</text>
+  <rect x="1030" y="70" width="490" height="300" rx="18" fill="#1B1C21" stroke="#2A2C31" stroke-width="2"/>
+  <text x="1054" y="100" fill="#F3F1EC" font-family="Consolas, Menlo, monospace" font-size="12" letter-spacing="1.2">CLEANYOURMAIL · LOCAL IMAP</text>
+  <text x="1054" y="140" fill="#FFB38A" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700" letter-spacing="1.8">CONTROL, NOT MAGIC.</text>
 
-  <circle cx="1060" cy="182" r="6" fill="#E2C15C"/>
-  <text x="1080" y="187" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600">Plan before action</text>
-  <text x="1330" y="187" fill="#8E8A82" font-family="Consolas, Menlo, monospace" font-size="11">headers only</text>
+  <circle cx="1060" cy="182" r="6" fill="#FFB38A"/>
+  <text x="1080" y="187" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600">Plan before action</text>
+  <text x="1330" y="187" fill="#8B8881" font-family="Consolas, Menlo, monospace" font-size="11">headers only</text>
 
-  <circle cx="1060" cy="222" r="6" fill="#A78BFA"/>
-  <text x="1080" y="227" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600">Undo every move</text>
-  <text x="1330" y="227" fill="#8E8A82" font-family="Consolas, Menlo, monospace" font-size="11">journaled</text>
+  <circle cx="1060" cy="222" r="6" fill="#A8E6CF"/>
+  <text x="1080" y="227" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600">Undo every move</text>
+  <text x="1330" y="227" fill="#8B8881" font-family="Consolas, Menlo, monospace" font-size="11">journaled</text>
 
-  <circle cx="1060" cy="262" r="6" fill="#D97A5E"/>
-  <text x="1080" y="267" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600">Separate unsubscribe</text>
-  <rect x="1326" y="249" width="112" height="26" rx="13" fill="#D97A5E"/>
-  <text x="1382" y="267" text-anchor="middle" fill="#15161A" font-family="Consolas, Menlo, monospace" font-size="10" font-weight="700" letter-spacing="0.8">IRREVERSIBLE</text>
+  <circle cx="1060" cy="262" r="6" fill="#FFE08A"/>
+  <text x="1080" y="267" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="600">Separate unsubscribe</text>
+  <rect x="1326" y="249" width="112" height="26" rx="13" fill="#FFE08A"/>
+  <text x="1382" y="267" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="10" font-weight="700" letter-spacing="0.8">IRREVERSIBLE</text>
 
-  <line x1="1054" y1="294" x2="1496" y2="294" stroke="#23252D" stroke-width="1"/>
-  <rect x="1054" y="310" width="130" height="34" rx="8" fill="#E2C15C"/>
-  <text x="1119" y="332" text-anchor="middle" fill="#15161A" font-family="Consolas, Menlo, monospace" font-size="11" font-weight="700">REVIEW PLAN</text>
-  <text x="1200" y="332" fill="#A8A39B" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13">No permanent deletion.</text>
+  <line x1="1054" y1="294" x2="1496" y2="294" stroke="#2A2C31" stroke-width="1"/>
+  <rect x="1054" y="310" width="130" height="34" rx="8" fill="#FFB38A"/>
+  <text x="1119" y="332" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="11" font-weight="700">REVIEW PLAN</text>
+  <text x="1200" y="332" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="13">No permanent deletion.</text>
 </svg>

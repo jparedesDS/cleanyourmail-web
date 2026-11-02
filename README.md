@@ -50,10 +50,10 @@ Open <http://localhost:8080/>.
 
 ## Brand assets
 
-The website uses the app-first **Family** direction, aligned with CleanYourPhone: carbon canvas
-`#15161A`, lavender `#A78BFA` envelope, gold `#E2C15C` return arrow, and a lavender-bright `Mail`
-wordmark. The primary brand package lives in the skill repository at `brand/final-family/`; the
-earlier Spectrum Pastel and Forest/Lime palettes remain as alternates.
+The website uses the primary **Spectrum** direction: carbon canvas `#121316`, pastel orange
+`#FFB38A` envelope, mint `#A8E6CF` return arrow, and an orange `Mail` wordmark. The primary brand
+package lives in the skill repository at `brand/final-spectrum/`; the CleanYourPhone-aligned Family
+palette and the Forest/Lime palette remain as alternates.
 
 The files in `assets/brand/` are earlier Forest/Lime explorations kept for reference.
 

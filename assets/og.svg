@@ -2,48 +2,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
   <title id="title">CleanYourMail — Your inbox, minus the noise.</title>
   <desc id="desc">CleanYourMail family social card: lavender Return Fold envelope, gold return arrow and the CleanYourPhone palette.</desc>
-  <rect width="1280" height="640" fill="#15161A"/>
-  <rect x="68" y="80" width="140" height="140" rx="31" fill="#15161A"/>
+  <rect width="1280" height="640" fill="#121316"/>
+  <rect x="68" y="80" width="140" height="140" rx="31" fill="#1B1C21" stroke="#2A2C31" stroke-width="2"/>
   <g transform="translate(68 80) scale(2.1875)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 35 V20 A4 4 0 0 1 16 16 H48 A4 4 0 0 1 52 20 V42 A4 4 0 0 1 48 46 H23" stroke="#A78BFA" stroke-width="4.5"/>
-    <path d="M14 18 L32 31 L50 18" stroke="#A78BFA" stroke-width="4.5"/>
-    <path d="M29 40 L22 46 L29 52" stroke="#E2C15C" stroke-width="4.5"/>
+    <path d="M12 35 V20 A4 4 0 0 1 16 16 H48 A4 4 0 0 1 52 20 V42 A4 4 0 0 1 48 46 H23" stroke="#FFB38A" stroke-width="4.5"/>
+    <path d="M14 18 L32 31 L50 18" stroke="#FFB38A" stroke-width="4.5"/>
+    <path d="M29 40 L22 46 L29 52" stroke="#A8E6CF" stroke-width="4.5"/>
   </g>
-  <text x="240" y="160" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-1.5">CleanYour<tspan fill="#C4B5FD">Mail</tspan></text>
-  <text x="68" y="300" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="40" font-weight="600">Your inbox, minus the noise.</text>
-  <text x="68" y="350" fill="#A8A39B" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="22">Headers only. Plan first. Undo every move.</text>
-  <text x="68" y="386" fill="#C4B5FD" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="18">Tu bandeja, sin el ruido.</text>
+  <text x="240" y="160" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-1.5">CleanYour<tspan fill="#FFB38A">Mail</tspan></text>
+  <text x="68" y="300" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="40" font-weight="600">Your inbox, minus the noise.</text>
+  <text x="68" y="350" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="22">Headers only. Plan first. Undo every move.</text>
+  <text x="68" y="386" fill="#FFB38A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="18">Tu bandeja, sin el ruido.</text>
 
-  <rect x="68" y="430" width="190" height="38" rx="19" fill="#E2C15C"/>
-  <text x="163" y="454" text-anchor="middle" fill="#15161A" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">LOCAL-FIRST IMAP</text>
-  <rect x="274" y="430" width="210" height="38" rx="19" fill="#23252D" stroke="#2E313A" stroke-width="1"/>
-  <text x="379" y="454" text-anchor="middle" fill="#ECE9E2" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">PYTHON CLI ENGINE</text>
+  <rect x="68" y="430" width="190" height="38" rx="19" fill="#FFB38A"/>
+  <text x="163" y="454" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">LOCAL-FIRST IMAP</text>
+  <rect x="274" y="430" width="210" height="38" rx="19" fill="#2A2C31" stroke="#2E313A" stroke-width="1"/>
+  <text x="379" y="454" text-anchor="middle" fill="#F3F1EC" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">PYTHON CLI ENGINE</text>
 
-  <text x="68" y="540" fill="#8E8A82" font-family="Consolas, Menlo, monospace" font-size="13" letter-spacing="1.4">LOCAL BY CONSTRUCTION · NO TELEMETRY · MIT</text>
-  <text x="68" y="572" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="15">Reversible moves with journal verification. Separate, irreversible unsubscribe.</text>
+  <text x="68" y="540" fill="#8B8881" font-family="Consolas, Menlo, monospace" font-size="13" letter-spacing="1.4">LOCAL BY CONSTRUCTION · NO TELEMETRY · MIT</text>
+  <text x="68" y="572" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="15">Reversible moves with journal verification. Separate, irreversible unsubscribe.</text>
 
-  <rect x="760" y="70" width="450" height="500" rx="18" fill="#1C1E24" stroke="#23252D" stroke-width="2"/>
-  <text x="784" y="100" fill="#ECE9E2" font-family="Consolas, Menlo, monospace" font-size="12" letter-spacing="1.2">CLEANYOURMAIL · PLAN &amp; JOURNAL</text>
-  <text x="784" y="140" fill="#E2C15C" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700" letter-spacing="1.8">THE REVERSIBLE MOVE LOOP</text>
+  <rect x="760" y="70" width="450" height="500" rx="18" fill="#1B1C21" stroke="#2A2C31" stroke-width="2"/>
+  <text x="784" y="100" fill="#F3F1EC" font-family="Consolas, Menlo, monospace" font-size="12" letter-spacing="1.2">CLEANYOURMAIL · PLAN &amp; JOURNAL</text>
+  <text x="784" y="140" fill="#FFB38A" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700" letter-spacing="1.8">THE REVERSIBLE MOVE LOOP</text>
 
-  <circle cx="796" cy="190" r="14" fill="#E2C15C"/>
-  <text x="796" y="195" text-anchor="middle" fill="#15161A" font-family="Consolas, Menlo, monospace" font-size="12" font-weight="700">1</text>
-  <text x="824" y="194" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600">Plan the cleanup</text>
-  <text x="824" y="216" fill="#A8A39B" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Headers only; protected mail stays untouched.</text>
+  <circle cx="796" cy="190" r="14" fill="#FFB38A"/>
+  <text x="796" y="195" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="12" font-weight="700">1</text>
+  <text x="824" y="194" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600">Plan the cleanup</text>
+  <text x="824" y="216" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Headers only; protected mail stays untouched.</text>
 
-  <line x1="796" y1="210" x2="796" y2="300" stroke="#23252D" stroke-width="2"/>
-  <circle cx="796" cy="300" r="14" fill="#A78BFA"/>
-  <text x="796" y="305" text-anchor="middle" fill="#15161A" font-family="Consolas, Menlo, monospace" font-size="12" font-weight="700">2</text>
-  <text x="824" y="304" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600">Undo every move</text>
-  <text x="824" y="326" fill="#A8A39B" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Journal verifies Message-ID on restore.</text>
+  <line x1="796" y1="210" x2="796" y2="300" stroke="#2A2C31" stroke-width="2"/>
+  <circle cx="796" cy="300" r="14" fill="#A8E6CF"/>
+  <text x="796" y="305" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="12" font-weight="700">2</text>
+  <text x="824" y="304" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600">Undo every move</text>
+  <text x="824" y="326" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Journal verifies Message-ID on restore.</text>
 
-  <line x1="796" y1="320" x2="796" y2="410" stroke="#23252D" stroke-width="2"/>
-  <circle cx="796" cy="410" r="14" fill="#D97A5E"/>
-  <text x="796" y="415" text-anchor="middle" fill="#15161A" font-family="Consolas, Menlo, monospace" font-size="12" font-weight="700">3</text>
-  <text x="824" y="414" fill="#ECE9E2" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600">Separate unsubscribe</text>
-  <text x="824" y="436" fill="#A8A39B" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Explicitly isolated because it is irreversible.</text>
+  <line x1="796" y1="320" x2="796" y2="410" stroke="#2A2C31" stroke-width="2"/>
+  <circle cx="796" cy="410" r="14" fill="#FFE08A"/>
+  <text x="796" y="415" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="12" font-weight="700">3</text>
+  <text x="824" y="414" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="600">Separate unsubscribe</text>
+  <text x="824" y="436" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Explicitly isolated because it is irreversible.</text>
 
-  <line x1="784" y1="470" x2="1184" y2="470" stroke="#23252D" stroke-width="1"/>
-  <text x="784" y="510" fill="#E2C15C" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="20" font-weight="600">Control, not magic.</text>
-  <text x="784" y="536" fill="#A8A39B" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Local-first IMAP cleanup, powered by the Python CLI.</text>
+  <line x1="784" y1="470" x2="1184" y2="470" stroke="#2A2C31" stroke-width="1"/>
+  <text x="784" y="510" fill="#FFB38A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="20" font-weight="600">Control, not magic.</text>
+  <text x="784" y="536" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Local-first IMAP cleanup, powered by the Python CLI.</text>
 </svg>
