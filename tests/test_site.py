@@ -108,6 +108,9 @@ class SiteTest(unittest.TestCase):
                 for provider in ("gmail", "outlook", "yahoo", "icloud", "fastmail", "proton"):
                     self.assertIn(f"assets/providers/{provider}.png", text)
                     self.assertTrue((ROOT / "assets" / "providers" / f"{provider}.png").is_file())
+                self.assertIn('class="provider-strip"', text)
+                self.assertIn('class="provider-strip-track"', text)
+                self.assertGreaterEqual(text.count('class="provider-strip-item"'), 12)
 
     def test_no_unrelated_project_reference(self):
         """The site must not claim an unrelated project as its inspiration."""

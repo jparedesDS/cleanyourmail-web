@@ -17,6 +17,7 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 - A bilingual English/Spanish, skill-first landing page with a “Choose your path” section.
 - The agent skill as the primary offer, the local app second, and the CLI as a small GitHub link.
 - A provider grid with official full-color PNG marks and no white backing chip.
+- A slim, slow provider marquee between the hero and “Choose your path”.
 - A plain-language safety section: headers only, protected mail, no permanent deletion, undo.
 - A short FAQ, inline icons and clear calls to action.
 - A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
@@ -96,7 +97,7 @@ python -m unittest discover -s tests -v
 The suite checks local links and assets, duplicate IDs, the language switch, analytics absence,
 inline-style absence (CSP compatibility), the CSP hash against the JSON-LD block, third-party
 requests, canonical/hreflang metadata, PNG dimensions, unrelated-project references, the skill and
-app routes, provider PNGs, the GitHub icon and `security.txt`.
+app routes, provider PNGs, the provider marquee, the GitHub icon and `security.txt`.
 
 ## Links
 
