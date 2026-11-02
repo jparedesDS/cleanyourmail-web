@@ -526,6 +526,59 @@ h1 em {
   font-size: inherit;
 }
 
+/* Provider strip */
+
+.provider-strip {
+  padding: 10px 0;
+  overflow: hidden;
+  background: rgba(27, 28, 33, 0.35);
+  border-top: 1px solid var(--line);
+}
+
+.provider-strip-viewport {
+  padding: 0 24px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+}
+
+.provider-strip-track {
+  display: flex;
+  width: max-content;
+  animation: provider-marquee 90s linear infinite;
+  will-change: transform;
+}
+
+.provider-strip:hover .provider-strip-track { animation-play-state: paused; }
+
+.provider-strip-group {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding-right: 40px;
+}
+
+.provider-strip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted-2);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.provider-strip-item img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+@keyframes provider-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-25%); }
+}
+
 /* Start */
 
 .start-grid {
@@ -1103,6 +1156,7 @@ h2 {
   }
   .hero-actions .button,
   .start-card .button { width: 100%; }
+  .skill-prompt { font-size: 10px; }
   .terminal pre {
     white-space: pre-wrap;
     overflow-wrap: anywhere;
@@ -1117,4 +1171,22 @@ h2 {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+  .provider-strip-viewport {
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .provider-strip-track {
+    width: auto;
+    justify-content: center;
+    animation: none !important;
+  }
+  .provider-strip-group {
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+    padding: 0 16px;
+  }
+  .provider-strip-group + .provider-strip-group { display: none; }
 }
