@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
   <title id="title">CleanYourMail — Your inbox, minus the noise.</title>
-  <desc id="desc">CleanYourMail family social card: lavender Return Fold envelope, gold return arrow and the CleanYourPhone palette.</desc>
+  <desc id="desc">CleanYourMail Spectrum social card: pastel orange Return Fold envelope, mint return arrow and the carbon Spectrum palette.</desc>
   <rect width="1280" height="640" fill="#121316"/>
   <rect x="68" y="80" width="140" height="140" rx="31" fill="#1B1C21" stroke="#2A2C31" stroke-width="2"/>
   <g transform="translate(68 80) scale(2.1875)" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -15,9 +15,9 @@
   <text x="68" y="386" fill="#FFB38A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="18">Tu bandeja, sin el ruido.</text>
 
   <rect x="68" y="430" width="190" height="38" rx="19" fill="#FFB38A"/>
-  <text x="163" y="454" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">LOCAL APP</text>
+  <text x="163" y="454" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">AGENT SKILL</text>
   <rect x="274" y="430" width="210" height="38" rx="19" fill="#2A2C31" stroke="#2E313A" stroke-width="1"/>
-  <text x="379" y="454" text-anchor="middle" fill="#F3F1EC" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">AGENT SKILL</text>
+  <text x="379" y="454" text-anchor="middle" fill="#F3F1EC" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">LOCAL APP</text>
 
   <text x="68" y="540" fill="#8B8881" font-family="Consolas, Menlo, monospace" font-size="13" letter-spacing="1.4">LOCAL BY CONSTRUCTION · NO TELEMETRY · MIT</text>
   <text x="68" y="572" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="15">Reversible moves with journal verification. Separate, irreversible unsubscribe.</text>
@@ -45,5 +45,5 @@
 
   <line x1="784" y1="470" x2="1184" y2="470" stroke="#2A2C31" stroke-width="1"/>
   <text x="784" y="510" fill="#FFB38A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="20" font-weight="600">Control, not magic.</text>
-  <text x="784" y="536" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Local app and agent skill, powered by the Python CLI.</text>
+  <text x="784" y="536" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="14">Agent skill and local app, powered by the Python CLI.</text>
 </svg>

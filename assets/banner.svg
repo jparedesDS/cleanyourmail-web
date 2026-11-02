@@ -13,7 +13,7 @@
   <text x="280" y="245" fill="#F3F1EC" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="34" font-weight="600">Your inbox, minus the noise.</text>
   <text x="280" y="292" fill="#A19E96" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="21">Headers only. Plan first. Undo every move.</text>
   <text x="280" y="330" fill="#FFB38A" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="19">Tu bandeja, sin el ruido.</text>
-  <text x="80" y="402" fill="#8B8881" font-family="Consolas, Menlo, monospace" font-size="13" letter-spacing="1.5">LOCAL APP + AGENT SKILL + PYTHON CLI · MIT · PYTHON 3.11+</text>
+  <text x="80" y="402" fill="#8B8881" font-family="Consolas, Menlo, monospace" font-size="13" letter-spacing="1.5">AGENT SKILL + LOCAL APP + PYTHON CLI · MIT · PYTHON 3.11+</text>
 
   <rect x="1030" y="70" width="490" height="300" rx="18" fill="#1B1C21" stroke="#2A2C31" stroke-width="2"/>
   <text x="1054" y="100" fill="#F3F1EC" font-family="Consolas, Menlo, monospace" font-size="12" letter-spacing="1.2">CLEANYOURMAIL · LOCAL IMAP</text>
