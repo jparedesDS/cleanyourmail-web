@@ -50,10 +50,10 @@ Open <http://localhost:8080/>.
 
 ## Brand assets
 
-The website uses the app-first **Spectrum** direction: carbon canvas `#121316`, pastel yellow
-`#FFE08A` Return Fold, mint `#A8E6CF` journal/undo and peach `#FFB38A` attention. The primary brand
-package lives in the skill repository at `brand/final-spectrum/`; the Forest/Lime palette is kept as
-the classic CLI alternate in `brand/final/`.
+The website uses the app-first **Spectrum** direction: carbon canvas `#121316`, pastel orange
+`#FFB38A` Return Fold, mint `#A8E6CF` journal/undo and pastel yellow `#FFE08A` attention. The primary
+brand package lives in the skill repository at `brand/final-spectrum/`; the Forest/Lime palette is
+kept as the classic CLI alternate in `brand/final/`.
 
 The files in `assets/brand/` are earlier Forest/Lime explorations kept for reference.
 
