@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
   <title id="title">CleanYourMail — Your inbox, minus the noise.</title>
-  <desc id="desc">CleanYourMail Spectrum social preview card showing the local desktop app, CLI engine, and semantic yellow/purple/orange workflow roles.</desc>
+  <desc id="desc">CleanYourMail Spectrum social preview card showing local-first IMAP cleanup, CLI engine, and semantic yellow/purple/orange workflow roles.</desc>
   <rect width="1280" height="640" fill="#121316"/>
   <!-- Restrained top structural three-stripe ribbon -->
   <rect x="0" y="0" width="768" height="6" fill="#FFC400"/>
@@ -29,7 +29,7 @@
     <text x="68" y="340" fill="#A19E96" font-size="24">Headers only. Plan first. Undo every move.</text>
     <text x="68" y="392" fill="#FFC400" font-size="22" font-weight="600">Tu bandeja, sin el ruido.</text>
     <rect x="68" y="432" width="224" height="38" rx="10" fill="#FFC400"/>
-    <text x="180" y="456" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">LOCAL DESKTOP APP</text>
+    <text x="180" y="456" text-anchor="middle" fill="#121316" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">LOCAL-FIRST IMAP</text>
     <rect x="308" y="432" width="212" height="38" rx="10" fill="#2A2C31"/>
     <text x="414" y="456" text-anchor="middle" fill="#F3F1EC" font-family="Consolas, Menlo, monospace" font-size="13" font-weight="700">PYTHON CLI ENGINE</text>
     <path d="M68 502 H716" stroke="#2A2C31" stroke-width="2"/>
@@ -62,6 +62,6 @@
     <text x="862" y="428" fill="#A19E96" font-size="15">Explicitly isolated because unsubscribe is irreversible.</text>
     <path d="M812 468 H1184" stroke="#2A2C31" stroke-width="2"/>
     <text x="812" y="510" fill="#FFC400" font-size="20" font-weight="600">Control, not magic.</text>
-    <text x="812" y="540" fill="#A19E96" font-size="14">Local desktop app + Python CLI engine.</text>
+    <text x="812" y="540" fill="#A19E96" font-size="14">Local-first IMAP cleanup, powered by the Python CLI.</text>
   </g>
 </svg>
