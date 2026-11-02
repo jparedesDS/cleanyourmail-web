@@ -70,6 +70,13 @@ class SiteTest(unittest.TestCase):
                                "matomo", "hotjar", "segment.com"):
                     self.assertNotIn(marker, text)
 
+    def test_no_unrelated_project_reference(self):
+        """The site must not claim an unrelated project as its inspiration."""
+        for name in PAGES:
+            text = (ROOT / name).read_text(encoding="utf-8").lower()
+            with self.subTest(page=name):
+                self.assertNotIn("cleanyour.tv", text)
+
     def test_no_todo_markers(self):
         for name in PAGES:
             text = (ROOT / name).read_text(encoding="utf-8")

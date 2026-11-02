@@ -93,7 +93,7 @@
           <li>Solo cabeceras</li>
           <li>Sin borrado permanente</li>
           <li>Undo de cada movimiento</li>
-          <li>144 tests</li>
+          <li>146 tests</li>
         </ul>
       </div>
 
@@ -195,7 +195,7 @@
       </div>
       <div class="setup-grid">
         <ol class="steps">
-          <li class="reveal"><span class="step-num">01</span><div><h3>Conectar</h3><p>Clona el repo, crea la configuración, pon el secreto en <code>CYM_PASSWORD</code> y ejecuta <code>doctor</code>.</p></div></li>
+          <li class="reveal"><span class="step-num">01</span><div><h3>Conectar</h3><p>Clona el repo, crea la configuración, pon el secreto en <code>CYM_PASSWORD</code> o en un <code>password_file</code> local y ejecuta <code>doctor</code>.</p></div></li>
           <li class="reveal"><span class="step-num">02</span><div><h3>Revisar</h3><p>Escanea cabeceras, lee el informe y genera un plan. Corrige los remitentes protegidos antes de mover nada.</p></div></li>
           <li class="reveal"><span class="step-num">03</span><div><h3>Limpiar</h3><p>Aplica primero los movimientos. Verifica. Luego envía las bajas por separado. Guarda el comando de undo.</p></div></li>
         </ol>
@@ -215,7 +215,7 @@
           </div>
         </div>
       </div>
-      <p class="setup-note reveal"><b>Empieza poco a poco.</b> Usa <code>--limit 50</code> en la primera pasada, revisa <code>plan.json</code> y guarda el comando de undo. En macOS o Linux, usa <code>python3</code> en lugar de <code>python</code>.</p>
+      <p class="setup-note reveal"><b>Empieza poco a poco.</b> Usa <code>--limit 50</code> en la primera pasada, revisa <code>plan.json</code> y guarda el comando de undo. <code>folders</code> lista o crea carpetas de correo; <code>unsubs</code> muestra el historial de bajas. En macOS o Linux, usa <code>python3</code> en lugar de <code>python</code>.</p>
       <div class="agent-note reveal">
         <span class="agent-mark" aria-hidden="true">✦</span>
         <p><b>¿Usas un agente?</b> Pega <code>PROMPT.es.md</code>. Leerá <code>SKILL.md</code>, te enseñará el plan, moverá primero y te dará el comando de undo. No se saltará la revisión.</p>
@@ -250,11 +250,11 @@
           </article>
           <article class="provider-panel" role="tabpanel" id="provider-yahoo" aria-labelledby="tab-yahoo" data-panel="yahoo" hidden>
             <div><span class="provider-tag">Yahoo Mail</span><h3>Contraseña de aplicación</h3><p>Activa la verificación en dos pasos y genera una contraseña de aplicación en Account Security. Carpetas IMAP estándar; la CLI resuelve Trash, Junk y Archive.</p></div>
-            <div class="provider-meta"><span><b>Auth</b> App Password</span><span><b>Carpetas</b> IMAP</span><span><b>Reglas</b> Sieve</span></div>
+            <div class="provider-meta"><span><b>Auth</b> App Password</span><span><b>Carpetas</b> IMAP</span><span><b>Reglas</b> Exportar Sieve</span></div>
           </article>
           <article class="provider-panel" role="tabpanel" id="provider-icloud" aria-labelledby="tab-icloud" data-panel="icloud" hidden>
             <div><span class="provider-tag">iCloud Mail</span><h3>Contraseña específica de app</h3><p>Apple exige 2FA. Crea una contraseña específica en appleid.apple.com. La CLI resuelve Deleted Messages, Junk y Archive.</p></div>
-            <div class="provider-meta"><span><b>Auth</b> Específica</span><span><b>Carpetas</b> IMAP</span><span><b>Reglas</b> Sieve</span></div>
+            <div class="provider-meta"><span><b>Auth</b> Específica</span><span><b>Carpetas</b> IMAP</span><span><b>Reglas</b> Exportar Sieve</span></div>
           </article>
           <article class="provider-panel" role="tabpanel" id="provider-fastmail" aria-labelledby="tab-fastmail" data-panel="fastmail" hidden>
             <div><span class="provider-tag">Fastmail</span><h3>Contraseña con permisos</h3><p>Crea una contraseña de aplicación con acceso IMAP/SMTP. Fastmail soporta Sieve nativamente; exporta el script y revísalo antes de subirlo.</p></div>
@@ -265,12 +265,12 @@
             <div class="provider-meta"><span><b>Auth</b> Bridge</span><span><b>Host</b> localhost</span><span><b>IMAP</b> STARTTLS</span></div>
           </article>
           <article class="provider-panel" role="tabpanel" id="provider-other" aria-labelledby="tab-other" data-panel="other" hidden>
-            <div><span class="provider-tag">Cualquier servidor IMAP</span><h3>Tu propio host</h3><p>Configura host, puerto, TLS/STARTTLS y SMTP. El servidor debe soportar UIDPLUS o MOVE; si no, los movimientos se rechazan para no arriesgar un expunge general.</p></div>
-            <div class="provider-meta"><span><b>Auth</b> Login / XOAUTH2</span><span><b>Necesita</b> UIDPLUS/MOVE</span><span><b>Reglas</b> Sieve</span></div>
+            <div><span class="provider-tag">Cualquier servidor IMAP</span><h3>Tu propio host</h3><p>Configura host, puerto, TLS/STARTTLS y SMTP. El servidor debe soportar UIDPLUS o MOVE y ofrecer Trash, Junk y Archive resolubles; si no, los movimientos se rechazan para no arriesgar un expunge general.</p></div>
+            <div class="provider-meta"><span><b>Auth</b> Login / XOAUTH2</span><span><b>Necesita</b> UIDPLUS/MOVE</span><span><b>Reglas</b> Exportar Sieve</span></div>
           </article>
         </div>
       </div>
-      <p class="provider-foot reveal">Notas completas en <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/PROVIDERS.md" rel="noopener">docs/PROVIDERS.md</a>. ¿Tu proveedor no está? Cualquier servidor IMAP con UIDPLUS o MOVE funciona.</p>
+      <p class="provider-foot reveal">Notas completas en <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/PROVIDERS.md" rel="noopener">docs/PROVIDERS.md</a>. ¿Tu proveedor no está? Cualquier servidor IMAP con UIDPLUS o MOVE y Trash, Junk y Archive resolubles funciona.</p>
     </section>
 
     <section class="section" id="safety">
@@ -298,8 +298,8 @@
     </section>
 
     <section class="stats" aria-label="Datos del proyecto">
-      <div class="stat reveal"><strong>144</strong><span>tests, solo IMAP falso</span></div>
-      <div class="stat reveal"><strong>7</strong><span>proveedores preconfigurados</span></div>
+      <div class="stat reveal"><strong>146</strong><span>tests, solo IMAP falso</span></div>
+      <div class="stat reveal"><strong>6</strong><span>proveedores + IMAP propio</span></div>
       <div class="stat reveal"><strong>0</strong><span>cuerpos leídos</span></div>
       <div class="stat reveal"><strong>0</strong><span>borrados permanentes</span></div>
       <div class="stat reveal"><strong>1</strong><span>comando para deshacer</span></div>
@@ -352,12 +352,13 @@
       <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">GitHub</a>
       <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener">SKILL.md</a>
       <a href="https://github.com/jparedesDS/cleanyourmail/tree/master/docs" rel="noopener">Docs</a>
+      <a href="https://github.com/jparedesDS/cleanyourmail/discussions" rel="noopener">Discusiones</a>
       <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/SECURITY.md" rel="noopener">Seguridad</a>
       <a href="https://github.com/jparedesDS/cleanyourmail-web" rel="noopener">Código de la web</a>
       <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/LICENSE" rel="noopener">MIT</a>
       <a href="index.html" hreflang="en" lang="en">English</a>
     </nav>
-    <p class="footer-note">Sin cookies. Sin analítica. Sin peticiones a terceros. Inspirado por cleanyour.tv. No afiliado a ningún proveedor de correo.</p>
+    <p class="footer-note">Sin cookies. Sin analítica. Sin peticiones a terceros. No afiliado a ningún proveedor de correo.</p>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
