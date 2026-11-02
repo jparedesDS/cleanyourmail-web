@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">CleanYourMail favicon</title>
-  <desc id="desc">Simplified Return Fold envelope and return arrow for 16 to 32 px.</desc>
-  <rect width="64" height="64" rx="14" fill="#15161A"/>
+  <title id="title">CleanYourMail Spectrum favicon</title>
+  <desc id="desc">Simplified Return Fold line-art mark for 16 to 32 px.</desc>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="#1B1C21" stroke="#2A2C31" stroke-width="1"/>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 35 V20 A4 4 0 0 1 16 16 H48 A4 4 0 0 1 52 20 V42 A4 4 0 0 1 48 46 H23" stroke="#A78BFA" stroke-width="4.5"/>
-    <path d="M14 18 L32 31 L50 18" stroke="#A78BFA" stroke-width="4.5"/>
-    <path d="M29 40 L22 46 L29 52" stroke="#E2C15C" stroke-width="4.5"/>
+    <path d="M12 35 V20 A4 4 0 0 1 16 16 H48 A4 4 0 0 1 52 20 V42 A4 4 0 0 1 48 46 H23" stroke="#FFB38A" stroke-width="4.5"/>
+    <path d="M14 18 L32 31 L50 18" stroke="#FFB38A" stroke-width="4.5"/>
+    <path d="M29 40 L22 46 L29 52" stroke="#A8E6CF" stroke-width="4.5"/>
   </g>
 </svg>
