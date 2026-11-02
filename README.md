@@ -14,10 +14,10 @@ No framework, no build step, no external fonts, no analytics, no third-party req
 
 ## What is here
 
-- A bilingual English/Spanish landing page with a before/after inbox demo.
-- A reviewable `plan.json` summary, provider tabs and copyable setup commands.
+- A bilingual English/Spanish landing page with a terminal quick start and a provider grid.
+- A compact CLI reference and copyable setup commands.
 - A plain-language safety section: headers only, protected mail, no permanent deletion, undo.
-- A comparison against hosted inbox cleaners.
+- A short FAQ and clear calls to action.
 - A strict Content Security Policy, `security.txt`, canonical URLs, hreflang alternates,
   Open Graph metadata, JSON-LD and a sitemap.
 - Footer links to the repository, docs, security policy, discussions and the website source.
@@ -37,7 +37,7 @@ Open <http://localhost:8080/>.
 | `index.html` | English landing page. |
 | `es.html` | Spanish landing page. |
 | `styles.css` | Shared styles. |
-| `app.js` | Provider tabs, before/after toggle, copy buttons. |
+| `app.js` | Copy buttons and toast feedback. |
 | `assets/logo.svg`, `assets/favicon.svg` | Brand mark. |
 | `assets/banner.png` | Repository banner (1600×440). |
 | `assets/og.png` | Social preview image (1280×640). |
