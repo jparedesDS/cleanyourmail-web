@@ -6,10 +6,9 @@
   --text: #f3f1ec;
   --muted: #a19e96;
   --muted-2: #8b8881;
-  --accent: #ffe08a;
+  --accent: #ffb38a;
   --accent-2: #a8e6cf;
-  --pink: #ffe08a;
-  --orange: #ffb38a;
+  --warn: #ffe08a;
   --line: rgba(243, 241, 236, 0.12);
   --line-strong: rgba(243, 241, 236, 0.2);
   --radius: 14px;
@@ -26,9 +25,9 @@ body {
   margin: 0;
   color: var(--text);
   background:
-    radial-gradient(900px 520px at 78% -10%, rgba(255, 224, 138, 0.09), transparent 62%),
+    radial-gradient(900px 520px at 78% -10%, rgba(255, 179, 138, 0.1), transparent 62%),
     radial-gradient(700px 460px at 8% 16%, rgba(168, 230, 207, 0.07), transparent 60%),
-    radial-gradient(620px 420px at 50% 100%, rgba(255, 179, 138, 0.05), transparent 60%),
+    radial-gradient(620px 420px at 50% 100%, rgba(255, 224, 138, 0.05), transparent 60%),
     var(--ink);
   font-family: var(--sans);
   font-size: 16px;
@@ -47,8 +46,8 @@ code {
   font-family: var(--mono);
   font-size: 0.9em;
   color: var(--accent);
-  background: rgba(255, 224, 138, 0.08);
-  border: 1px solid rgba(255, 224, 138, 0.16);
+  background: rgba(255, 179, 138, 0.08);
+  border: 1px solid rgba(255, 179, 138, 0.16);
   border-radius: 5px;
   padding: 0.08em 0.32em;
 }
@@ -175,7 +174,7 @@ button { font: inherit; }
 
 .eyebrow {
   margin: 0 0 18px;
-  color: var(--accent-2);
+  color: var(--accent);
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -291,8 +290,8 @@ h1 em {
   background: var(--muted-2);
 }
 
-.terminal-bar span:nth-child(1) { background: var(--pink); }
-.terminal-bar span:nth-child(2) { background: var(--orange); }
+.terminal-bar span:nth-child(1) { background: var(--accent); }
+.terminal-bar span:nth-child(2) { background: var(--warn); }
 .terminal-bar span:nth-child(3) { background: var(--accent-2); }
 
 .terminal-bar em {
@@ -486,8 +485,8 @@ h2 {
 .command-undo { border-left: 2px solid var(--accent-2); }
 .command-undo code { color: var(--accent-2); }
 
-.command-unsub { border-left: 2px solid var(--orange); }
-.command-unsub code { color: var(--orange); }
+.command-unsub { border-left: 2px solid var(--warn); }
+.command-unsub code { color: var(--warn); }
 
 .all-commands {
   margin-top: 18px;
