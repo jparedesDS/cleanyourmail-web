@@ -78,6 +78,7 @@ class SiteTest(unittest.TestCase):
                 self.assertIn('id="why"', text)
                 self.assertIn("SKILL.md", text)
                 self.assertIn("cleanyourmail-app", text)
+                self.assertIn("https://github.com/jparedesDS/cleanyourmail", text)
                 self.assertIn("docs/VALIDATION.md", text)
                 self.assertEqual(text.count("<details>"), 6)
                 self.assertIn('id="i-github"', text)
@@ -85,6 +86,7 @@ class SiteTest(unittest.TestCase):
 
                 for value in re.findall(r'data-copy="([^"]*)"', text):
                     self.assertNotIn("apply", value)
+                    self.assertIn("https://github.com/jparedesDS/cleanyourmail", value)
 
     def test_provider_logos_are_png(self):
         for name in ("index.html", "es.html"):
