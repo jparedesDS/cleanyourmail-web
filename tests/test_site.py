@@ -70,7 +70,7 @@ class SiteTest(unittest.TestCase):
                                "matomo", "hotjar", "segment.com"):
                     self.assertNotIn(marker, text)
 
-    def test_start_routes_and_safe_quick_start(self):
+    def test_start_routes_and_app_link(self):
         prompts = {
             "index.html": "PROMPT.md",
             "es.html": "PROMPT.es.md",
@@ -81,12 +81,11 @@ class SiteTest(unittest.TestCase):
                 self.assertIn('id="start"', text)
                 self.assertIn('id="why"', text)
                 self.assertIn(prompt, text)
+                self.assertIn("cleanyourmail-app", text)
                 self.assertIn("docs/VALIDATION.md", text)
-                self.assertEqual(text.count("<details>"), 7)
+                self.assertEqual(text.count("<details>"), 6)
 
-                copy_values = re.findall(r'data-copy="([^"]*)"', text)
-                self.assertTrue(copy_values)
-                for value in copy_values:
+                for value in re.findall(r'data-copy="([^"]*)"', text):
                     self.assertNotIn("apply", value)
 
     def test_no_unrelated_project_reference(self):
