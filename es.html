@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CleanYourMail — App local y skill para limpiar correo IMAP</title>
-  <meta name="description" content="Una app local y una skill para agentes, de código abierto, para limpiar buzones IMAP de forma reversible. Solo cabeceras, plan primero, correo protegido y undo de cada movimiento.">
+  <title>CleanYourMail — Skill para agentes y limpieza IMAP reversible</title>
+  <meta name="description" content="Una skill open source para agentes que limpia buzones IMAP de forma reversible. Solo cabeceras, plan primero, correo protegido y undo de cada movimiento. App local y CLI opcionales.">
   <meta name="author" content="Jose Paredes">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#121316">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-9FeaybKBht6lD1eSj6h1z0fiyF28JU0w6SE5uhbDe4k='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-S3QcfTFRAi5NokzLpwf8iMfCpmtMJfBNS8ug+f1nETM='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
   <link rel="canonical" href="https://jparedesds.github.io/cleanyourmail-web/es.html">
   <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourmail-web/">
   <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourmail-web/es.html">
@@ -20,8 +20,8 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CleanYourMail">
   <meta property="og:url" content="https://jparedesds.github.io/cleanyourmail-web/es.html">
-  <meta property="og:title" content="CleanYourMail — App local y skill para limpiar correo IMAP">
-  <meta property="og:description" content="Una app local y una skill para agentes para limpiar el correo de forma reversible. Solo cabeceras, correo protegido, planes revisables y undo de cada movimiento.">
+  <meta property="og:title" content="CleanYourMail — Skill para agentes y limpieza IMAP reversible">
+  <meta property="og:description" content="Una skill open source para agentes que limpia el correo de forma reversible. Solo cabeceras, correo protegido, planes revisables y undo de cada movimiento.">
   <meta property="og:image" content="https://jparedesds.github.io/cleanyourmail-web/assets/og.png">
   <meta property="og:image:width" content="1280">
   <meta property="og:image:height" content="640">
@@ -29,8 +29,8 @@
   <meta property="og:locale" content="es_ES">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CleanYourMail — App local y skill para limpiar correo IMAP">
-  <meta name="twitter:description" content="Una app local y una skill para agentes para limpiar el correo de forma reversible. Solo cabeceras, correo protegido, planes revisables y undo de cada movimiento.">
+  <meta name="twitter:title" content="CleanYourMail — Skill para agentes y limpieza IMAP reversible">
+  <meta name="twitter:description" content="Una skill open source para agentes que limpia el correo de forma reversible. Solo cabeceras, correo protegido, planes revisables y undo de cada movimiento.">
   <meta name="twitter:image" content="https://jparedesds.github.io/cleanyourmail-web/assets/og.png">
   <meta name="twitter:image:alt" content="CleanYourMail: limpieza IMAP local y reversible del correo">
   <script type="application/ld+json">
@@ -38,7 +38,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "CleanYourMail",
-    "description": "App local y skill para agentes, de código abierto, para limpiar buzones IMAP de forma reversible. Solo cabeceras, planes revisables, correo protegido, movimientos reversibles y sin borrado permanente.",
+    "description": "Skill open source para agentes que limpia buzones IMAP de forma reversible, con app local y CLI opcionales. Solo cabeceras, planes revisables, correo protegido, movimientos reversibles y sin borrado permanente.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS, Linux",
     "softwareVersion": "1.1.5",
@@ -70,6 +70,18 @@
   </script>
 </head>
 <body>
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></symbol>
+    <symbol id="i-skill" viewBox="0 0 16 16"><path d="M2.5 3.5h3A2.5 2.5 0 0 1 8 6v8a2.5 2.5 0 0 0-2.5-2.5h-3zM13.5 3.5h-3A2.5 2.5 0 0 0 8 6v8a2.5 2.5 0 0 1 2.5-2.5h3z"/></symbol>
+    <symbol id="i-app" viewBox="0 0 16 16"><rect x="2" y="2.5" width="12" height="11" rx="2"/><path d="M2 5.5h12M4.5 8h5M4.5 10.5h3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 16 16"><path d="M8 2v8m0 0 3-3m-3 3L5 7M2.5 13.5h11"/></symbol>
+    <symbol id="i-cli" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="11" rx="2"/><path d="m4.5 6 2 2-2 2M9 10h2.5"/></symbol>
+    <symbol id="i-docs" viewBox="0 0 16 16"><path d="M4 1.5h5l3 3v10H4z"/><path d="M9 1.5v3h3M6 8h4M6 10.5h4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 16 16"><path d="M8 1.5 13 3.5v4c0 3-2 5.3-5 6.5-3-1.2-5-3.5-5-6.5v-4z"/><path d="m5.8 8 1.5 1.5L10.5 6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 16 16"><path d="M2 3.5h12v7H8.5L5 13.5v-3H2z"/></symbol>
+    <symbol id="i-license" viewBox="0 0 16 16"><path d="M3.5 2h9v12h-9z"/><path d="M6 5h4M6 7.5h4M6 10h2.5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c2 2 2 10 0 12M8 2c-2 2-2 10 0 12"/></symbol>
+  </svg>
   <a class="skip-link" href="#main">Saltar al contenido</a>
 
   <header class="site-header">
@@ -84,8 +96,8 @@
         <a href="#providers">Proveedores</a>
         <a href="#safety">Seguridad</a>
         <a href="#faq">FAQ</a>
-        <a class="nav-github" href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
-        <a class="lang" href="index.html" hreflang="en" lang="en">EN</a>
+        <a class="nav-github" href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub</a>
+        <a class="lang" href="index.html" hreflang="en" lang="en"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg> EN</a>
       </nav>
     </div>
   </header>
@@ -94,31 +106,31 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Código abierto · Local · Reversible</p>
+          <p class="eyebrow">Código abierto · Skill para agentes · App local</p>
           <h1>Limpia tu bandeja.<br><em>Deshaz cada movimiento.</em></h1>
-          <p class="lede">CleanYourMail es una app local y una skill para agentes, de código abierto, para limpiar buzones IMAP. Lee solo cabeceras, te muestra un plan antes de cambiar nada, protege el correo importante y te deja deshacer cada movimiento. Las bajas son independientes e irreversibles.</p>
+          <p class="lede">CleanYourMail es una skill open source para agentes, con una app local opcional, para limpiar buzones IMAP. Lee solo cabeceras, te muestra un plan antes de cambiar nada, protege el correo importante y te da el comando de undo. Las bajas son independientes e irreversibles.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail-app" rel="noopener">Descargar la app <span aria-hidden="true">↗</span></a>
-            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail/blob/master/PROMPT.es.md" rel="noopener">Usar tu agente</a>
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> Abrir la skill</a>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail-app" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> Descargar la app</a>
           </div>
           <p class="trust-line">Gratis · MIT · Sin cuenta · Sin telemetría · Sin borrado permanente</p>
         </div>
 
         <div class="hero-card">
-          <div class="app-window" aria-label="Vista previa de la app CleanYourMail">
-            <div class="app-bar"><span></span><span></span><span></span><em>CleanYourMail · app local</em></div>
+          <div class="app-window" aria-label="Vista previa del prompt de la skill CleanYourMail">
+            <div class="app-bar"><span></span><span></span><span></span><em>CleanYourMail · skill</em></div>
             <div class="app-body">
-              <div class="app-head"><span class="app-badge">SOLO LOCAL</span><span class="app-step">Paso 2 de 3</span></div>
-              <h3>Revisa el plan.</h3>
-              <p class="app-summary">5 movimientos · 2 bajas · 12 protegidos</p>
-              <div class="app-row"><span>Newsletters</span><b>42</b></div>
-              <div class="app-row"><span>Promociones</span><b>28</b></div>
-              <div class="app-row"><span>Junk</span><b>6</b></div>
-              <div class="app-actions"><span class="app-button">Revisar plan</span><span class="app-button app-button-ghost">Deshacer</span></div>
-              <p class="app-note">Nada cambia hasta que lo apruebes.</p>
+              <div class="app-head"><span class="app-badge">SKILL PARA AGENTES</span><span class="app-step">Producto principal</span></div>
+              <h3>Dásela a tu agente.</h3>
+              <pre class="skill-prompt"><code>Lee SKILL.md y síguelo exactamente.
+Solo cabeceras. Plan primero.
+Muéstrame el plan antes de cambiar nada.
+Dame el comando de undo.</code></pre>
+              <div class="app-actions"><button class="copy-button copy-button-inline" type="button" data-copy="Lee SKILL.md de este repo y síguelo exactamente. Usa python tools/mail.py. Solo cabeceras. Nunca borres de forma permanente. Muéstrame el plan antes de cambiar nada. Mueve primero, verifica y luego da de baja por separado. Dame el comando de undo.">Copiar prompt</button></div>
+              <p class="app-note">Pégalo en Claude Code, Cursor, OpenCode o cualquier agente con acceso a shell.</p>
             </div>
           </div>
-          <p class="hero-note">App local · solo cabeceras · deshaz cada movimiento</p>
+          <p class="hero-note">Skill primero · app opcional · CLI en GitHub</p>
         </div>
       </div>
     </section>
@@ -127,23 +139,25 @@
       <div class="container">
         <div class="section-head">
           <p class="kicker">Elige tu camino</p>
-          <h2>Usa la app o tu agente.</h2>
-          <p>La app es el camino simple. La skill es para quien ya trabaja con un agente. La CLI sigue en GitHub para usuarios avanzados.</p>
+          <h2>Usa la skill o la app.</h2>
+          <p>La skill es el producto principal: dásela a tu agente y revisa el plan. La app es el camino simple para quien prefiere botones. La CLI sigue en GitHub para usuarios avanzados.</p>
         </div>
         <div class="start-grid">
           <article class="start-card">
+            <span class="start-icon start-icon-skill" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-skill"/></svg></span>
+            <span class="start-label">Skill · Producto principal</span>
+            <h3>Usa la skill</h3>
+            <p>Dásela a Claude Code, Cursor, OpenCode u otro agente con acceso a shell. Lee solo cabeceras, muestra el plan primero y te da el comando de undo.</p>
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> Abrir la skill</a>
+            <p class="start-note">O <button class="text-button" type="button" data-copy="Lee SKILL.md de este repo y síguelo exactamente. Usa python tools/mail.py. Solo cabeceras. Nunca borres de forma permanente. Muéstrame el plan antes de cambiar nada. Mueve primero, verifica y luego da de baja por separado. Dame el comando de undo.">copia el prompt</button> y pégalo en Claude Code, Cursor u OpenCode.</p>
+          </article>
+          <article class="start-card">
+            <span class="start-icon"><img src="assets/logo.svg" alt="" width="40" height="40"></span>
             <span class="start-label">App · MVP inicial</span>
             <h3>Descargar la app</h3>
             <p>Una app local y segura para quien prefiere botones a comandos. Escanea cabeceras, revisa el plan, aplica movimientos reversibles y deshaz desde una pantalla. Sin nube, sin cuenta, sin telemetría.</p>
-            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail-app" rel="noopener">Descargar la app <span aria-hidden="true">↗</span></a>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail-app" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> Descargar la app</a>
             <p class="start-note">MVP inicial · se ejecuta desde el código · instalador próximamente</p>
-          </article>
-          <article class="start-card">
-            <span class="start-label">Skill para agentes</span>
-            <h3>Usa tu agente</h3>
-            <p>Dale la skill a Claude Code, Cursor, OpenCode u otro agente con acceso a shell. Pega el prompt, responde a sus preguntas y revisa el plan antes de aprobar cualquier movimiento.</p>
-            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail/blob/master/PROMPT.es.md" rel="noopener">Abrir el prompt del agente <span aria-hidden="true">↗</span></a>
-            <button class="copy-button copy-button-inline" type="button" data-copy="Lee SKILL.md de este repo y síguelo exactamente. Usa python tools/mail.py. Solo cabeceras. Nunca borres de forma permanente. Muéstrame el plan antes de cambiar nada. Mueve primero, verifica y luego da de baja por separado. Dame el comando de undo. Mi proveedor es <PROVEEDOR> y mi dirección es <EMAIL>.">Copiar prompt</button>
           </article>
         </div>
         <p class="section-note">¿Prefieres la terminal? La CLI sigue en <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">GitHub</a>.</p>
@@ -160,12 +174,12 @@
           <li>
             <span class="step-number">01</span>
             <h3>Conecta en local</h3>
-            <p>Abre la app, elige tu proveedor e introduce tu credencial. Comprueba la conexión antes de nada.</p>
+            <p>Abre la skill en tu agente o usa la app. Elige tu proveedor e introduce tu credencial. Comprueba la conexión antes de nada.</p>
           </li>
           <li>
             <span class="step-number">02</span>
             <h3>Escanea y revisa</h3>
-            <p>La app lee solo metadatos de cabeceras: remitente, asunto, fecha, tamaño y flags. Muestra categorías, correo protegido, destinos y bajas. Nada cambia todavía.</p>
+            <p>La skill o la app lee solo metadatos de cabeceras: remitente, asunto, fecha, tamaño y flags. Muestra categorías, correo protegido, destinos y bajas. Nada cambia todavía.</p>
           </li>
           <li>
             <span class="step-number">03</span>
@@ -184,12 +198,12 @@
           <p>Sin migrar tu buzón. Necesitas acceso IMAP y el método de autenticación que permita tu proveedor.</p>
         </div>
         <ul class="provider-grid">
-          <li><span class="provider-logo"><img src="assets/providers/gmail.svg" alt="" width="32" height="32"></span><div><b>Gmail</b><span>Contraseña de aplicación + 2FA</span></div></li>
-          <li><span class="provider-logo"><img src="assets/providers/outlook.svg" alt="" width="32" height="32"></span><div><b>Outlook / Microsoft 365</b><span>Token XOAUTH2</span></div></li>
-          <li><span class="provider-logo provider-logo-wide"><img src="assets/providers/yahoo.svg" alt="" width="32" height="32"></span><div><b>Yahoo</b><span>Contraseña de aplicación</span></div></li>
-          <li><span class="provider-logo"><img src="assets/providers/icloud.svg" alt="" width="32" height="32"></span><div><b>iCloud</b><span>Contraseña específica</span></div></li>
-          <li><span class="provider-logo"><img src="assets/providers/fastmail.svg" alt="" width="32" height="32"></span><div><b>Fastmail</b><span>Contraseña de aplicación + Sieve</span></div></li>
-          <li><span class="provider-logo"><img src="assets/providers/proton.svg" alt="" width="32" height="32"></span><div><b>Proton</b><span>Proton Bridge</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/gmail.png" alt="" width="40" height="40"></span><div><b>Gmail</b><span>Contraseña de aplicación + 2FA</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/outlook.png" alt="" width="40" height="40"></span><div><b>Outlook / Microsoft 365</b><span>Token XOAUTH2</span></div></li>
+          <li><span class="provider-logo provider-logo-wide"><img src="assets/providers/yahoo.png" alt="" width="40" height="40"></span><div><b>Yahoo</b><span>Contraseña de aplicación</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/icloud.png" alt="" width="40" height="40"></span><div><b>iCloud</b><span>Contraseña específica</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/fastmail.png" alt="" width="40" height="40"></span><div><b>Fastmail</b><span>Contraseña de aplicación + Sieve</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/proton.png" alt="" width="40" height="40"></span><div><b>Proton</b><span>Proton Bridge</span></div></li>
         </ul>
         <p class="section-note">Cualquier servidor IMAP con UIDPLUS o MOVE y Trash, Junk y Archive resolubles funciona. <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/PROVIDERS.md" rel="noopener">Notas de proveedores</a> · <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/VALIDATION.md" rel="noopener">estado de validación</a>.</p>
         <p class="section-note">Los nombres y logos de los proveedores son marcas de sus respectivos propietarios.</p>
@@ -233,9 +247,9 @@
         <div class="faq">
           <details><summary>¿Borra correo?</summary><p>No. No tiene un comando de borrado permanente, nunca vacía Trash ni Junk y nunca ejecuta un expunge general del buzón. Los movimientos y el archivado quedan registrados; las solicitudes de baja no son reversibles.</p></details>
           <details><summary>¿Qué lee?</summary><p>Solo cabeceras: remitente, asunto, fecha, tamaño, flags y cabeceras de baja. Nunca descarga cuerpos ni adjuntos. La caché local guarda metadatos, no cuerpos de mensaje.</p></details>
-          <details><summary>¿Necesito conocimientos técnicos?</summary><p>La app es el camino más simple. La skill para agentes necesita un agente con acceso a shell. La CLI es para quien prefiere la terminal. Las tres usan el mismo plan y el mismo modelo de undo.</p></details>
+          <details><summary>¿Necesito conocimientos técnicos?</summary><p>La app es el camino simple. La skill, el producto principal, necesita un agente con acceso a shell. La CLI es para quien prefiere la terminal. Las tres usan el mismo plan y el mismo modelo de undo.</p></details>
           <details><summary>¿Funciona con mi proveedor?</summary><p>Gmail, Outlook/Microsoft 365, Yahoo, iCloud, Fastmail, Proton Bridge y servidores IMAP personalizados compatibles. Microsoft necesita un token de acceso OAuth2, Proton necesita Bridge y los movimientos por IMAP personalizado requieren UIDPLUS o MOVE. Las políticas del proveedor o de la organización pueden bloquear el acceso; la herramienta no las elude.</p></details>
-          <details><summary>¿Qué pasa si algo sale mal?</summary><p>Detente y revisa el error. La CLI y la app vuelven a comprobar el plan antes de aplicarlo y registran cada ejecución. Usa el comando <code>undo</code> indicado para restaurar los movimientos de esa ejecución. Si un mensaje ya no puede localizarse, el journal sigue disponible para una recuperación manual. Las solicitudes de baja no se pueden deshacer.</p></details>
+          <details><summary>¿Qué pasa si algo sale mal?</summary><p>Detente y revisa el error. La skill, la CLI y la app vuelven a comprobar el plan antes de aplicarlo y registran cada ejecución. Usa el comando <code>undo</code> indicado para restaurar los movimientos de esa ejecución. Si un mensaje ya no puede localizarse, el journal sigue disponible para una recuperación manual. Las solicitudes de baja no se pueden deshacer.</p></details>
           <details><summary>¿Es realmente gratis?</summary><p>Sí. Licencia MIT, sin plan de pago, sin cuenta de CleanYourMail y sin telemetría. Tú aportas tu equipo, tu instalación de Python y el acceso de tu proveedor.</p></details>
         </div>
       </div>
@@ -246,8 +260,8 @@
         <h2>Empieza con un plan.<br>No cambies nada hasta decir que sí.</h2>
         <p>Gratuito y de código abierto. Sin cuenta, sin telemetría y sin borrado permanente.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail-app" rel="noopener">Descargar la app <span aria-hidden="true">↗</span></a>
-          <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail/blob/master/PROMPT.es.md" rel="noopener">Abrir el prompt del agente</a>
+          <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> Abrir la skill</a>
+          <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail-app" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> Descargar la app</a>
         </div>
       </div>
     </section>
@@ -260,14 +274,14 @@
         <span>CleanYour<span class="brand-accent">Mail</span></span>
       </div>
       <nav class="footer-nav" aria-label="Pie">
-        <a href="https://github.com/jparedesDS/cleanyourmail-app" rel="noopener">App</a>
-        <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">CLI</a>
-        <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">GitHub</a>
-        <a href="https://github.com/jparedesDS/cleanyourmail/tree/master/docs" rel="noopener">Docs</a>
-        <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/SECURITY.md" rel="noopener">Seguridad</a>
-        <a href="https://github.com/jparedesDS/cleanyourmail/discussions" rel="noopener">Discusiones</a>
-        <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/LICENSE" rel="noopener">MIT</a>
-        <a href="index.html" hreflang="en" lang="en">English</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail-app" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> App</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cli"/></svg> CLI</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/tree/master/docs" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-docs"/></svg> Docs</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/SECURITY.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg> Seguridad</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/discussions" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg> Discusiones</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/LICENSE" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-license"/></svg> MIT</a>
+        <a href="index.html" hreflang="en" lang="en"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg> English</a>
       </nav>
     </div>
     <div class="container">
