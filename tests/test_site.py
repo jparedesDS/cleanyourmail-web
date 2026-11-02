@@ -70,6 +70,25 @@ class SiteTest(unittest.TestCase):
                                "matomo", "hotjar", "segment.com"):
                     self.assertNotIn(marker, text)
 
+    def test_start_routes_and_safe_quick_start(self):
+        prompts = {
+            "index.html": "PROMPT.md",
+            "es.html": "PROMPT.es.md",
+        }
+        for name, prompt in prompts.items():
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn('id="start"', text)
+                self.assertIn('id="why"', text)
+                self.assertIn(prompt, text)
+                self.assertIn("docs/VALIDATION.md", text)
+                self.assertEqual(text.count("<details>"), 7)
+
+                copy_values = re.findall(r'data-copy="([^"]*)"', text)
+                self.assertTrue(copy_values)
+                for value in copy_values:
+                    self.assertNotIn("apply", value)
+
     def test_no_unrelated_project_reference(self):
         """The site must not claim an unrelated project as its inspiration."""
         for name in PAGES:
