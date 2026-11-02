@@ -7,7 +7,7 @@
   <meta name="description" content="Free, open-source inbox cleanup for coding agents and the CLI. Runs locally, reads headers only, protects important mail, plans first and undoes every move.">
   <meta name="author" content="Jose Paredes">
   <meta name="robots" content="index,follow">
-  <meta name="theme-color" content="#07100d">
+  <meta name="theme-color" content="#121316">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-3POj6yu0mNaYIVmlOCtewK0YCbI3DySUpf/dDaWlAW4='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
@@ -76,7 +76,7 @@
     <div class="container header-inner">
       <a class="brand" href="./" aria-label="CleanYourMail home">
         <img src="assets/logo.svg" alt="" width="32" height="32">
-        <span>CleanYourMail</span>
+        <span>CleanYour<span class="brand-accent">Mail</span></span>
       </a>
       <nav class="nav" aria-label="Main">
         <a class="nav-start" href="#start">Start</a>
@@ -242,8 +242,8 @@
           <article class="command"><code>scan</code> <code>report</code><p>Read headers and review what was found. No mail changes.</p></article>
           <article class="command"><code>plan</code><p>Create a reviewable plan. No mail changes.</p></article>
           <article class="command"><code>apply</code><p>Move an approved small batch. Start with <code>--limit 5</code>.</p></article>
-          <article class="command"><code>journal</code> <code>undo</code><p>Review a run, then restore its moves.</p></article>
-          <article class="command"><code>unsubscribe</code><p>Separate and irreversible. Send reviewed requests only.</p></article>
+          <article class="command command-undo"><code>journal</code> <code>undo</code><p>Review a run, then restore its moves.</p></article>
+          <article class="command command-unsub"><code>unsubscribe</code><p>Separate and irreversible. Send reviewed requests only.</p></article>
         </div>
         <details class="all-commands">
           <summary>All commands</summary>
@@ -292,7 +292,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <img src="assets/logo.svg" alt="" width="26" height="26">
-        <span>CleanYourMail</span>
+        <span>CleanYour<span class="brand-accent">Mail</span></span>
       </div>
       <nav class="footer-nav" aria-label="Footer">
         <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">GitHub</a>

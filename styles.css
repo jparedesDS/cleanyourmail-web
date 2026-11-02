@@ -1,17 +1,17 @@
 :root {
-  --ink: #07100d;
-  --ink-2: #0a1511;
-  --panel: #0d1a15;
-  --panel-2: #11231b;
-  --text: #eef8ee;
-  --muted: #9eb4a7;
-  --muted-2: #6f8578;
-  --accent: #b9f36a;
-  --accent-2: #6ee7c8;
-  --pink: #f0a6c8;
-  --orange: #ffb86b;
-  --line: rgba(238, 248, 238, 0.12);
-  --line-strong: rgba(238, 248, 238, 0.2);
+  --ink: #121316;
+  --ink-2: #17181c;
+  --panel: #1b1c21;
+  --panel-2: #2a2c31;
+  --text: #f3f1ec;
+  --muted: #a19e96;
+  --muted-2: #8b8881;
+  --accent: #ffc400;
+  --accent-2: #9650ff;
+  --pink: #ffc400;
+  --orange: #ff5500;
+  --line: rgba(243, 241, 236, 0.12);
+  --line-strong: rgba(243, 241, 236, 0.2);
   --radius: 14px;
   --max: 1120px;
   --mono: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -26,8 +26,9 @@ body {
   margin: 0;
   color: var(--text);
   background:
-    radial-gradient(900px 520px at 78% -10%, rgba(110, 231, 200, 0.1), transparent 62%),
-    radial-gradient(700px 460px at 8% 16%, rgba(185, 243, 106, 0.06), transparent 60%),
+    radial-gradient(900px 520px at 78% -10%, rgba(255, 196, 0, 0.08), transparent 62%),
+    radial-gradient(700px 460px at 8% 16%, rgba(150, 80, 255, 0.07), transparent 60%),
+    radial-gradient(620px 420px at 50% 100%, rgba(255, 85, 0, 0.04), transparent 60%),
     var(--ink);
   font-family: var(--sans);
   font-size: 16px;
@@ -46,8 +47,8 @@ code {
   font-family: var(--mono);
   font-size: 0.9em;
   color: var(--accent);
-  background: rgba(185, 243, 106, 0.07);
-  border: 1px solid rgba(185, 243, 106, 0.14);
+  background: rgba(255, 196, 0, 0.08);
+  border: 1px solid rgba(255, 196, 0, 0.16);
   border-radius: 5px;
   padding: 0.08em 0.32em;
 }
@@ -113,6 +114,8 @@ button { font: inherit; }
 }
 
 .brand img { width: 32px; height: 32px; }
+
+.brand-accent { color: var(--accent); }
 
 .nav {
   display: flex;
@@ -480,6 +483,12 @@ h2 {
 
 .command code + code { margin-left: 6px; }
 
+.command-undo { border-left: 2px solid var(--accent-2); }
+.command-undo code { color: var(--accent-2); }
+
+.command-unsub { border-left: 2px solid var(--orange); }
+.command-unsub code { color: var(--orange); }
+
 .all-commands {
   margin-top: 18px;
   border-top: 1px solid var(--line);
@@ -612,7 +621,7 @@ h2 {
 
 .provider-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   margin: 28px 0 0;
   padding: 0;
@@ -797,6 +806,7 @@ h2 {
   .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
   .steps { grid-template-columns: 1fr; gap: 22px; }
   .command-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .provider-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero { padding: 48px 0 44px; }
 }
 

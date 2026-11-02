@@ -7,7 +7,7 @@
   <meta name="description" content="Limpieza de correo gratuita y open source para agentes y CLI. Funciona en local, lee solo cabeceras, protege lo importante, planifica primero y deshace movimientos.">
   <meta name="author" content="Jose Paredes">
   <meta name="robots" content="index,follow">
-  <meta name="theme-color" content="#07100d">
+  <meta name="theme-color" content="#121316">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-GIGHQXL5NifPfjhASnbZLm52C9TuvoQgaUKA5IEOH1M='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
@@ -76,7 +76,7 @@
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="CleanYourMail inicio">
         <img src="assets/logo.svg" alt="" width="32" height="32">
-        <span>CleanYourMail</span>
+        <span>CleanYour<span class="brand-accent">Mail</span></span>
       </a>
       <nav class="nav" aria-label="Principal">
         <a class="nav-start" href="#start">Empieza</a>
@@ -242,8 +242,8 @@
           <article class="command"><code>scan</code> <code>report</code><p>Lee cabeceras y revisa lo encontrado. Sin cambios en el correo.</p></article>
           <article class="command"><code>plan</code><p>Crea un plan revisable. Sin cambios en el correo.</p></article>
           <article class="command"><code>apply</code><p>Mueve un lote pequeño ya aprobado. Empieza con <code>--limit 5</code>.</p></article>
-          <article class="command"><code>journal</code> <code>undo</code><p>Revisa una ejecución y restaura sus movimientos.</p></article>
-          <article class="command"><code>unsubscribe</code><p>Independiente e irreversible. Envía solo solicitudes revisadas.</p></article>
+          <article class="command command-undo"><code>journal</code> <code>undo</code><p>Revisa una ejecución y restaura sus movimientos.</p></article>
+          <article class="command command-unsub"><code>unsubscribe</code><p>Independiente e irreversible. Envía solo solicitudes revisadas.</p></article>
         </div>
         <details class="all-commands">
           <summary>Todos los comandos</summary>
@@ -292,7 +292,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <img src="assets/logo.svg" alt="" width="26" height="26">
-        <span>CleanYourMail</span>
+        <span>CleanYour<span class="brand-accent">Mail</span></span>
       </div>
       <nav class="footer-nav" aria-label="Pie">
         <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">GitHub</a>
