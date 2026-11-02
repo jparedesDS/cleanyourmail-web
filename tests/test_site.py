@@ -88,6 +88,19 @@ class SiteTest(unittest.TestCase):
                     self.assertNotIn("apply", value)
                     self.assertIn("https://github.com/jparedesDS/cleanyourmail", value)
 
+    def test_cleanyourphone_nav_link(self):
+        for name in ("index.html", "es.html"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn(
+                    'href="https://jparedesds.github.io/cleanyourphone-web"',
+                    text,
+                )
+                self.assertIn(
+                    'CleanYour<span class="phone-accent">Phone</span>',
+                    text,
+                )
+
     def test_provider_logos_are_png(self):
         for name in ("index.html", "es.html"):
             text = (ROOT / name).read_text(encoding="utf-8")

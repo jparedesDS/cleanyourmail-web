@@ -184,6 +184,10 @@ button { font: inherit; }
 
 .nav .icon { width: 15px; height: 15px; }
 
+.nav-clean { white-space: nowrap; }
+
+.phone-accent { color: #C4B5FD; }
+
 /* Hero */
 
 .hero { padding: 64px 0 56px; }
