@@ -241,7 +241,7 @@ Give me the undo command.</code></pre>
         </div>
         <ul class="provider-grid">
           <li><span class="provider-logo"><img src="assets/providers/gmail.png" alt="" width="40" height="40"></span><div><b>Gmail</b><span>App Password + 2FA</span></div></li>
-          <li><span class="provider-logo"><img src="assets/providers/outlook.png" alt="" width="40" height="40"></span><div><b>Outlook / Microsoft 365</b><span>XOAUTH2 access token</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/outlook.png" alt="" width="40" height="40"></span><div><b>Outlook / Microsoft 365</b><span>One-click Microsoft sign-in</span></div></li>
           <li><span class="provider-logo provider-logo-wide"><img src="assets/providers/yahoo.png" alt="" width="40" height="40"></span><div><b>Yahoo</b><span>App password</span></div></li>
           <li><span class="provider-logo"><img src="assets/providers/icloud.png" alt="" width="40" height="40"></span><div><b>iCloud</b><span>App-specific password</span></div></li>
           <li><span class="provider-logo"><img src="assets/providers/fastmail.png" alt="" width="40" height="40"></span><div><b>Fastmail</b><span>App password + Sieve</span></div></li>
@@ -290,7 +290,7 @@ Give me the undo command.</code></pre>
           <details><summary>Does it delete email?</summary><p>No. It has no permanent-delete command, never empties Trash or Junk, and never runs a mailbox-wide expunge. Moves and archives are journaled; unsubscribe requests are not reversible.</p></details>
           <details><summary>What does it read?</summary><p>Headers only: sender, subject, date, size, flags and unsubscribe headers. It never downloads bodies or attachments. The local cache stores metadata, not message bodies.</p></details>
           <details><summary>Do I need to be technical?</summary><p>The app is the simple path. The skill, the main product, needs a coding agent with shell access. The CLI is for developers who prefer the terminal. All three use the same plan and undo model.</p></details>
-          <details><summary>Does it work with my provider?</summary><p>Gmail, Outlook/Microsoft 365, Yahoo, iCloud, Fastmail, Proton Bridge and compatible custom IMAP servers. Microsoft needs an OAuth2 access token, Proton needs Bridge, and custom IMAP moves require UIDPLUS or MOVE. Provider or tenant policies may block access; the tool does not bypass them.</p></details>
+          <details><summary>Does it work with my provider?</summary><p>Gmail, Outlook/Microsoft 365, Yahoo, iCloud, Fastmail, Proton Bridge and compatible custom IMAP servers. Gmail needs an App Password with 2-Step Verification; Microsoft uses a one-click sign-in; Proton needs Bridge. Custom IMAP moves require UIDPLUS or MOVE. Provider or tenant policies may block access; the tool does not bypass them.</p></details>
           <details><summary>What happens if something goes wrong?</summary><p>Stop and inspect the error. The skill, the CLI and the app re-check the plan before applying it and record each run. Use the printed <code>undo</code> command to restore that run’s moves. If a message cannot be found, the journal remains for manual recovery. Unsubscribe requests cannot be undone.</p></details>
           <details><summary>Is it really free?</summary><p>Yes. MIT-licensed, no paid tier, no CleanYourMail account and no telemetry. You provide your computer, Python installation and mail-provider access.</p></details>
         </div>
