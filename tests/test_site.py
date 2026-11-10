@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ("index.html", "es.html", "404.html")
 PAGES_WITH_JSONLD = ("index.html", "es.html")
+APP_RELEASE_URL = "https://github.com/jparedesDS/cleanyourmail-app/releases/latest"
 
 
 def png_size(path: Path) -> tuple[int, int]:
@@ -87,6 +88,48 @@ class SiteTest(unittest.TestCase):
                 for value in re.findall(r'data-copy="([^"]*)"', text):
                     self.assertNotIn("apply", value)
                     self.assertIn("https://github.com/jparedesDS/cleanyourmail", value)
+
+    def test_app_download_points_at_the_release(self):
+        expectations = {
+            "index.html": {
+                "cta": "Download for Windows",
+                "note": "Windows 10/11 · installer · early MVP",
+                "outlook": (
+                    "Microsoft 365 sign-in requires tenant admin consent; "
+                    "personal Outlook.com requires a verified publisher (pending)"
+                ),
+                "stale": ("installer coming", "runs locally from source"),
+            },
+            "es.html": {
+                "cta": "Descargar para Windows",
+                "note": "Windows 10/11 · instalador · MVP temprano",
+                "outlook": (
+                    "el inicio de sesión de Microsoft 365 requiere consentimiento del admin del tenant; "
+                    "Outlook.com personal requiere verified publisher (pendiente)"
+                ),
+                "stale": ("instalador próximamente", "se ejecuta desde el código"),
+            },
+        }
+        for name, expected in expectations.items():
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                # Hero, app card, closing CTA and footer all point at the release page.
+                self.assertEqual(text.count(f'href="{APP_RELEASE_URL}"'), 4)
+                self.assertNotIn('href="https://github.com/jparedesDS/cleanyourmail-app"', text)
+                self.assertIn(expected["cta"], text)
+                self.assertIn(f'<p class="start-note">{expected["note"]}</p>', text)
+                self.assertIn(expected["outlook"], text)
+                for marker in expected["stale"]:
+                    self.assertNotIn(marker, text)
+
+                block = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
+                self.assertIsNotNone(block)
+                payload = json.loads(block.group(1))
+                self.assertEqual(payload["downloadUrl"], APP_RELEASE_URL)
+                # The schema describes the skill/CLI, so its version and Python requirement stay.
+                self.assertEqual(payload["softwareVersion"], "1.2.2")
+                self.assertEqual(payload["operatingSystem"], "Windows, macOS, Linux")
+                self.assertEqual(payload["softwareRequirements"], "Python 3.11+")
 
     def test_cleanyourphone_nav_link(self):
         for name in ("index.html", "es.html"):
