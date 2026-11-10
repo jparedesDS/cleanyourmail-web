@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#121316">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-S3QcfTFRAi5NokzLpwf8iMfCpmtMJfBNS8ug+f1nETM='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-PXqbMPQ0crVNn0FXkPNoBHXHzVOcDaqDdBqwqLWQeGI='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
   <link rel="canonical" href="https://jparedesds.github.io/cleanyourmail-web/es.html">
   <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourmail-web/">
   <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourmail-web/es.html">
@@ -41,7 +41,7 @@
     "description": "Skill open source para agentes que limpia buzones IMAP de forma reversible, con app local y CLI opcionales. Solo cabeceras, planes revisables, correo protegido, movimientos reversibles y sin borrado permanente.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows, macOS, Linux",
-    "softwareVersion": "1.1.5",
+    "softwareVersion": "1.2.0",
     "softwareRequirements": "Python 3.11+",
     "downloadUrl": "https://github.com/jparedesDS/cleanyourmail-app",
     "isAccessibleForFree": true,
@@ -241,7 +241,7 @@ Dame el comando de undo.</code></pre>
         </div>
         <ul class="provider-grid">
           <li><span class="provider-logo"><img src="assets/providers/gmail.png" alt="" width="40" height="40"></span><div><b>Gmail</b><span>Contraseña de aplicación + 2FA</span></div></li>
-          <li><span class="provider-logo"><img src="assets/providers/outlook.png" alt="" width="40" height="40"></span><div><b>Outlook / Microsoft 365</b><span>Inicio de sesión Microsoft (requiere registrar la app)</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/outlook.png" alt="" width="40" height="40"></span><div><b>Outlook / Microsoft 365</b><span>Microsoft 365: consentimiento de admin</span></div></li>
           <li><span class="provider-logo provider-logo-wide"><img src="assets/providers/yahoo.png" alt="" width="40" height="40"></span><div><b>Yahoo</b><span>Contraseña de aplicación</span></div></li>
           <li><span class="provider-logo"><img src="assets/providers/icloud.png" alt="" width="40" height="40"></span><div><b>iCloud</b><span>Contraseña específica</span></div></li>
           <li><span class="provider-logo"><img src="assets/providers/fastmail.png" alt="" width="40" height="40"></span><div><b>Fastmail</b><span>Contraseña de aplicación + Sieve</span></div></li>
@@ -290,7 +290,7 @@ Dame el comando de undo.</code></pre>
           <details><summary>¿Borra correo?</summary><p>No. No tiene un comando de borrado permanente, nunca vacía Trash ni Junk y nunca ejecuta un expunge general del buzón. Los movimientos y el archivado quedan registrados; las solicitudes de baja no son reversibles.</p></details>
           <details><summary>¿Qué lee?</summary><p>Solo cabeceras: remitente, asunto, fecha, tamaño, flags y cabeceras de baja. Nunca descarga cuerpos ni adjuntos. La caché local guarda metadatos, no cuerpos de mensaje.</p></details>
           <details><summary>¿Necesito conocimientos técnicos?</summary><p>La app es el camino simple. La skill, el producto principal, necesita un agente con acceso a shell. La CLI es para quien prefiere la terminal. Las tres usan el mismo plan y el mismo modelo de undo.</p></details>
-          <details><summary>¿Funciona con mi proveedor?</summary><p>Gmail, Outlook/Microsoft 365, Yahoo, iCloud, Fastmail, Proton Bridge y servidores IMAP personalizados compatibles. Gmail necesita una contraseña de aplicación con verificación en dos pasos; el inicio de sesión de Microsoft requiere registrar la app una vez; Proton necesita Bridge. Los movimientos por IMAP personalizado requieren UIDPLUS o MOVE. Las políticas del proveedor o de la organización pueden bloquear el acceso; la herramienta no las elude.</p></details>
+          <details><summary>¿Funciona con mi proveedor?</summary><p>Gmail, Outlook/Microsoft 365, Yahoo, iCloud, Fastmail, Proton Bridge y servidores IMAP personalizados compatibles. Gmail necesita una contraseña de aplicación con verificación en dos pasos; el inicio de sesión de Microsoft 365 requiere consentimiento del admin del tenant; Outlook.com personal requiere verified publisher (pendiente); Proton necesita Bridge. Los movimientos por IMAP personalizado requieren UIDPLUS o MOVE. Las políticas del proveedor o de la organización pueden bloquear el acceso; la herramienta no las elude.</p></details>
           <details><summary>¿Qué pasa si algo sale mal?</summary><p>Detente y revisa el error. La skill, la CLI y la app vuelven a comprobar el plan antes de aplicarlo y registran cada ejecución. Usa el comando <code>undo</code> indicado para restaurar los movimientos de esa ejecución. Si un mensaje ya no puede localizarse, el journal sigue disponible para una recuperación manual. Las solicitudes de baja no se pueden deshacer.</p></details>
           <details><summary>¿Es realmente gratis?</summary><p>Sí. Licencia MIT, sin plan de pago, sin cuenta de CleanYourMail y sin telemetría. Tú aportas tu equipo, tu instalación de Python y el acceso de tu proveedor.</p></details>
         </div>
