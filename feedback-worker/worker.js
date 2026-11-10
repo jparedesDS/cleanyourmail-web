@@ -1,8 +1,20 @@
 const MAX_BODY_BYTES = 16 * 1024;
+// Raw input caps. The delivered message is smaller so the whole Discord
+// message stays under the aggregate embed limit.
 const MAX_MESSAGE = 4000;
 const MAX_CHECKLIST = 6000;
 const MAX_CONTACT = 200;
 const MAX_APP_VERSION = 80;
+const MAX_DELIVERED_MESSAGE = 2800;
+
+// Discord rejects an embed set whose text totals more than 6000 characters.
+// Keep a safety margin for titles, field names, the checklist wrapper and
+// future Discord counting changes.
+const EMBED_TEXT_BUDGET = 5800;
+const CHECKLIST_CHUNK = 3400;
+// Three checklist chunks max: title (9/21) + "```\n" + text + "\n```" each.
+const CHECKLIST_OVERHEAD = 100;
+
 const DEFAULT_ORIGIN = "https://jparedesds.github.io";
 const KINDS = new Set(["feedback", "bug"]);
 const RATE_LIMIT_SECONDS = 300;
@@ -54,12 +66,16 @@ function json(payload, status, headers = {}) {
   });
 }
 
+function isJsonContentType(request) {
+  const [mediaType] = (request.headers.get("content-type") || "").split(";");
+  return mediaType.trim().toLowerCase() === "application/json";
+}
+
 async function rateLimitKey(request, env) {
   const ip = request.headers.get("CF-Connecting-IP") || "unknown";
-  const salt = env.IP_SALT || "cleanyourmail-feedback";
   const digest = await crypto.subtle.digest(
     "SHA-256",
-    new TextEncoder().encode(`${salt}:${ip}`),
+    new TextEncoder().encode(`${env.IP_SALT}:${ip}`),
   );
   return (
     "rate:" +
@@ -70,17 +86,17 @@ async function rateLimitKey(request, env) {
 }
 
 async function isRateLimited(request, env) {
-  if (!env.FEEDBACK_KV) {
-    return false;
-  }
   const key = await rateLimitKey(request, env);
-  if (await env.FEEDBACK_KV.get(key)) {
-    return true;
-  }
+  return Boolean(await env.FEEDBACK_KV.get(key));
+}
+
+// Called only after Discord accepted the report, so a failed delivery never
+// consumes the five-minute window.
+async function markRateLimited(request, env) {
+  const key = await rateLimitKey(request, env);
   await env.FEEDBACK_KV.put(key, "1", {
     expirationTtl: RATE_LIMIT_SECONDS,
   });
-  return false;
 }
 
 function splitText(value, size) {
@@ -96,6 +112,14 @@ function splitText(value, size) {
   return chunks;
 }
 
+function embedTextLength(title, description, fields) {
+  return (
+    title.length +
+    description.length +
+    fields.reduce((total, field) => total + field.name.length + field.value.length, 0)
+  );
+}
+
 function buildDiscordPayload({ kind, message, checklist, contact, appVersion }) {
   const fields = [{ name: "Kind", value: kind, inline: true }];
   if (appVersion) {
@@ -105,19 +129,34 @@ function buildDiscordPayload({ kind, message, checklist, contact, appVersion }) 
     fields.push({ name: "Contact", value: contact, inline: true });
   }
 
-  const embeds = [];
-  embeds.push({
-    title: TITLES[kind] ?? "New feedback",
-    description: message
-      ? clamp(neutralizeFences(message), 3500)
-      : "No message provided.",
-    color: COLORS[kind] ?? COLORS.feedback,
-    fields,
-    timestamp: new Date().toISOString(),
-  });
+  const title = TITLES[kind] ?? TITLES.feedback;
+  const messageDescription = message
+    ? neutralizeFences(clamp(message, MAX_DELIVERED_MESSAGE))
+    : "No message provided.";
 
-  if (checklist) {
-    splitText(checklist, 3400).forEach((chunk, index) => {
+  // Give the checklist only what is left after the message embed and the
+  // checklist titles/wrappers, so the combined text stays under Discord's cap.
+  const checklistBudget =
+    EMBED_TEXT_BUDGET -
+    embedTextLength(title, messageDescription, fields) -
+    CHECKLIST_OVERHEAD;
+  const checklistText =
+    checklist && checklistBudget > 0
+      ? clamp(checklist, checklistBudget)
+      : "";
+
+  const embeds = [
+    {
+      title,
+      description: messageDescription,
+      color: COLORS[kind] ?? COLORS.feedback,
+      fields,
+      timestamp: new Date().toISOString(),
+    },
+  ];
+
+  if (checklistText) {
+    splitText(checklistText, CHECKLIST_CHUNK).forEach((chunk, index) => {
       embeds.push({
         title: index === 0 ? "Checklist" : "Checklist (continued)",
         description: "```\n" + neutralizeFences(chunk) + "\n```",
@@ -143,13 +182,12 @@ export default {
       return new Response(null, { status: 204, headers: cors });
     }
     if (request.method !== "POST") {
-      return json({ ok: false, error: "method not allowed" }, 405, cors);
+      return json({ ok: false, error: "method not allowed" }, 405, {
+        ...cors,
+        Allow: "POST, OPTIONS",
+      });
     }
-    if (
-      !(request.headers.get("content-type") || "")
-        .toLowerCase()
-        .includes("application/json")
-    ) {
+    if (!isJsonContentType(request)) {
       return json({ ok: false, error: "JSON body required" }, 415, cors);
     }
 
@@ -198,6 +236,11 @@ export default {
       );
     }
 
+    // Fail closed: without KV and a salt the limiter cannot run.
+    if (!env.FEEDBACK_KV || !env.IP_SALT) {
+      return json({ ok: false, error: "rate limiter unavailable" }, 503, cors);
+    }
+
     try {
       if (await isRateLimited(request, env)) {
         return json(
@@ -235,6 +278,13 @@ export default {
         502,
         cors,
       );
+    }
+
+    try {
+      await markRateLimited(request, env);
+    } catch {
+      // The report was already delivered; a limiter write failure must not
+      // turn a successful submission into an error.
     }
 
     return json({ ok: true }, 200, cors);

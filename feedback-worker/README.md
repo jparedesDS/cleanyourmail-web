@@ -26,8 +26,29 @@ Deployed at: <https://cleanyourmail-feedback.subtitleme.workers.dev>
 - Unknown kinds are rejected with `400`.
 
 The Worker does **not** store or log the request body. It hashes the Cloudflare client IP together
-with the `IP_SALT` secret and keeps only a five-minute rate-limit flag in KV. The message itself is
-only forwarded to Discord.
+with the `IP_SALT` secret and keeps only a five-minute rate-limit flag in KV. That flag is written
+only after Discord accepts the report. The message itself is only forwarded to Discord.
+
+## Limits
+
+Request-level cap:
+
+- A raw JSON body above 16 KiB is rejected with `413`.
+
+Per-field input caps (longer values are trimmed with `…`, not rejected):
+
+- `message`: 4000 characters
+- `checklist`: 6000 characters
+- `contact`: 200 characters
+- `app_version`: 80 characters
+
+Delivered to Discord:
+
+- `message` is capped at 2800 characters.
+- The checklist is clamped to the room left in a 5800-character embed-text budget, after the
+  message, titles, field names/values and code-block wrappers. Discord's aggregate limit is 6000
+  characters, so the margin keeps a maximum-sized report deliverable instead of rejected.
+- `contact` and `app_version` are delivered within their 200/80 input caps.
 
 Client code must never add serial numbers, IP addresses, IMEI, MAC addresses, email message IDs or
 similar identifiers to the checklist. `contact` is optional and voluntary.
@@ -54,10 +75,10 @@ The Worker posts a message with:
 1. Go to **Workers & Pages → Create application → Create Worker**.
 2. Name it `cleanyourmail-feedback` and deploy the starter.
 3. Open **Edit code**, replace everything with the contents of `worker.js`, and deploy.
-4. Go to **Storage & Databases → KV → Create namespace**. Name it `cleanyourmail-feedback-rate`.
+4. Go to **Storage & Databases → KV → Create namespace**. Name it `FEEDBACK_KV`.
 5. Open the Worker → **Settings → Bindings → Add → KV namespace**:
    - Variable name: `FEEDBACK_KV`
-   - KV namespace: `cleanyourmail-feedback-rate`
+   - KV namespace: `FEEDBACK_KV`
 6. In **Settings → Variables and Secrets** add:
    - Secret `DISCORD_WEBHOOK_URL`: the Discord webhook from above.
    - Secret `IP_SALT`: a long random string. Generate one with a password manager.
@@ -119,16 +140,28 @@ Invoke-RestMethod -Method Post -Uri $url -ContentType "application/json" -Body $
 ```
 
 To send a real message, set `website` to `""` after the maintainer has configured the webhook. The
-message should appear in Discord. Sending twice within five minutes from the same IP returns `429`.
+message should appear in Discord. Sending twice within five minutes from the same IP returns `429`
+after the first report was accepted by Discord; a failed delivery does not start the window.
 
 ## Security notes
 
-- Only `POST` with a JSON content type is accepted; the raw body is capped at 16 KiB.
-- `message` is capped at 4000 characters, `checklist` at 6000, `contact` at 200 and `app_version` at
-  80.
+- Only `POST` with `Content-Type: application/json` is accepted. Optional parameters such as
+  `application/json; charset=utf-8` are allowed; `application/jsonp` is not.
+- Other methods return `405` with `Allow: POST, OPTIONS`.
+- The raw body is capped at 16 KiB and rejected with `413` above that.
+- `message` accepts up to 4000 characters and `checklist` up to 6000, but delivery is bounded to
+  2800 characters for the message and the leftover of a 5800-character embed budget for the
+  checklist. `contact` and `app_version` are delivered within their 200/80 input caps.
 - Discord mentions are disabled and user-supplied code fences are neutralised.
 - Rate limiting is per salted-hashed IP for five minutes, stored in KV. The raw IP and salt are
-  never stored.
+  never stored. The KV key is written only after Discord accepts the report, so a Discord `502`
+  never consumes the window.
+- The limiter is non-atomic and KV is eventually consistent: two concurrent requests from the same
+  IP can both pass the read before either writes the key. This is deliberate best-effort abuse
+  protection, not an exact quota.
+- If `FEEDBACK_KV` or `IP_SALT` is missing, the Worker fails closed with `503
+  rate limiter unavailable` instead of silently skipping the limit. There is no public salt
+  fallback.
 - The Worker never logs or persists the message; only the KV rate-limit flag is written.
 - CORS allows only `ALLOWED_ORIGIN`. Requests with another `Origin` get no
   `Access-Control-Allow-Origin`, so browsers cannot read the response.

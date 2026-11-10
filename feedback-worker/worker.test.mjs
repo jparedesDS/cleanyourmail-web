@@ -29,24 +29,27 @@ function makeEnv(overrides = {}) {
 }
 
 function makeRequest(payload, init = {}) {
+  const method = init.method ?? "POST";
+  const bodyless = method === "GET" || method === "HEAD";
   return new Request("https://feedback.test/", {
-    method: init.method ?? "POST",
+    method,
     headers: {
       "Content-Type": "application/json",
       Origin: ORIGIN,
       "CF-Connecting-IP": "192.0.2.10",
       ...(init.headers ?? {}),
     },
-    body: init.body ?? JSON.stringify(payload),
+    body: bodyless ? undefined : (init.body ?? JSON.stringify(payload)),
   });
 }
 
-function mockDiscord() {
+function mockDiscord(statuses = []) {
   const calls = [];
   const original = globalThis.fetch;
   globalThis.fetch = async (url, init) => {
     calls.push({ url, payload: JSON.parse(init.body) });
-    return new Response(null, { status: 204 });
+    const status = statuses[calls.length - 1] ?? 204;
+    return new Response(null, { status });
   };
   return {
     calls,
@@ -56,6 +59,17 @@ function mockDiscord() {
   };
 }
 
+function aggregateEmbedText(payload) {
+  return payload.embeds.reduce((total, embed) => {
+    const fields = embed.fields ?? [];
+    const fieldText = fields.reduce(
+      (sum, field) => sum + field.name.length + field.value.length,
+      0,
+    );
+    return total + embed.title.length + embed.description.length + fieldText;
+  }, 0);
+}
+
 test("options returns CORS preflight for the allowed origin", async () => {
   const response = await worker.fetch(
     makeRequest({}, { method: "OPTIONS" }),
@@ -63,10 +77,7 @@ test("options returns CORS preflight for the allowed origin", async () => {
   );
   assert.equal(response.status, 204);
   assert.equal(response.headers.get("Access-Control-Allow-Origin"), ORIGIN);
-  assert.match(
-    response.headers.get("Access-Control-Allow-Methods"),
-    /POST/,
-  );
+  assert.match(response.headers.get("Access-Control-Allow-Methods"), /POST/);
 });
 
 test("an unknown origin gets no Access-Control-Allow-Origin", async () => {
@@ -168,6 +179,32 @@ test("an empty message and checklist is rejected", async () => {
   }
 });
 
+test("only application/json with optional parameters is accepted", async () => {
+  const discord = mockDiscord();
+  try {
+    const jsonp = await worker.fetch(
+      makeRequest(
+        { kind: "feedback", message: "hello" },
+        { headers: { "Content-Type": "application/jsonp" } },
+      ),
+      makeEnv(),
+    );
+    assert.equal(jsonp.status, 415);
+
+    const withCharset = await worker.fetch(
+      makeRequest(
+        { kind: "feedback", message: "hello" },
+        { headers: { "Content-Type": "application/json; charset=utf-8" } },
+      ),
+      makeEnv(),
+    );
+    assert.equal(withCharset.status, 200);
+    assert.equal(discord.calls.length, 1);
+  } finally {
+    discord.restore();
+  }
+});
+
 test("a non-JSON content type is rejected", async () => {
   const response = await worker.fetch(
     makeRequest(null, {
@@ -177,6 +214,19 @@ test("a non-JSON content type is rejected", async () => {
     makeEnv(),
   );
   assert.equal(response.status, 415);
+});
+
+test("a body over 16 KiB is rejected with 413", async () => {
+  const response = await worker.fetch(
+    makeRequest(null, {
+      body: JSON.stringify({
+        kind: "feedback",
+        message: "x".repeat(17 * 1024),
+      }),
+    }),
+    makeEnv(),
+  );
+  assert.equal(response.status, 413);
 });
 
 test("missing webhook configuration returns 503", async () => {
@@ -191,7 +241,45 @@ test("missing webhook configuration returns 503", async () => {
   });
 });
 
-test("the same IP is rate limited for five minutes", async () => {
+test("missing KV fails closed with 503", async () => {
+  const discord = mockDiscord();
+  try {
+    const response = await worker.fetch(
+      makeRequest({ kind: "feedback", message: "hello" }),
+      makeEnv({ FEEDBACK_KV: undefined }),
+    );
+    assert.equal(response.status, 503);
+    assert.deepEqual(await response.json(), {
+      ok: false,
+      error: "rate limiter unavailable",
+    });
+    assert.equal(discord.calls.length, 0);
+  } finally {
+    discord.restore();
+  }
+});
+
+test("missing IP_SALT fails closed with 503", async () => {
+  const discord = mockDiscord();
+  try {
+    for (const salt of [undefined, ""]) {
+      const response = await worker.fetch(
+        makeRequest({ kind: "feedback", message: "hello" }),
+        makeEnv({ IP_SALT: salt }),
+      );
+      assert.equal(response.status, 503);
+      assert.deepEqual(await response.json(), {
+        ok: false,
+        error: "rate limiter unavailable",
+      });
+    }
+    assert.equal(discord.calls.length, 0);
+  } finally {
+    discord.restore();
+  }
+});
+
+test("the same IP is rate limited for five minutes after a successful send", async () => {
   const discord = mockDiscord();
   const env = makeEnv();
   try {
@@ -206,6 +294,69 @@ test("the same IP is rate limited for five minutes", async () => {
     assert.equal(first.status, 200);
     assert.equal(second.status, 429);
     assert.equal(discord.calls.length, 1);
+  } finally {
+    discord.restore();
+  }
+});
+
+test("a Discord failure does not consume the rate-limit window", async () => {
+  const discord = mockDiscord([500, 204]);
+  const env = makeEnv();
+  try {
+    const first = await worker.fetch(
+      makeRequest({ kind: "feedback", message: "one" }),
+      env,
+    );
+    const second = await worker.fetch(
+      makeRequest({ kind: "feedback", message: "two" }),
+      env,
+    );
+    assert.equal(first.status, 502);
+    assert.deepEqual(await first.json(), {
+      ok: false,
+      error: "Discord rejected the message",
+    });
+    assert.equal(second.status, 200);
+    assert.equal(discord.calls.length, 2);
+  } finally {
+    discord.restore();
+  }
+});
+
+test("a maximum-sized report stays under Discord's aggregate embed limit", async () => {
+  const discord = mockDiscord();
+  try {
+    const response = await worker.fetch(
+      makeRequest({
+        kind: "feedback",
+        message: "m".repeat(4000),
+        checklist: "c".repeat(6000),
+        contact: "c".repeat(200),
+        app_version: "v".repeat(80),
+      }),
+      makeEnv(),
+    );
+    assert.equal(response.status, 200);
+    assert.equal(discord.calls.length, 1);
+
+    const payload = discord.calls[0].payload;
+    const total = aggregateEmbedText(payload);
+    assert.ok(
+      total <= 6000,
+      `aggregate embed text ${total} exceeds Discord's 6000 character limit`,
+    );
+    assert.ok(total <= 5800, `aggregate embed text ${total} exceeds the budget`);
+
+    const message = payload.embeds[0].description;
+    assert.equal(message.length, 2800);
+    assert.ok(message.endsWith("…"), "truncated message lost its ellipsis");
+
+    assert.ok(payload.embeds.length >= 2, "checklist was dropped");
+    const checklist = payload.embeds[1].description;
+    assert.match(checklist, /c{100}/);
+    assert.ok(checklist.includes("…"), "truncated checklist lost its ellipsis");
+    assert.ok(checklist.startsWith("```\n"));
+    assert.ok(checklist.endsWith("\n```"));
   } finally {
     discord.restore();
   }
@@ -238,6 +389,68 @@ test("mentions are disabled and code fences are neutralised", async () => {
       "checklist code fences were not neutralised",
     );
     assert.match(checklistDescription, /@here/);
+  } finally {
+    discord.restore();
+  }
+});
+
+test("an error from a bad origin has no CORS header", async () => {
+  const response = await worker.fetch(
+    makeRequest(
+      { kind: "profile", message: "hello" },
+      { headers: { Origin: "https://evil.example" } },
+    ),
+    makeEnv(),
+  );
+  assert.equal(response.status, 400);
+  assert.equal(response.headers.get("Access-Control-Allow-Origin"), null);
+});
+
+test("a method other than POST or OPTIONS returns 405 with Allow", async () => {
+  const response = await worker.fetch(
+    makeRequest(null, { method: "GET" }),
+    makeEnv(),
+  );
+  assert.equal(response.status, 405);
+  assert.equal(response.headers.get("Allow"), "POST, OPTIONS");
+});
+
+test("error responses never include the webhook URL", async () => {
+  const discord = mockDiscord([500]);
+  try {
+    const responses = [
+      await worker.fetch(
+        makeRequest({ kind: "other", message: "x" }),
+        makeEnv(),
+      ),
+      await worker.fetch(makeRequest({ kind: "feedback" }), makeEnv()),
+      await worker.fetch(
+        makeRequest(null, {
+          headers: { "Content-Type": "text/plain" },
+          body: "x",
+        }),
+        makeEnv(),
+      ),
+      await worker.fetch(
+        makeRequest(null, { body: "x".repeat(17 * 1024) }),
+        makeEnv(),
+      ),
+      await worker.fetch(
+        makeRequest({ kind: "feedback", message: "x" }),
+        makeEnv({ DISCORD_WEBHOOK_URL: "" }),
+      ),
+      await worker.fetch(
+        makeRequest({ kind: "feedback", message: "x" }),
+        makeEnv(),
+      ),
+    ];
+
+    for (const response of responses) {
+      assert.ok(response.status >= 400);
+      const body = await response.text();
+      assert.ok(!body.includes(WEBHOOK), "webhook URL leaked into an error body");
+      assert.ok(!body.includes("discord.test"), "webhook host leaked into an error body");
+    }
   } finally {
     discord.restore();
   }
