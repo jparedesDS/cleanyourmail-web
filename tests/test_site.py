@@ -13,6 +13,40 @@ ROOT = Path(__file__).resolve().parents[1]
 PAGES = ("index.html", "es.html", "404.html")
 PAGES_WITH_JSONLD = ("index.html", "es.html")
 APP_RELEASE_URL = "https://github.com/jparedesDS/cleanyourmail-app/releases/latest"
+WORKER_ORIGIN = "https://cleanyourmail-feedback.subtitleme.workers.dev"
+FEEDBACK_FORM_IDS = {
+    "feedback-form",
+    "feedback-kind",
+    "feedback-message",
+    "feedback-checklist",
+    "feedback-contact",
+    "feedback-website",
+    "feedback-consent",
+    "feedback-submit",
+    "feedback-status",
+}
+
+
+def csp_content(text: str) -> str:
+    match = re.search(r'Content-Security-Policy" content="([^"]+)"', text)
+    if match is None:
+        raise AssertionError("missing Content-Security-Policy meta tag")
+    return match.group(1)
+
+
+def csp_sources(content: str, directive: str) -> list[str]:
+    for part in content.split(";"):
+        tokens = part.strip().split()
+        if tokens and tokens[0] == directive:
+            return tokens[1:]
+    raise AssertionError(f"missing {directive} directive")
+
+
+def feedback_form(text: str) -> str:
+    match = re.search(r'<form\b[^>]*id="feedback-form".*?</form>', text, re.S)
+    if match is None:
+        raise AssertionError("missing feedback form")
+    return match.group(0)
 
 
 def png_size(path: Path) -> tuple[int, int]:
@@ -62,6 +96,91 @@ class SiteTest(unittest.TestCase):
         spanish = (ROOT / "es.html").read_text(encoding="utf-8")
         self.assertIn('href="es.html"', english)
         self.assertIn('href="index.html"', spanish)
+
+    def test_feedback_section_on_both_pages(self):
+        for name in ("index.html", "es.html"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn('id="feedback"', text)
+                self.assertIn(f'data-endpoint="{WORKER_ORIGIN}"', text)
+                self.assertIn('class="feedback-honeypot" aria-hidden="true"', text)
+                for element_id in FEEDBACK_FORM_IDS:
+                    self.assertIn(f'id="{element_id}"', text)
+                self.assertLess(
+                    text.index('id="feedback"'),
+                    text.index('class="cta"'),
+                    "the feedback section must come before the CTA",
+                )
+
+    def test_feedback_csp_allows_only_the_worker(self):
+        for name in ("index.html", "es.html"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                content = csp_content(text)
+                self.assertEqual(csp_sources(content, "connect-src"), [WORKER_ORIGIN])
+                self.assertIn("form-action 'none'", content)
+
+    def test_feedback_nav_and_footer(self):
+        english = (ROOT / "index.html").read_text(encoding="utf-8")
+        spanish = (ROOT / "es.html").read_text(encoding="utf-8")
+        self.assertIn('<a href="#feedback">Feedback</a>', english)
+        self.assertIn('<a href="#feedback">Comentarios</a>', spanish)
+        self.assertIn(
+            "No cookies. No analytics. Feedback is sent only when you submit the form.",
+            english,
+        )
+        self.assertIn(
+            "Sin cookies. Sin analítica. El feedback solo se envía al enviar el formulario.",
+            spanish,
+        )
+
+    def test_feedback_consent_copy(self):
+        english = (ROOT / "index.html").read_text(encoding="utf-8")
+        spanish = (ROOT / "es.html").read_text(encoding="utf-8")
+        self.assertIn("I agree to send this message to the CleanYourMail Discord.", english)
+        self.assertIn("Acepto enviar este mensaje al Discord de CleanYourMail.", spanish)
+        for text, words in (
+            (english, ("Improvement", "Bug", "Send feedback")),
+            (spanish, ("Mejora", "Error", "Enviar feedback")),
+        ):
+            for word in words:
+                with self.subTest(word=word):
+                    self.assertIn(word, text)
+
+    def test_feedback_field_ids_match_across_languages(self):
+        english = feedback_form((ROOT / "index.html").read_text(encoding="utf-8"))
+        spanish = feedback_form((ROOT / "es.html").read_text(encoding="utf-8"))
+        english_ids = set(re.findall(r'id="([^"]+)"', english))
+        spanish_ids = set(re.findall(r'id="([^"]+)"', spanish))
+        self.assertEqual(english_ids, spanish_ids)
+        self.assertEqual(english_ids, FEEDBACK_FORM_IDS)
+
+    def test_feedback_form_limits_and_opt_in(self):
+        for name in ("index.html", "es.html"):
+            form = feedback_form((ROOT / name).read_text(encoding="utf-8"))
+            with self.subTest(page=name):
+                self.assertIn('type="checkbox"', form)
+                self.assertIn('type="submit"', form)
+                self.assertIn('maxlength="4000"', form)
+                self.assertIn('maxlength="6000"', form)
+                self.assertIn('name="website"', form)
+                self.assertIn('name="consent"', form)
+
+    def test_feedback_client_maps_worker_errors(self):
+        js = (ROOT / "app.js").read_text(encoding="utf-8")
+        for marker in (
+            "dataset.endpoint",
+            "application/json",
+            '"web"',
+            "Sending...",
+            "Sent. Thanks for helping.",
+            "Enviando...",
+            "Enviado. Gracias por ayudar.",
+            "429",
+            "503",
+        ):
+            with self.subTest(marker=marker):
+                self.assertIn(marker, js)
 
     def test_no_analytics_or_tracking(self):
         for name in PAGES:
@@ -208,8 +327,13 @@ class SiteTest(unittest.TestCase):
         self.assertNotIn("url(http", css)
 
         js = (ROOT / "app.js").read_text(encoding="utf-8").lower()
-        for marker in ("fetch(", "xmlhttprequest", "websocket", "sendbeacon"):
+        for marker in ("xmlhttprequest", "websocket", "sendbeacon"):
             self.assertNotIn(marker, js)
+        # The only network call is the explicit feedback POST. The endpoint is
+        # read from the form, so app.js carries no hardcoded remote URL.
+        self.assertEqual(js.count("fetch("), 1)
+        self.assertNotIn("http://", js)
+        self.assertNotIn("https://", js)
 
     def test_canonical_and_alternates(self):
         cases = {

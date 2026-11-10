@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#121316">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-v8ldq56cMeddQvih2S+a7FRbGXIgSBetb+JJdDFZNxI='; connect-src 'none'; font-src 'self'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-v8ldq56cMeddQvih2S+a7FRbGXIgSBetb+JJdDFZNxI='; connect-src https://cleanyourmail-feedback.subtitleme.workers.dev; font-src 'self'; upgrade-insecure-requests">
   <link rel="canonical" href="https://jparedesds.github.io/cleanyourmail-web/es.html">
   <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourmail-web/">
   <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourmail-web/es.html">
@@ -96,6 +96,7 @@
         <a href="#providers">Proveedores</a>
         <a href="#safety">Seguridad</a>
         <a href="#faq">FAQ</a>
+        <a href="#feedback">Comentarios</a>
         <a class="nav-clean" href="https://jparedesds.github.io/cleanyourphone-web" rel="noopener">CleanYour<span class="phone-accent">Phone</span></a>
         <a class="nav-github" href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub</a>
         <a class="lang" href="index.html" hreflang="en" lang="en"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg> EN</a>
@@ -297,6 +298,55 @@ Dame el comando de undo.</code></pre>
       </div>
     </section>
 
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Comentarios</p>
+          <h2>Cuéntanos qué corregir.</h2>
+          <p>¿Encontraste un error o tienes una idea? Envíala al Discord de CleanYourMail. Nada se envía automáticamente: escribe los detalles, acepta la línea de consentimiento y pulsa Enviar. Quita todo lo que no quieras enviar y no incluyas contraseñas, tokens ni el contenido completo de un mensaje.</p>
+        </div>
+        <form class="feedback-form" id="feedback-form" data-endpoint="https://cleanyourmail-feedback.subtitleme.workers.dev">
+          <div class="feedback-grid">
+            <div class="feedback-field">
+              <label for="feedback-kind">Tipo</label>
+              <select id="feedback-kind" name="kind">
+                <option value="feedback">Mejora</option>
+                <option value="bug">Error</option>
+              </select>
+            </div>
+            <div class="feedback-field">
+              <label for="feedback-contact">Contacto (opcional)</label>
+              <input id="feedback-contact" name="contact" type="text" maxlength="200" autocomplete="off" placeholder="Discord, GitHub o email">
+              <p class="feedback-hint">Solo si quieres una respuesta.</p>
+            </div>
+            <div class="feedback-field feedback-field-wide">
+              <label for="feedback-message">Mensaje</label>
+              <textarea id="feedback-message" name="message" rows="6" maxlength="4000" placeholder="Qué pasó, qué esperabas y qué probaste."></textarea>
+              <p class="feedback-hint">Hasta 4000 caracteres.</p>
+            </div>
+            <div class="feedback-field feedback-field-wide">
+              <label for="feedback-checklist">Checklist (opcional)</label>
+              <textarea id="feedback-checklist" name="checklist" rows="5" maxlength="6000" placeholder="Versión de la app, versión de Windows, proveedor, modo de carpetas, pasos para reproducirlo."></textarea>
+              <p class="feedback-hint">Las versiones o los pasos ayudan. Quita todo lo que no quieras enviar.</p>
+            </div>
+          </div>
+          <div class="feedback-honeypot" aria-hidden="true">
+            <label for="feedback-website">Sitio web</label>
+            <input id="feedback-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="feedback-consent">
+            <input id="feedback-consent" name="consent" type="checkbox">
+            <label for="feedback-consent">Acepto enviar este mensaje al Discord de CleanYourMail.</label>
+          </div>
+          <div class="feedback-actions">
+            <button class="button button-primary" id="feedback-submit" type="submit">Enviar feedback</button>
+            <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+          </div>
+          <p class="feedback-hint">El formulario no recoge telemetría. Nada sale de tu navegador hasta que pulsas Enviar.</p>
+        </form>
+      </div>
+    </section>
+
     <section class="cta">
       <div class="container cta-inner">
         <h2>Empieza con un plan.<br>No cambies nada hasta decir que sí.</h2>
@@ -327,7 +377,7 @@ Dame el comando de undo.</code></pre>
       </nav>
     </div>
     <div class="container">
-      <p class="footer-note">Tu bandeja, sin el ruido. Esta web no instala cookies, no utiliza analítica y no carga recursos de terceros. No está afiliada a ningún proveedor de correo.</p>
+      <p class="footer-note">Tu bandeja, sin el ruido. Sin cookies. Sin analítica. El feedback solo se envía al enviar el formulario. No carga recursos de terceros y no está afiliada a ningún proveedor de correo.</p>
     </div>
   </footer>
 

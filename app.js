@@ -28,6 +28,134 @@
     if (!ok) throw new Error("copy failed");
   };
 
+  const feedbackCopy = lang === "es"
+    ? {
+        notConfigured: "El feedback no está configurado en esta versión.",
+        consent: "Acepta enviar el mensaje al Discord de CleanYourMail.",
+        empty: "Escribe un mensaje o un checklist antes de enviar.",
+        messageTooLong: "El mensaje supera los 4000 caracteres.",
+        checklistTooLong: "El checklist supera los 6000 caracteres.",
+        sending: "Enviando...",
+        success: "Enviado. Gracias por ayudar.",
+        rateLimited: "Espera unos minutos antes de volver a enviar.",
+        failed: "No se pudo enviar. Inténtalo de nuevo más tarde.",
+      }
+    : {
+        notConfigured: "Feedback is not configured in this build.",
+        consent: "Accept the consent line before sending.",
+        empty: "Write a message or a checklist before sending.",
+        messageTooLong: "The message is over 4000 characters.",
+        checklistTooLong: "The checklist is over 6000 characters.",
+        sending: "Sending...",
+        success: "Sent. Thanks for helping.",
+        rateLimited: "Please wait a few minutes before sending again.",
+        failed: "Could not send. Please try again later.",
+      };
+
+  const initFeedback = () => {
+    const form = doc.getElementById("feedback-form");
+    if (!form) return;
+    const kind = doc.getElementById("feedback-kind");
+    const message = doc.getElementById("feedback-message");
+    const checklist = doc.getElementById("feedback-checklist");
+    const contact = doc.getElementById("feedback-contact");
+    const website = doc.getElementById("feedback-website");
+    const consent = doc.getElementById("feedback-consent");
+    const button = doc.getElementById("feedback-submit");
+    const status = doc.getElementById("feedback-status");
+    const endpoint = (form.dataset.endpoint || "").trim();
+    const originalLabel = button ? button.textContent.trim() : "";
+    let sending = false;
+
+    const setStatus = (text, tone) => {
+      if (!status) return;
+      status.textContent = text;
+      if (tone) {
+        status.dataset.tone = tone;
+      } else {
+        delete status.dataset.tone;
+      }
+    };
+
+    if (!endpoint) {
+      if (button) button.disabled = true;
+      setStatus(feedbackCopy.notConfigured, "error");
+      return;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (sending || !button || !kind || !message || !checklist || !consent) return;
+
+      const messageText = message.value.trim();
+      const checklistText = checklist.value.trim();
+      if (!consent.checked) {
+        setStatus(feedbackCopy.consent, "error");
+        consent.focus();
+        return;
+      }
+      if (!messageText && !checklistText) {
+        setStatus(feedbackCopy.empty, "error");
+        message.focus();
+        return;
+      }
+      if (messageText.length > 4000) {
+        setStatus(feedbackCopy.messageTooLong, "error");
+        message.focus();
+        return;
+      }
+      if (checklistText.length > 6000) {
+        setStatus(feedbackCopy.checklistTooLong, "error");
+        checklist.focus();
+        return;
+      }
+
+      sending = true;
+      button.disabled = true;
+      button.textContent = feedbackCopy.sending;
+      setStatus(feedbackCopy.sending);
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            kind: kind.value,
+            message: messageText,
+            checklist: checklistText,
+            contact: contact ? contact.value.trim() : "",
+            app_version: "web",
+            website: website ? website.value : "",
+          }),
+        });
+
+        if (response.status === 429) {
+          setStatus(feedbackCopy.rateLimited, "error");
+          return;
+        }
+        if (response.status === 503) {
+          setStatus(feedbackCopy.notConfigured, "error");
+          return;
+        }
+        if (!response.ok) {
+          setStatus(feedbackCopy.failed, "error");
+          return;
+        }
+
+        form.reset();
+        setStatus(feedbackCopy.success, "success");
+      } catch {
+        setStatus(feedbackCopy.failed, "error");
+      } finally {
+        sending = false;
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
+    });
+  };
+
+  initFeedback();
+
   doc.querySelectorAll("[data-copy]").forEach((button) => {
     button.addEventListener("click", async () => {
       const original = button.textContent;
