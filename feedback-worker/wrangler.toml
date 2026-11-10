@@ -1,0 +1,15 @@
+name = "cleanyourmail-feedback"
+main = "worker.js"
+compatibility_date = "2026-11-10"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGIN = "https://jparedesds.github.io"
+
+# Created with:
+#   npx wrangler kv namespace create FEEDBACK_KV
+# If you deploy from the Cloudflare dashboard, add the KV binding in
+# Settings > Bindings instead.
+[[kv_namespaces]]
+binding = "FEEDBACK_KV"
+id = "4dbe4b1ecbad40188096dfa3f94eedaf"
