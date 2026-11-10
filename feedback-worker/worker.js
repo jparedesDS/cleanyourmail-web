@@ -1,6 +1,8 @@
 const MAX_BODY_BYTES = 16 * 1024;
-// Raw input caps. The delivered message is smaller so the whole Discord
-// message stays under the aggregate embed limit.
+// Raw input caps. The clients send at most 2800/2500 (message/checklist), so
+// these wider caps never silently truncate a client payload. The delivered
+// message is smaller still so the whole Discord message stays under the
+// aggregate embed limit.
 const MAX_MESSAGE = 4000;
 const MAX_CHECKLIST = 6000;
 const MAX_CONTACT = 200;
@@ -112,6 +114,44 @@ function splitText(value, size) {
   return chunks;
 }
 
+// Read at most MAX_BODY_BYTES + 1. A body that overflows is cancelled instead
+// of being buffered whole; the caller turns `tooLarge` into a 413.
+async function readCappedBody(request) {
+  if (!request.body) {
+    return { tooLarge: false, text: "" };
+  }
+  const reader = request.body.getReader();
+  const decoder = new TextDecoder();
+  let bytes = 0;
+  let value = "";
+
+  try {
+    for (;;) {
+      const chunk = await reader.read();
+      if (chunk.done) break;
+      bytes += chunk.value.byteLength;
+      if (bytes > MAX_BODY_BYTES) {
+        try {
+          await reader.cancel();
+        } catch {
+          // The stream is already closed; the 413 response is unchanged.
+        }
+        return { tooLarge: true, text: "" };
+      }
+      value += decoder.decode(chunk.value, { stream: true });
+    }
+    value += decoder.decode();
+    return { tooLarge: false, text: value };
+  } catch {
+    try {
+      await reader.cancel();
+    } catch {
+      // Nothing left to cancel.
+    }
+    return { tooLarge: true, text: "" };
+  }
+}
+
 function embedTextLength(title, description, fields) {
   return (
     title.length +
@@ -181,6 +221,11 @@ export default {
     if (request.method === "OPTIONS") {
       return new Response(null, { status: 204, headers: cors });
     }
+    // The desktop app sends no Origin. A browser that is not the allowlisted
+    // site is rejected before its body is read or forwarded.
+    if (origin && origin !== allowedOrigin) {
+      return json({ ok: false, error: "origin not allowed" }, 403, cors);
+    }
     if (request.method !== "POST") {
       return json({ ok: false, error: "method not allowed" }, 405, {
         ...cors,
@@ -191,10 +236,16 @@ export default {
       return json({ ok: false, error: "JSON body required" }, 415, cors);
     }
 
-    const raw = await request.text();
-    if (new TextEncoder().encode(raw).byteLength > MAX_BODY_BYTES) {
+    const declaredLength = request.headers.get("content-length");
+    if (declaredLength !== null && Number(declaredLength) > MAX_BODY_BYTES) {
       return json({ ok: false, error: "payload too large" }, 413, cors);
     }
+
+    const body = await readCappedBody(request);
+    if (body.tooLarge) {
+      return json({ ok: false, error: "payload too large" }, 413, cors);
+    }
+    const raw = body.text;
 
     let data;
     try {
@@ -206,8 +257,14 @@ export default {
       return json({ ok: false, error: "invalid payload" }, 400, cors);
     }
 
-    // Honeypot: a real person never fills this hidden field.
-    if (text(data.website)) {
+    // Honeypot: a real person never fills this hidden field. Any non-empty
+    // value counts, including numbers, objects and arrays.
+    const website = data.website;
+    if (
+      website !== undefined &&
+      website !== null &&
+      (typeof website !== "string" || website.trim() !== "")
+    ) {
       return json({ ok: true }, 200, cors);
     }
 
@@ -218,8 +275,8 @@ export default {
 
     const message = clamp(data.message, MAX_MESSAGE);
     const checklist = clamp(data.checklist, MAX_CHECKLIST);
-    const contact = clamp(data.contact, MAX_CONTACT);
-    const appVersion = clamp(data.app_version, MAX_APP_VERSION);
+    const contact = neutralizeFences(clamp(data.contact, MAX_CONTACT));
+    const appVersion = neutralizeFences(clamp(data.app_version, MAX_APP_VERSION));
     if (!message && !checklist) {
       return json(
         { ok: false, error: "message or checklist required" },

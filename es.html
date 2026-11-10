@@ -321,13 +321,13 @@ Dame el comando de undo.</code></pre>
             </div>
             <div class="feedback-field feedback-field-wide">
               <label for="feedback-message">Mensaje</label>
-              <textarea id="feedback-message" name="message" rows="6" maxlength="4000" placeholder="Qué pasó, qué esperabas y qué probaste."></textarea>
-              <p class="feedback-hint">Hasta 4000 caracteres.</p>
+              <textarea id="feedback-message" name="message" rows="6" maxlength="2800" placeholder="Qué pasó, qué esperabas y qué probaste."></textarea>
+              <p class="feedback-hint">Hasta 2800 caracteres.</p>
             </div>
             <div class="feedback-field feedback-field-wide">
               <label for="feedback-checklist">Checklist (opcional)</label>
-              <textarea id="feedback-checklist" name="checklist" rows="5" maxlength="6000" placeholder="Versión de la app, versión de Windows, proveedor, modo de carpetas, pasos para reproducirlo."></textarea>
-              <p class="feedback-hint">Las versiones o los pasos ayudan. Quita todo lo que no quieras enviar.</p>
+              <textarea id="feedback-checklist" name="checklist" rows="5" maxlength="2500" placeholder="Versión de la app, versión de Windows, proveedor, modo de carpetas, pasos para reproducirlo."></textarea>
+              <p class="feedback-hint">Hasta 2500 caracteres. Las versiones o los pasos ayudan. Quita todo lo que no quieras enviar.</p>
             </div>
           </div>
           <div class="feedback-honeypot" aria-hidden="true">
@@ -344,6 +344,9 @@ Dame el comando de undo.</code></pre>
           </div>
           <p class="feedback-hint">El formulario no recoge telemetría. Nada sale de tu navegador hasta que pulsas Enviar.</p>
         </form>
+        <noscript>
+          <p class="feedback-hint">El formulario de comentarios necesita JavaScript. También puedes escribirnos por GitHub Discussions.</p>
+        </noscript>
       </div>
     </section>
 

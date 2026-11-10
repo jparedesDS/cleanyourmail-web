@@ -33,8 +33,8 @@
         notConfigured: "El feedback no está configurado en esta versión.",
         consent: "Acepta enviar el mensaje al Discord de CleanYourMail.",
         empty: "Escribe un mensaje o un checklist antes de enviar.",
-        messageTooLong: "El mensaje supera los 4000 caracteres.",
-        checklistTooLong: "El checklist supera los 6000 caracteres.",
+        messageTooLong: "El mensaje supera los 2800 caracteres.",
+        checklistTooLong: "El checklist supera los 2500 caracteres.",
         sending: "Enviando...",
         success: "Enviado. Gracias por ayudar.",
         rateLimited: "Espera unos minutos antes de volver a enviar.",
@@ -44,8 +44,8 @@
         notConfigured: "Feedback is not configured in this build.",
         consent: "Accept the consent line before sending.",
         empty: "Write a message or a checklist before sending.",
-        messageTooLong: "The message is over 4000 characters.",
-        checklistTooLong: "The checklist is over 6000 characters.",
+        messageTooLong: "The message is over 2800 characters.",
+        checklistTooLong: "The checklist is over 2500 characters.",
         sending: "Sending...",
         success: "Sent. Thanks for helping.",
         rateLimited: "Please wait a few minutes before sending again.",
@@ -99,12 +99,12 @@
         message.focus();
         return;
       }
-      if (messageText.length > 4000) {
+      if (messageText.length > 2800) {
         setStatus(feedbackCopy.messageTooLong, "error");
         message.focus();
         return;
       }
-      if (checklistText.length > 6000) {
+      if (checklistText.length > 2500) {
         setStatus(feedbackCopy.checklistTooLong, "error");
         checklist.focus();
         return;
@@ -127,6 +127,7 @@
             app_version: "web",
             website: website ? website.value : "",
           }),
+          signal: AbortSignal.timeout(20000),
         });
 
         if (response.status === 429) {
@@ -138,6 +139,17 @@
           return;
         }
         if (!response.ok) {
+          setStatus(feedbackCopy.failed, "error");
+          return;
+        }
+
+        let result = null;
+        try {
+          result = await response.json();
+        } catch {
+          result = null;
+        }
+        if (!result || result.ok !== true) {
           setStatus(feedbackCopy.failed, "error");
           return;
         }

@@ -321,13 +321,13 @@ Give me the undo command.</code></pre>
             </div>
             <div class="feedback-field feedback-field-wide">
               <label for="feedback-message">Message</label>
-              <textarea id="feedback-message" name="message" rows="6" maxlength="4000" placeholder="What happened, what you expected, and what you tried."></textarea>
-              <p class="feedback-hint">Up to 4000 characters.</p>
+              <textarea id="feedback-message" name="message" rows="6" maxlength="2800" placeholder="What happened, what you expected, and what you tried."></textarea>
+              <p class="feedback-hint">Up to 2800 characters.</p>
             </div>
             <div class="feedback-field feedback-field-wide">
               <label for="feedback-checklist">Checklist (optional)</label>
-              <textarea id="feedback-checklist" name="checklist" rows="5" maxlength="6000" placeholder="App version, Windows version, provider, folder mode, steps to reproduce."></textarea>
-              <p class="feedback-hint">Versions or steps help. Remove anything you do not want to send.</p>
+              <textarea id="feedback-checklist" name="checklist" rows="5" maxlength="2500" placeholder="App version, Windows version, provider, folder mode, steps to reproduce."></textarea>
+              <p class="feedback-hint">Up to 2500 characters. Versions or steps help. Remove anything you do not want to send.</p>
             </div>
           </div>
           <div class="feedback-honeypot" aria-hidden="true">
@@ -344,6 +344,9 @@ Give me the undo command.</code></pre>
           </div>
           <p class="feedback-hint">The form does not collect telemetry. Nothing leaves your browser until you press Send.</p>
         </form>
+        <noscript>
+          <p class="feedback-hint">The feedback form needs JavaScript. You can still reach us through GitHub Discussions.</p>
+        </noscript>
       </div>
     </section>
 

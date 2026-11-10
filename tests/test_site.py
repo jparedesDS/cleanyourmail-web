@@ -161,10 +161,19 @@ class SiteTest(unittest.TestCase):
             with self.subTest(page=name):
                 self.assertIn('type="checkbox"', form)
                 self.assertIn('type="submit"', form)
-                self.assertIn('maxlength="4000"', form)
-                self.assertIn('maxlength="6000"', form)
+                self.assertIn('maxlength="2800"', form)
+                self.assertIn('maxlength="2500"', form)
+                self.assertIn("2800", form)
+                self.assertIn("2500", form)
                 self.assertIn('name="website"', form)
                 self.assertIn('name="consent"', form)
+
+    def test_feedback_noscript_notice(self):
+        for name in ("index.html", "es.html"):
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn("<noscript>", text)
+                self.assertIn("JavaScript", text)
 
     def test_feedback_client_maps_worker_errors(self):
         js = (ROOT / "app.js").read_text(encoding="utf-8")

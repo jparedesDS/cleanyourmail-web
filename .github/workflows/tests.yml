@@ -19,3 +19,17 @@ jobs:
           python-version: "3.12"
       - name: Test
         run: python -m unittest discover -s tests -v
+
+  node:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Worker tests
+        run: node --test worker.test.mjs
+        working-directory: feedback-worker
+      - name: Feedback form behavior tests
+        run: node --test tests/feedback_app.test.mjs

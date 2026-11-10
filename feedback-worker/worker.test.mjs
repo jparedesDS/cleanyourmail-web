@@ -80,15 +80,41 @@ test("options returns CORS preflight for the allowed origin", async () => {
   assert.match(response.headers.get("Access-Control-Allow-Methods"), /POST/);
 });
 
-test("an unknown origin gets no Access-Control-Allow-Origin", async () => {
-  const response = await worker.fetch(
-    makeRequest(
-      { kind: "feedback", message: "hello" },
-      { headers: { Origin: "https://evil.example" } },
-    ),
-    makeEnv(),
-  );
-  assert.equal(response.headers.get("Access-Control-Allow-Origin"), null);
+test("an unknown origin is rejected with 403 and never reaches Discord", async () => {
+  const discord = mockDiscord();
+  try {
+    const response = await worker.fetch(
+      makeRequest(
+        { kind: "feedback", message: "hello" },
+        { headers: { Origin: "https://evil.example" } },
+      ),
+      makeEnv(),
+    );
+    assert.equal(response.status, 403);
+    assert.equal(response.headers.get("Access-Control-Allow-Origin"), null);
+    assert.equal(discord.calls.length, 0);
+  } finally {
+    discord.restore();
+  }
+});
+
+test("an empty Origin is allowed for the desktop app", async () => {
+  const discord = mockDiscord();
+  try {
+    const request = new Request("https://feedback.test/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "CF-Connecting-IP": "192.0.2.11",
+      },
+      body: JSON.stringify({ kind: "feedback", message: "from the app" }),
+    });
+    const response = await worker.fetch(request, makeEnv());
+    assert.equal(response.status, 200);
+    assert.equal(discord.calls.length, 1);
+  } finally {
+    discord.restore();
+  }
 });
 
 test("valid feedback reaches Discord without exposing the webhook", async () => {
@@ -149,12 +175,21 @@ test("bug reports use their own title and colour", async () => {
 test("honeypot silently accepts without calling Discord", async () => {
   const discord = mockDiscord();
   try {
-    const response = await worker.fetch(
-      makeRequest({ kind: "feedback", message: "spam", website: "bot" }),
-      makeEnv(),
-    );
-    assert.equal(response.status, 200);
-    assert.deepEqual(await response.json(), { ok: true });
+    for (const website of [
+      "bot",
+      1,
+      0,
+      true,
+      ["bot"],
+      { field: "bot" },
+    ]) {
+      const response = await worker.fetch(
+        makeRequest({ kind: "feedback", message: "spam", website }),
+        makeEnv(),
+      );
+      assert.equal(response.status, 200, `website ${JSON.stringify(website)}`);
+      assert.deepEqual(await response.json(), { ok: true });
+    }
     assert.equal(discord.calls.length, 0);
   } finally {
     discord.restore();
@@ -227,6 +262,48 @@ test("a body over 16 KiB is rejected with 413", async () => {
     makeEnv(),
   );
   assert.equal(response.status, 413);
+});
+
+test("a 1 MiB body is rejected with 413 without calling Discord", async () => {
+  const discord = mockDiscord();
+  try {
+    const response = await worker.fetch(
+      makeRequest(null, {
+        body: JSON.stringify({
+          kind: "feedback",
+          message: "x".repeat(1024 * 1024),
+        }),
+      }),
+      makeEnv(),
+    );
+    assert.equal(response.status, 413);
+    assert.equal(discord.calls.length, 0);
+  } finally {
+    discord.restore();
+  }
+});
+
+test("a declared Content-Length over 16 KiB is rejected before reading", async () => {
+  const discord = mockDiscord();
+  try {
+    const response = await worker.fetch(
+      new Request("https://feedback.test/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Origin: ORIGIN,
+          "CF-Connecting-IP": "192.0.2.12",
+          "Content-Length": String(1024 * 1024),
+        },
+        body: JSON.stringify({ kind: "feedback", message: "small" }),
+      }),
+      makeEnv(),
+    );
+    assert.equal(response.status, 413);
+    assert.equal(discord.calls.length, 0);
+  } finally {
+    discord.restore();
+  }
 });
 
 test("missing webhook configuration returns 503", async () => {
@@ -370,6 +447,8 @@ test("mentions are disabled and code fences are neutralised", async () => {
         kind: "bug",
         message: "@everyone look at this ```broken```",
         checklist: "Step 1\n```\n@here\n```\nStep 2",
+        contact: "reach me ```@everyone```",
+        app_version: "CleanYourMail ```0.4.0```",
       }),
       makeEnv(),
     );
@@ -389,12 +468,17 @@ test("mentions are disabled and code fences are neutralised", async () => {
       "checklist code fences were not neutralised",
     );
     assert.match(checklistDescription, /@here/);
+    const fields = payload.embeds[0].fields;
+    const byName = Object.fromEntries(fields.map((field) => [field.name, field.value]));
+    assert.ok(!byName.Contact.includes("```"), "contact fences were not neutralised");
+    assert.ok(!byName.App.includes("```"), "app version fences were not neutralised");
+    assert.match(byName.Contact, /@everyone/);
   } finally {
     discord.restore();
   }
 });
 
-test("an error from a bad origin has no CORS header", async () => {
+test("a bad origin is rejected before payload validation", async () => {
   const response = await worker.fetch(
     makeRequest(
       { kind: "profile", message: "hello" },
@@ -402,7 +486,7 @@ test("an error from a bad origin has no CORS header", async () => {
     ),
     makeEnv(),
   );
-  assert.equal(response.status, 400);
+  assert.equal(response.status, 403);
   assert.equal(response.headers.get("Access-Control-Allow-Origin"), null);
 });
 
