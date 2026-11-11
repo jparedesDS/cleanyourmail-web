@@ -82,7 +82,7 @@ The Worker posts a message with:
 6. In **Settings → Variables and Secrets** add:
    - Secret `DISCORD_WEBHOOK_URL`: the Discord webhook from above.
    - Secret `IP_SALT`: a long random string. Generate one with a password manager.
-   - Variable `ALLOWED_ORIGIN`: `https://jparedesds.github.io`
+   - Variable `ALLOWED_ORIGIN`: `https://cleanyourmail.org`
 7. Deploy again and copy the public URL.
 
 The URL is public and can be shared. The webhook and `IP_SALT` are secrets.
@@ -104,7 +104,7 @@ npx wrangler deploy
 
 ```toml
 [vars]
-ALLOWED_ORIGIN = "https://jparedesds.github.io"
+ALLOWED_ORIGIN = "https://cleanyourmail.org"
 ```
 
 Setting `DISCORD_WEBHOOK_URL` is a manual step for the maintainer, done once the channel exists.
@@ -125,7 +125,7 @@ $url = "https://cleanyourmail-feedback.subtitleme.workers.dev"
 
 # CORS preflight: expect 204 and the allowed origin.
 $options = Invoke-WebRequest -Method Options -Uri $url `
-  -Headers @{ Origin = "https://jparedesds.github.io" }
+  -Headers @{ Origin = "https://cleanyourmail.org" }
 $options.StatusCode
 $options.Headers["Access-Control-Allow-Origin"]
 

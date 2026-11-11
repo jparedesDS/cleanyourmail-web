@@ -4,7 +4,7 @@ compatibility_date = "2026-11-10"
 workers_dev = true
 
 [vars]
-ALLOWED_ORIGIN = "https://jparedesds.github.io"
+ALLOWED_ORIGIN = "https://cleanyourmail.org"
 
 # Created with:
 #   npx wrangler kv namespace create FEEDBACK_KV

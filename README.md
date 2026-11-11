@@ -7,8 +7,8 @@
 Static landing page for [CleanYourMail](https://github.com/jparedesDS/cleanyourmail), the
 open-source, reversible inbox cleanup agent skill, with an optional local app and CLI.
 
-**Live site:** <https://jparedesds.github.io/cleanyourmail-web/>  
-**Spanish:** <https://jparedesds.github.io/cleanyourmail-web/es.html>
+**Live site:** <https://cleanyourmail.org/>  
+**Spanish:** <https://cleanyourmail.org/es.html>
 
 No framework, no build step, no external fonts, no analytics, no third-party requests
 except the explicit feedback POST.

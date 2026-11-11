@@ -3,7 +3,7 @@ import test from "node:test";
 
 import worker from "./worker.js";
 
-const ORIGIN = "https://jparedesds.github.io";
+const ORIGIN = "https://cleanyourmail.org";
 const WEBHOOK = "https://discord.test/webhook";
 
 function memoryKv() {

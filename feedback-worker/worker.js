@@ -17,7 +17,7 @@ const CHECKLIST_CHUNK = 3400;
 // Three checklist chunks max: title (9/21) + "```\n" + text + "\n```" each.
 const CHECKLIST_OVERHEAD = 100;
 
-const DEFAULT_ORIGIN = "https://jparedesds.github.io";
+const DEFAULT_ORIGIN = "https://cleanyourmail.org";
 const KINDS = new Set(["feedback", "bug"]);
 const RATE_LIMIT_SECONDS = 300;
 

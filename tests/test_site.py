@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 APP_RELEASE_URL = "https://github.com/jparedesDS/cleanyourmail-app/releases/latest"
 WORKER_ORIGIN = "https://cleanyourmail-feedback.subtitleme.workers.dev"
-SITE_URL = "https://jparedesds.github.io/cleanyourmail-web/"
+SITE_URL = "https://cleanyourmail.org/"
 LANGUAGES = (
     ("index.html", "English"),
     ("es.html", "Español"),
