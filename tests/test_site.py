@@ -27,6 +27,19 @@ LANGUAGES = (
 )
 PAGES = tuple(value for value, _label in LANGUAGES) + ("404.html",)
 PAGES_WITH_JSONLD = tuple(value for value, _label in LANGUAGES)
+LANGUAGE_CODES = {
+    "index.html": "en",
+    "es.html": "es",
+    "de.html": "de",
+    "fr.html": "fr",
+    "it.html": "it",
+    "ja.html": "ja",
+    "ko.html": "ko",
+    "pt-BR.html": "pt-BR",
+    "zh-CN.html": "zh-CN",
+    "zh-TW.html": "zh-TW",
+    "404.html": "en",
+}
 HREFLANG_LINKS = (
     ("en", SITE_URL),
     ("es", f"{SITE_URL}es.html"),
@@ -198,6 +211,45 @@ class SiteTest(unittest.TestCase):
             for word in words:
                 with self.subTest(word=word):
                     self.assertIn(word, text)
+
+    def test_visible_prompt_matches_copy_value(self):
+        for name, _label in LANGUAGES:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            visible = re.search(
+                r'<pre class="skill-prompt"><code>(.*?)</code></pre>',
+                text,
+                re.S,
+            )
+            self.assertIsNotNone(visible)
+            normalized_visible = re.sub(r"\s+", "", visible.group(1))
+            copies = [
+                value
+                for value in re.findall(r'data-copy="([^"]*)"', text)
+                if "SKILL.md" in value
+            ]
+            with self.subTest(page=name):
+                self.assertGreaterEqual(len(copies), 2)
+                for value in copies:
+                    normalized_copy = re.sub(
+                        r"\s+",
+                        "",
+                        value.replace("&#10;", ""),
+                    )
+                    self.assertEqual(normalized_copy, normalized_visible)
+
+    def test_feedback_consent_label_on_every_page(self):
+        for name, _label in LANGUAGES:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                match = re.search(
+                    r'<label for="feedback-consent">(.*?)</label>',
+                    text,
+                    re.S,
+                )
+                self.assertIsNotNone(match)
+                label = match.group(1)
+                self.assertIn("Discord", label)
+                self.assertIn("CleanYourMail", label)
 
     def test_feedback_field_ids_match_across_languages(self):
         english = feedback_form((ROOT / "index.html").read_text(encoding="utf-8"))
@@ -388,12 +440,16 @@ class SiteTest(unittest.TestCase):
         for name in PAGES:
             text = (ROOT / name).read_text(encoding="utf-8")
             for target in re.findall(r'src="([^"]+)"', text):
+                if target.startswith("https://cleanyourmail.org/"):
+                    continue
                 with self.subTest(page=name, src=target):
                     self.assertFalse(target.startswith("http"), target)
             for tag in re.findall(r"<link\b[^>]*>", text):
                 if 'rel="stylesheet"' in tag or 'rel="icon"' in tag:
                     href = re.search(r'href="([^"]+)"', tag)
                     if href:
+                        if href.group(1).startswith("https://cleanyourmail.org/"):
+                            continue
                         with self.subTest(page=name, link=href.group(1)):
                             self.assertFalse(href.group(1).startswith("http"), href.group(1))
 
@@ -423,6 +479,24 @@ class SiteTest(unittest.TestCase):
                     ),
                     list(HREFLANG_LINKS),
                 )
+
+    def test_page_language_and_jsonld_locale(self):
+        for name, code in LANGUAGE_CODES.items():
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertIn(f'<html lang="{code}">', text)
+            if name not in PAGES_WITH_JSONLD:
+                continue
+            block = re.search(
+                r'<script type="application/ld\+json">(.*?)</script>',
+                text,
+                re.S,
+            )
+            self.assertIsNotNone(block)
+            payload = json.loads(block.group(1))
+            expected_url = SITE_URL if name == "index.html" else f"{SITE_URL}{name}"
+            self.assertEqual(payload["url"], expected_url)
+            self.assertEqual(payload["inLanguage"], code)
 
     def test_sitemap_lists_ten_pages(self):
         text = (ROOT / "sitemap.xml").read_text(encoding="utf-8")

@@ -12,7 +12,7 @@ Static landing page for [CleanYourMail](https://github.com/jparedesDS/cleanyourm
 open-source, reversible inbox cleanup agent skill, with an optional local app and CLI.
 
 **Live site:** <https://cleanyourmail.org/>  
-**Spanish:** <https://cleanyourmail.org/es.html>
+**Languages:** English · Español · Deutsch · Français · Italiano · 日本語 · 한국어 · Português (BR) · 简体中文 · 繁體中文
 
 No framework, no build step, no external fonts, no analytics, no third-party requests
 except the explicit feedback POST.
@@ -104,9 +104,9 @@ the CSP `connect-src`.
 
 ## Release sync
 
-`softwareVersion` in `index.html` and `es.html` must match `tools/cym_version.py` in the skill
-repository. When the JSON-LD block changes, recompute the CSP `sha256` hash in both pages and run the
-test suite again.
+`softwareVersion` in all ten landing pages must match the skill repository's release version.
+When a JSON-LD block changes, recompute the CSP `sha256` hash in that page and run the test suite
+again. The test suite checks every page.
 
 ## Deploy
 
