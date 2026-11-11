@@ -10,10 +10,37 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ("index.html", "es.html", "404.html")
-PAGES_WITH_JSONLD = ("index.html", "es.html")
 APP_RELEASE_URL = "https://github.com/jparedesDS/cleanyourmail-app/releases/latest"
 WORKER_ORIGIN = "https://cleanyourmail-feedback.subtitleme.workers.dev"
+SITE_URL = "https://jparedesds.github.io/cleanyourmail-web/"
+LANGUAGES = (
+    ("index.html", "English"),
+    ("es.html", "Español"),
+    ("de.html", "Deutsch"),
+    ("fr.html", "Français"),
+    ("it.html", "Italiano"),
+    ("ja.html", "日本語"),
+    ("ko.html", "한국어"),
+    ("pt-BR.html", "Português (BR)"),
+    ("zh-CN.html", "简体中文"),
+    ("zh-TW.html", "繁體中文"),
+)
+PAGES = tuple(value for value, _label in LANGUAGES) + ("404.html",)
+PAGES_WITH_JSONLD = tuple(value for value, _label in LANGUAGES)
+HREFLANG_LINKS = (
+    ("en", SITE_URL),
+    ("es", f"{SITE_URL}es.html"),
+    ("pt-BR", f"{SITE_URL}pt-BR.html"),
+    ("fr", f"{SITE_URL}fr.html"),
+    ("de", f"{SITE_URL}de.html"),
+    ("it", f"{SITE_URL}it.html"),
+    ("ja", f"{SITE_URL}ja.html"),
+    ("zh-CN", f"{SITE_URL}zh-CN.html"),
+    ("zh-TW", f"{SITE_URL}zh-TW.html"),
+    ("ko", f"{SITE_URL}ko.html"),
+    ("x-default", SITE_URL),
+)
+LANGUAGE_PAGES = {value for value, _label in LANGUAGES}
 FEEDBACK_FORM_IDS = {
     "feedback-form",
     "feedback-kind",
@@ -47,6 +74,22 @@ def feedback_form(text: str) -> str:
     if match is None:
         raise AssertionError("missing feedback form")
     return match.group(0)
+
+
+def language_options(text: str) -> list[tuple[str, str, bool]]:
+    match = re.search(
+        r'<select class="lang-select" id="language-select"[^>]*>(.*?)</select>',
+        text,
+        re.S,
+    )
+    if match is None:
+        raise AssertionError("missing language selector")
+    return [
+        (value, label, bool(selected))
+        for value, selected, label in re.findall(
+            r'<option value="([^"]+)"( selected)?>(.*?)</option>', match.group(1)
+        )
+    ]
 
 
 def png_size(path: Path) -> tuple[int, int]:
@@ -88,17 +131,26 @@ class SiteTest(unittest.TestCase):
                     target = target.split("#", 1)[0]
                     if not target:
                         continue
+                    resolved = (page.parent / target).resolve()
                     with self.subTest(page=name, target=target):
-                        self.assertTrue((page.parent / target).resolve().exists())
+                        self.assertTrue(resolved.exists())
 
     def test_language_switch(self):
-        english = (ROOT / "index.html").read_text(encoding="utf-8")
-        spanish = (ROOT / "es.html").read_text(encoding="utf-8")
-        self.assertIn('href="es.html"', english)
-        self.assertIn('href="index.html"', spanish)
+        for name, _label in LANGUAGES:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertEqual(text.count('id="language-select"'), 1)
+                self.assertIn('class="lang-select" id="language-select"', text)
+                self.assertEqual(
+                    language_options(text),
+                    [
+                        (value, label, value == name)
+                        for value, label in LANGUAGES
+                    ],
+                )
 
-    def test_feedback_section_on_both_pages(self):
-        for name in ("index.html", "es.html"):
+    def test_feedback_section_on_every_page(self):
+        for name, _label in LANGUAGES:
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 self.assertIn('id="feedback"', text)
@@ -113,7 +165,7 @@ class SiteTest(unittest.TestCase):
                 )
 
     def test_feedback_csp_allows_only_the_worker(self):
-        for name in ("index.html", "es.html"):
+        for name, _label in LANGUAGES:
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 content = csp_content(text)
@@ -149,14 +201,17 @@ class SiteTest(unittest.TestCase):
 
     def test_feedback_field_ids_match_across_languages(self):
         english = feedback_form((ROOT / "index.html").read_text(encoding="utf-8"))
-        spanish = feedback_form((ROOT / "es.html").read_text(encoding="utf-8"))
         english_ids = set(re.findall(r'id="([^"]+)"', english))
-        spanish_ids = set(re.findall(r'id="([^"]+)"', spanish))
-        self.assertEqual(english_ids, spanish_ids)
         self.assertEqual(english_ids, FEEDBACK_FORM_IDS)
+        for name, _label in LANGUAGES:
+            if name == "index.html":
+                continue
+            form = feedback_form((ROOT / name).read_text(encoding="utf-8"))
+            with self.subTest(page=name):
+                self.assertEqual(set(re.findall(r'id="([^"]+)"', form)), english_ids)
 
     def test_feedback_form_limits_and_opt_in(self):
-        for name in ("index.html", "es.html"):
+        for name, _label in LANGUAGES:
             form = feedback_form((ROOT / name).read_text(encoding="utf-8"))
             with self.subTest(page=name):
                 self.assertIn('type="checkbox"', form)
@@ -169,7 +224,7 @@ class SiteTest(unittest.TestCase):
                 self.assertIn('name="consent"', form)
 
     def test_feedback_noscript_notice(self):
-        for name in ("index.html", "es.html"):
+        for name, _label in LANGUAGES:
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 self.assertIn("<noscript>", text)
@@ -200,7 +255,7 @@ class SiteTest(unittest.TestCase):
                     self.assertNotIn(marker, text)
 
     def test_start_routes_and_skill_link(self):
-        for name in ("index.html", "es.html"):
+        for name, _label in LANGUAGES:
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 self.assertIn('id="start"', text)
@@ -259,8 +314,19 @@ class SiteTest(unittest.TestCase):
                 self.assertEqual(payload["operatingSystem"], "Windows, macOS, Linux")
                 self.assertEqual(payload["softwareRequirements"], "Python 3.11+")
 
+        for name, _label in LANGUAGES:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            with self.subTest(page=name):
+                self.assertEqual(text.count(f'href="{APP_RELEASE_URL}"'), 4)
+                self.assertNotIn('href="https://github.com/jparedesDS/cleanyourmail-app"', text)
+                block = re.search(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
+                self.assertIsNotNone(block)
+                payload = json.loads(block.group(1))
+                self.assertEqual(payload["downloadUrl"], APP_RELEASE_URL)
+                self.assertEqual(payload["softwareVersion"], "1.2.2")
+
     def test_cleanyourphone_nav_link(self):
-        for name in ("index.html", "es.html"):
+        for name, _label in LANGUAGES:
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 self.assertIn(
@@ -273,7 +339,7 @@ class SiteTest(unittest.TestCase):
                 )
 
     def test_provider_logos_are_png(self):
-        for name in ("index.html", "es.html"):
+        for name, _label in LANGUAGES:
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 for provider in ("gmail", "outlook", "yahoo", "icloud", "fastmail", "proton"):
@@ -345,17 +411,26 @@ class SiteTest(unittest.TestCase):
         self.assertNotIn("https://", js)
 
     def test_canonical_and_alternates(self):
-        cases = {
-            "index.html": "https://jparedesds.github.io/cleanyourmail-web/",
-            "es.html": "https://jparedesds.github.io/cleanyourmail-web/es.html",
-        }
-        for name, canonical in cases.items():
+        for name, _label in LANGUAGES:
+            canonical = SITE_URL if name == "index.html" else f"{SITE_URL}{name}"
             text = (ROOT / name).read_text(encoding="utf-8")
             with self.subTest(page=name):
                 self.assertIn(f'<link rel="canonical" href="{canonical}">', text)
-                self.assertIn('hreflang="en"', text)
-                self.assertIn('hreflang="es"', text)
-                self.assertIn('hreflang="x-default"', text)
+                self.assertEqual(
+                    re.findall(
+                        r'<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">',
+                        text,
+                    ),
+                    list(HREFLANG_LINKS),
+                )
+
+    def test_sitemap_lists_ten_pages(self):
+        text = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+        self.assertEqual(text.count("<url>"), 10)
+        for name, _label in LANGUAGES:
+            loc = SITE_URL if name == "index.html" else f"{SITE_URL}{name}"
+            with self.subTest(page=name):
+                self.assertIn(f"<loc>{loc}</loc>", text)
 
     def test_social_metadata(self):
         for name in PAGES_WITH_JSONLD:

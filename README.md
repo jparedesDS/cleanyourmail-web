@@ -15,12 +15,14 @@ except the explicit feedback POST.
 
 ## What is here
 
-- A bilingual English/Spanish, skill-first landing page with a “Choose your path” section.
+- A ten-language, skill-first landing page with a “Choose your path” section: English, Spanish,
+  German, French, Italian, Japanese, Korean, Brazilian Portuguese, Simplified Chinese and
+  Traditional Chinese.
 - The agent skill as the primary offer, the local app second, and the CLI as a small GitHub link.
 - A provider grid with official full-color PNG marks and no white backing chip.
 - A slim, slow provider marquee between the hero and “Choose your path”.
 - A plain-language safety section: headers only, protected mail, no permanent deletion, undo.
-- An opt-in feedback form in both languages. Nothing leaves the browser until the person
+- An opt-in feedback form in every language. Nothing leaves the browser until the person
   ticks consent and presses Send; the form posts to the `cleanyourmail-feedback` Worker,
   which forwards to a private Discord channel.
 - A short FAQ, inline icons and clear calls to action.
@@ -42,8 +44,16 @@ Open <http://localhost:8080/>.
 |---|---|
 | `index.html` | English landing page. |
 | `es.html` | Spanish landing page. |
+| `de.html` | German landing page. |
+| `fr.html` | French landing page. |
+| `it.html` | Italian landing page. |
+| `ja.html` | Japanese landing page. |
+| `ko.html` | Korean landing page. |
+| `pt-BR.html` | Brazilian Portuguese landing page. |
+| `zh-CN.html` | Simplified Chinese landing page. |
+| `zh-TW.html` | Traditional Chinese landing page. |
 | `styles.css` | Shared styles. |
-| `app.js` | Copy-prompt button, toast feedback and the opt-in feedback form client. |
+| `app.js` | Ten-language copy/toast/feedback messages, language selector and the opt-in feedback form client. |
 | `feedback-worker/` | Cloudflare Worker, Wrangler config and `node:test` suite. The Discord webhook and IP salt are Cloudflare secrets, never files in this repository. |
 | `assets/logo.svg`, `assets/favicon.svg` | Brand mark. |
 | `assets/banner.png` | Repository banner (1600×440). |

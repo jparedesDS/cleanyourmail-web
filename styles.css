@@ -170,16 +170,37 @@ button { font: inherit; }
 
 .nav-github:hover { border-color: var(--accent); }
 
-.lang {
+.lang-select-wrap {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 6px 10px;
+  padding: 5px 9px;
+  background: transparent;
+}
+
+.lang-select {
+  max-width: 120px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
   font-size: 12px;
   font-weight: 700;
+  cursor: pointer;
+}
+
+.lang-select option {
+  background: var(--ink-2);
+  color: var(--text);
+}
+
+.lang-select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .nav .icon { width: 15px; height: 15px; }
@@ -1227,6 +1248,18 @@ h2 {
 
 .not-found .hero-actions { justify-content: center; }
 
+.lang-links {
+  margin-top: 28px;
+  line-height: 1.9;
+}
+
+.lang-links a {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+
+.lang-links a:hover { text-decoration: underline; }
+
 /* Responsive */
 
 @media (max-width: 900px) {
@@ -1258,6 +1291,12 @@ h2 {
 
   .nav::-webkit-scrollbar { display: none; }
   .nav a { white-space: nowrap; }
+
+  .lang-select-wrap {
+    order: -1;
+    margin-right: 4px;
+    min-height: 40px;
+  }
 
   .hero { padding: 36px 0 40px; }
   h1 { font-size: clamp(2.5rem, 12vw, 3.4rem); }

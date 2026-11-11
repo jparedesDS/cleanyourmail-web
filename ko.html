@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CleanYourMail — 되돌릴 수 있는 IMAP 정리를 위한 에이전트 스킬</title>
+  <meta name="description" content="되돌릴 수 있는 IMAP 정리를 위한 오픈 소스 에이전트 스킬입니다. 헤더만 읽고, 먼저 계획을 세우며, 중요한 메일을 보호하고 모든 이동을 되돌립니다. 선택 사항으로 로컬 앱과 CLI도 제공합니다.">
+  <meta name="author" content="Jose Paredes">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#121316">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-xTAT0QnVJwx7HLsCwaR7Aznz8pgv8iWwnuva1tfwzGY='; connect-src https://cleanyourmail-feedback.subtitleme.workers.dev; font-src 'self'; upgrade-insecure-requests">
+  <link rel="canonical" href="https://jparedesds.github.io/cleanyourmail-web/ko.html">
+  <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourmail-web/">
+  <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourmail-web/es.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://jparedesds.github.io/cleanyourmail-web/pt-BR.html">
+  <link rel="alternate" hreflang="fr" href="https://jparedesds.github.io/cleanyourmail-web/fr.html">
+  <link rel="alternate" hreflang="de" href="https://jparedesds.github.io/cleanyourmail-web/de.html">
+  <link rel="alternate" hreflang="it" href="https://jparedesds.github.io/cleanyourmail-web/it.html">
+  <link rel="alternate" hreflang="ja" href="https://jparedesds.github.io/cleanyourmail-web/ja.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://jparedesds.github.io/cleanyourmail-web/zh-CN.html">
+  <link rel="alternate" hreflang="zh-TW" href="https://jparedesds.github.io/cleanyourmail-web/zh-TW.html">
+  <link rel="alternate" hreflang="ko" href="https://jparedesds.github.io/cleanyourmail-web/ko.html">
+  <link rel="alternate" hreflang="x-default" href="https://jparedesds.github.io/cleanyourmail-web/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CleanYourMail">
+  <meta property="og:url" content="https://jparedesds.github.io/cleanyourmail-web/ko.html">
+  <meta property="og:title" content="CleanYourMail — 되돌릴 수 있는 IMAP 정리를 위한 에이전트 스킬">
+  <meta property="og:description" content="오픈 소스 에이전트 스킬로 받은편지함을 되돌릴 수 있게 정리하세요. 헤더만 읽고, 중요한 메일을 보호하며, 검토 가능한 계획과 모든 이동에 대한 실행 취소를 제공합니다.">
+  <meta property="og:image" content="https://jparedesds.github.io/cleanyourmail-web/assets/og.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="CleanYourMail: 로컬에서 되돌릴 수 있는 IMAP 받은편지함 정리">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CleanYourMail — 되돌릴 수 있는 IMAP 정리를 위한 에이전트 스킬">
+  <meta name="twitter:description" content="오픈 소스 에이전트 스킬로 받은편지함을 되돌릴 수 있게 정리하세요. 헤더만 읽고, 중요한 메일을 보호하며, 검토 가능한 계획과 모든 이동에 대한 실행 취소를 제공합니다.">
+  <meta name="twitter:image" content="https://jparedesds.github.io/cleanyourmail-web/assets/og.png">
+  <meta name="twitter:image:alt" content="CleanYourMail: 로컬에서 되돌릴 수 있는 IMAP 받은편지함 정리">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CleanYourMail",
+    "description": "오픈 소스 에이전트 스킬로 IMAP 받은편지함을 되돌릴 수 있게 정리합니다. 선택 사항으로 로컬 앱과 CLI를 제공합니다. 헤더만 읽고, 검토 가능한 계획을 세우며, 중요한 메일을 보호하고, 이동을 되돌릴 수 있으며, 영구 삭제는 하지 않습니다.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "softwareVersion": "1.2.2",
+    "softwareRequirements": "Python 3.11+",
+    "downloadUrl": "https://github.com/jparedesDS/cleanyourmail-app/releases/latest",
+    "isAccessibleForFree": true,
+    "featureList": [
+      "헤더만 읽는 IMAP 스캔",
+      "검토 가능한 정리 계획",
+      "보호 메일 제외",
+      "기록되고 되돌릴 수 있는 이동",
+      "영구 삭제 없음"
+    ],
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/jparedesDS/cleanyourmail",
+    "url": "https://jparedesds.github.io/cleanyourmail-web/ko.html",
+    "inLanguage": "ko",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Jose Paredes",
+      "url": "https://github.com/jparedesDS"
+    }
+  }
+  </script>
+</head>
+<body>
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></symbol>
+    <symbol id="i-skill" viewBox="0 0 16 16"><path d="M2.5 3.5h3A2.5 2.5 0 0 1 8 6v8a2.5 2.5 0 0 0-2.5-2.5h-3zM13.5 3.5h-3A2.5 2.5 0 0 0 8 6v8a2.5 2.5 0 0 1 2.5-2.5h3z"/></symbol>
+    <symbol id="i-app" viewBox="0 0 16 16"><rect x="2" y="2.5" width="12" height="11" rx="2"/><path d="M2 5.5h12M4.5 8h5M4.5 10.5h3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 16 16"><path d="M8 2v8m0 0 3-3m-3 3L5 7M2.5 13.5h11"/></symbol>
+    <symbol id="i-cli" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="11" rx="2"/><path d="m4.5 6 2 2-2 2M9 10h2.5"/></symbol>
+    <symbol id="i-docs" viewBox="0 0 16 16"><path d="M4 1.5h5l3 3v10H4z"/><path d="M9 1.5v3h3M6 8h4M6 10.5h4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 16 16"><path d="M8 1.5 13 3.5v4c0 3-2 5.3-5 6.5-3-1.2-5-3.5-5-6.5v-4z"/><path d="m5.8 8 1.5 1.5L10.5 6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 16 16"><path d="M2 3.5h12v7H8.5L5 13.5v-3H2z"/></symbol>
+    <symbol id="i-license" viewBox="0 0 16 16"><path d="M3.5 2h9v12h-9z"/><path d="M6 5h4M6 7.5h4M6 10h2.5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c2 2 2 10 0 12M8 2c-2 2-2 10 0 12"/></symbol>
+  </svg>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="CleanYourMail 홈">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>CleanYour<span class="brand-accent">Mail</span></span>
+      </a>
+      <nav class="nav" aria-label="주 메뉴">
+        <a class="nav-start" href="#start">시작</a>
+        <a href="#how">작동 방식</a>
+        <a href="#providers">메일 서비스</a>
+        <a href="#safety">안전성</a>
+        <a href="#faq">FAQ</a>
+        <a href="#feedback">피드백</a>
+        <a class="nav-clean" href="https://jparedesds.github.io/cleanyourphone-web" rel="noopener">CleanYour<span class="phone-accent">Phone</span></a>
+        <a class="nav-github" href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub</a>
+        <label class="lang-select-wrap">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg>
+          <select class="lang-select" id="language-select" aria-label="언어">
+            <option value="index.html">English</option>
+            <option value="es.html">Español</option>
+            <option value="de.html">Deutsch</option>
+            <option value="fr.html">Français</option>
+            <option value="it.html">Italiano</option>
+            <option value="ja.html">日本語</option>
+            <option value="ko.html" selected>한국어</option>
+            <option value="pt-BR.html">Português (BR)</option>
+            <option value="zh-CN.html">简体中文</option>
+            <option value="zh-TW.html">繁體中文</option>
+          </select>
+        </label>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">오픈 소스 · 에이전트 스킬 · 로컬 앱</p>
+          <h1>받은편지함을 정리하세요.<br><em>모든 이동을 되돌리세요.</em></h1>
+          <p class="lede">CleanYourMail은 IMAP 정리를 위한 오픈 소스 에이전트 스킬이며, 선택 사항으로 로컬 앱을 제공합니다. 헤더만 읽고, 무엇이든 바뀌기 전에 계획을 보여 주며, 중요한 메일을 보호하고, 되돌리는 명령을 알려 줍니다. 구독 취소는 별도이며 되돌릴 수 없습니다.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> 스킬 열기</a>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> 앱 다운로드</a>
+          </div>
+          <p class="trust-line">무료 · MIT · 계정 불필요 · 텔레메트리 없음 · 영구 삭제 없음</p>
+        </div>
+
+        <div class="hero-card">
+          <div class="app-window" aria-label="CleanYourMail 스킬 프롬프트 미리보기">
+            <div class="app-bar"><span></span><span></span><span></span><em>CleanYourMail · 스킬</em></div>
+            <div class="app-body">
+              <div class="app-head"><span class="app-badge">에이전트 스킬</span><span class="app-step">주요 제품</span></div>
+              <h3>에이전트에게 맡기세요.</h3>
+              <pre class="skill-prompt"><code>SKILL.md를 다음에서 읽으세요:
+https://github.com/jparedesDS/cleanyourmail
+그 내용을 정확히 따르세요.
+python tools/mail.py를 사용하세요.
+헤더만 읽으세요. 영구적으로 삭제하지 마세요.
+무엇이든 바꾸기 전에 계획을 보여 주세요.
+먼저 이동하고 확인한 뒤, 수신 거부는 따로 하세요.
+되돌리는 명령을 알려 주세요.</code></pre>
+              <div class="app-actions"><button class="copy-button copy-button-inline" type="button" data-copy="SKILL.md를 다음에서 읽으세요: https://github.com/jparedesDS/cleanyourmail 그 내용을 정확히 따르세요. python tools/mail.py를 사용하세요. 헤더만 읽으세요. 영구적으로 삭제하지 마세요. 무엇이든 바꾸기 전에 계획을 보여 주세요. 먼저 이동하고 확인한 뒤, 수신 거부는 따로 하세요. 되돌리는 명령을 알려 주세요.">프롬프트 복사</button></div>
+              <p class="app-note">Claude Code, Cursor, OpenCode 또는 셸 접근 권한이 있는 모든 에이전트에 붙여 넣으세요.</p>
+            </div>
+          </div>
+          <p class="hero-note">스킬 우선 · 앱은 선택 · CLI는 GitHub에</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="provider-strip" aria-hidden="true">
+      <div class="container provider-strip-viewport">
+        <div class="provider-strip-track">
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/providers/gmail.png" alt="" width="22" height="22">Gmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/outlook.png" alt="" width="22" height="22">Outlook</span>
+            <span class="provider-strip-item"><img src="assets/providers/yahoo.png" alt="" width="22" height="22">Yahoo</span>
+            <span class="provider-strip-item"><img src="assets/providers/icloud.png" alt="" width="22" height="22">iCloud</span>
+            <span class="provider-strip-item"><img src="assets/providers/fastmail.png" alt="" width="22" height="22">Fastmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/proton.png" alt="" width="22" height="22">Proton</span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/providers/gmail.png" alt="" width="22" height="22">Gmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/outlook.png" alt="" width="22" height="22">Outlook</span>
+            <span class="provider-strip-item"><img src="assets/providers/yahoo.png" alt="" width="22" height="22">Yahoo</span>
+            <span class="provider-strip-item"><img src="assets/providers/icloud.png" alt="" width="22" height="22">iCloud</span>
+            <span class="provider-strip-item"><img src="assets/providers/fastmail.png" alt="" width="22" height="22">Fastmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/proton.png" alt="" width="22" height="22">Proton</span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/providers/gmail.png" alt="" width="22" height="22">Gmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/outlook.png" alt="" width="22" height="22">Outlook</span>
+            <span class="provider-strip-item"><img src="assets/providers/yahoo.png" alt="" width="22" height="22">Yahoo</span>
+            <span class="provider-strip-item"><img src="assets/providers/icloud.png" alt="" width="22" height="22">iCloud</span>
+            <span class="provider-strip-item"><img src="assets/providers/fastmail.png" alt="" width="22" height="22">Fastmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/proton.png" alt="" width="22" height="22">Proton</span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/providers/gmail.png" alt="" width="22" height="22">Gmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/outlook.png" alt="" width="22" height="22">Outlook</span>
+            <span class="provider-strip-item"><img src="assets/providers/yahoo.png" alt="" width="22" height="22">Yahoo</span>
+            <span class="provider-strip-item"><img src="assets/providers/icloud.png" alt="" width="22" height="22">iCloud</span>
+            <span class="provider-strip-item"><img src="assets/providers/fastmail.png" alt="" width="22" height="22">Fastmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/proton.png" alt="" width="22" height="22">Proton</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="start">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">경로 선택</p>
+          <h2>스킬을 쓰거나, 앱을 쓰세요.</h2>
+          <p>스킬이 주요 제품입니다. 코딩 에이전트에게 맡기고 계획을 검토하세요. 버튼을 선호하는 분에게는 앱이 간편한 경로입니다. 고급 사용자를 위한 CLI는 여전히 GitHub에 있습니다.</p>
+        </div>
+        <div class="start-grid">
+          <article class="start-card">
+            <span class="start-icon start-icon-skill" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-skill"/></svg></span>
+            <span class="start-label">스킬 · 주요 제품</span>
+            <h3>스킬 사용하기</h3>
+            <p>Claude Code, Cursor, OpenCode 또는 셸 접근 권한이 있는 다른 에이전트에게 맡기세요. 헤더만 읽고, 먼저 계획을 보여 주며, 되돌리는 명령을 알려 줍니다.</p>
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> 스킬 열기</a>
+            <p class="start-note">또는 <button class="text-button" type="button" data-copy="SKILL.md를 다음에서 읽으세요: https://github.com/jparedesDS/cleanyourmail 그 내용을 정확히 따르세요. python tools/mail.py를 사용하세요. 헤더만 읽으세요. 영구적으로 삭제하지 마세요. 무엇이든 바꾸기 전에 계획을 보여 주세요. 먼저 이동하고 확인한 뒤, 수신 거부는 따로 하세요. 되돌리는 명령을 알려 주세요.">프롬프트 복사</button> 후 Claude Code, Cursor, OpenCode에 붙여 넣으세요.</p>
+          </article>
+          <article class="start-card">
+            <span class="start-icon"><img src="assets/logo.svg" alt="" width="40" height="40"></span>
+            <span class="start-label">앱 · 초기 MVP</span>
+            <h3>앱 다운로드</h3>
+            <p>프롬프트보다 버튼을 선호하는 분을 위한 로컬의 안전한 앱입니다. 헤더를 스캔하고, 계획을 검토하고, 되돌릴 수 있는 이동을 적용한 뒤 한 화면에서 되돌리세요. 계정도 텔레메트리도 없으며, 피드백은 선택 사항입니다.</p>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> Windows용 다운로드</a>
+            <p class="start-note">Windows 10/11 · 설치 파일 · 초기 MVP</p>
+          </article>
+        </div>
+        <p class="section-note">터미널이 더 좋으신가요? CLI는 여전히 <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">GitHub</a>에 있습니다.</p>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">작동 방식</p>
+          <h2>계획을 승인하기 전까지는 아무것도 바뀌지 않습니다.</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-number">01</span>
+            <h3>로컬에서 연결</h3>
+            <p>에이전트에서 스킬을 열거나 앱을 사용하세요. 메일 서비스를 선택하고 자격 증명을 입력하세요. 무엇보다 먼저 연결을 테스트합니다.</p>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <h3>스캔하고 검토</h3>
+            <p>스킬이나 앱은 헤더 메타데이터만 읽습니다: 보낸 사람, 제목, 날짜, 크기, 플래그. 분류, 보호 메일, 대상 폴더, 구독 취소 대상을 보여 줍니다. 아직 아무것도 바뀌지 않습니다.</p>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <h3>작은 묶음으로 이동</h3>
+            <p>몇 개의 이동만 적용하세요. 저널이 실행을 기록하고 실행 취소가 이를 복원합니다. 구독 취소를 따로 처리하기 전에 결과를 검토하세요.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="providers">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">메일 서비스</p>
+          <h2>쓰는 메일 서비스에서 그대로 작동합니다.</h2>
+          <p>이전할 필요가 없습니다. IMAP 액세스와 해당 서비스가 허용하는 인증 방식만 있으면 됩니다.</p>
+        </div>
+        <ul class="provider-grid">
+          <li><span class="provider-logo"><img src="assets/providers/gmail.png" alt="" width="40" height="40"></span><div><b>Gmail</b><span>앱 비밀번호 + 2단계 인증</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/outlook.png" alt="" width="40" height="40"></span><div><b>Outlook / Microsoft 365</b><span>Microsoft 365: 관리자 동의</span></div></li>
+          <li><span class="provider-logo provider-logo-wide"><img src="assets/providers/yahoo.png" alt="" width="40" height="40"></span><div><b>Yahoo</b><span>앱 비밀번호</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/icloud.png" alt="" width="40" height="40"></span><div><b>iCloud</b><span>앱 전용 비밀번호</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/fastmail.png" alt="" width="40" height="40"></span><div><b>Fastmail</b><span>앱 비밀번호 + Sieve</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/proton.png" alt="" width="40" height="40"></span><div><b>Proton</b><span>Proton Bridge</span></div></li>
+        </ul>
+        <p class="section-note">UIDPLUS 또는 MOVE를 지원하고 Trash, Junk, Archive를 확인할 수 있는 IMAP 서버라면 무엇이든 작동합니다. <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/PROVIDERS.md" rel="noopener">메일 서비스별 참고 사항</a> · <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/VALIDATION.md" rel="noopener">검증 상태</a>.</p>
+        <p class="section-note">메일 서비스 이름과 로고는 각 소유자의 상표입니다.</p>
+      </div>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">안전성</p>
+          <h2>먼저 검토하세요. 이동은 되돌리세요.</h2>
+        </div>
+        <div class="safety-grid">
+          <article class="safety-card">
+            <h3>영구 삭제 없음</h3>
+            <p>영구 삭제 명령은 없습니다. CleanYourMail은 Trash나 Junk를 비우지 않으며, 사서함 전체 expunge도 실행하지 않습니다.</p>
+          </article>
+          <article class="safety-card">
+            <h3>헤더만</h3>
+            <p>보낸 사람, 제목, 날짜, 크기, 플래그, 구독 취소 헤더만 읽고 그 메타데이터를 로컬에 저장합니다. 본문이나 첨부 파일은 절대 내려받지 않습니다.</p>
+          </article>
+          <article class="safety-card">
+            <h3>보호 메일은 그대로</h3>
+            <p>개인, 거래성, 보안, 은행, 청구서, 여행, 의료, 정부, 법무, 별표 표시, 답장 완료, 최근 메일은 자동 이동과 구독 취소 요청에서 제외됩니다.</p>
+          </article>
+          <article class="safety-card">
+            <h3>검토, 이동, 되돌리기</h3>
+            <p><code>scan</code>, <code>report</code>, <code>plan</code>은 아무것도 바꾸지 않습니다. 계획을 검토하고 작은 이동부터 시작한 뒤 저널과 <code>undo</code>로 해당 실행을 복원하세요. 구독 취소는 별도이며 되돌릴 수 없습니다.</p>
+          </article>
+        </div>
+        <p class="section-note" id="why">로컬에서 실행됩니다. 호스팅되는 CleanYourMail 서비스도, 계정도, 텔레메트리도 없습니다. <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/tools/mail.py" rel="noopener">코드</a>, <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/SAFETY.md" rel="noopener">안전 모델</a>, <a href="https://github.com/jparedesDS/cleanyourmail/tree/master/tests" rel="noopener">테스트</a>를 직접 확인하세요.</p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">FAQ</p>
+          <h2>연결하기 전에 궁금한 점.</h2>
+        </div>
+        <div class="faq">
+          <details><summary>메일을 삭제하나요?</summary><p>아니요. 영구 삭제 명령이 없고, Trash나 Junk를 비우지 않으며, 사서함 전체 expunge도 실행하지 않습니다. 이동과 보관은 저널에 기록되지만 구독 취소 요청은 되돌릴 수 없습니다.</p></details>
+          <details><summary>무엇을 읽나요?</summary><p>헤더만 읽습니다: 보낸 사람, 제목, 날짜, 크기, 플래그, 구독 취소 헤더. 본문이나 첨부 파일은 절대 내려받지 않습니다. 로컬 캐시에는 메시지 본문이 아니라 메타데이터가 저장됩니다.</p></details>
+          <details><summary>기술 지식이 필요한가요?</summary><p>앱이 간편한 경로입니다. 주요 제품인 스킬은 셸 접근 권한이 있는 코딩 에이전트가 필요합니다. CLI는 터미널을 선호하는 개발자를 위한 것입니다. 세 가지 모두 같은 계획과 되돌리기 모델을 사용합니다.</p></details>
+          <details><summary>내 메일 서비스에서도 작동하나요?</summary><p>Gmail, Outlook/Microsoft 365, Yahoo, iCloud, Fastmail, Proton Bridge 및 호환되는 사용자 지정 IMAP 서버에서 작동합니다. Gmail은 2단계 인증을 켠 앱 비밀번호가 필요하고, Microsoft 365 로그인에는 테넌트 관리자 동의가 필요하며, 개인 Outlook.com은 확인된 게시자(verified publisher)여야 합니다(현재 대기 중). Proton은 Bridge가 필요합니다. 사용자 지정 IMAP 이동에는 UIDPLUS 또는 MOVE가 필요합니다. 메일 서비스나 테넌트 정책이 액세스를 차단할 수 있으며, 이 도구는 그러한 정책을 우회하지 않습니다.</p></details>
+          <details><summary>문제가 생기면 어떻게 되나요?</summary><p>멈추고 오류를 확인하세요. 스킬, CLI, 앱은 적용 전에 계획을 다시 확인하고 각 실행을 기록합니다. 표시된 <code>undo</code> 명령으로 해당 실행의 이동을 복원하세요. 메시지를 찾을 수 없게 되면 수동 복구를 위해 저널이 남아 있습니다. 구독 취소 요청은 되돌릴 수 없습니다.</p></details>
+          <details><summary>정말 무료인가요?</summary><p>네. MIT 라이선스이며, 유료 요금제도, CleanYourMail 계정도, 텔레메트리도 없습니다. 컴퓨터, Python 설치, 메일 서비스 액세스는 직접 준비하셔야 합니다.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">피드백</p>
+          <h2>무엇을 고쳐야 하는지 알려 주세요.</h2>
+          <p>버그를 찾았거나 아이디어가 있나요? CleanYourMail Discord로 보내 주세요. 자동으로 전송되는 것은 없습니다. 내용을 작성하고 동의 문구에 체크한 뒤 보내기를 누르세요. 보내고 싶지 않은 내용은 지우고, 비밀번호, 토큰, 메시지 전체 내용은 절대 포함하지 마세요.</p>
+        </div>
+        <form class="feedback-form" id="feedback-form" data-endpoint="https://cleanyourmail-feedback.subtitleme.workers.dev">
+          <div class="feedback-grid">
+            <div class="feedback-field">
+              <label for="feedback-kind">유형</label>
+              <select id="feedback-kind" name="kind">
+                <option value="feedback">개선</option>
+                <option value="bug">버그</option>
+              </select>
+            </div>
+            <div class="feedback-field">
+              <label for="feedback-contact">연락처 (선택)</label>
+              <input id="feedback-contact" name="contact" type="text" maxlength="200" autocomplete="off" placeholder="Discord, GitHub 또는 이메일">
+              <p class="feedback-hint">답변을 받고 싶을 때만 입력하세요.</p>
+            </div>
+            <div class="feedback-field feedback-field-wide">
+              <label for="feedback-message">메시지</label>
+              <textarea id="feedback-message" name="message" rows="6" maxlength="2800" placeholder="무슨 일이 있었는지, 무엇을 기대했는지, 무엇을 시도했는지 적어 주세요."></textarea>
+              <p class="feedback-hint">최대 2800자.</p>
+            </div>
+            <div class="feedback-field feedback-field-wide">
+              <label for="feedback-checklist">체크리스트 (선택)</label>
+              <textarea id="feedback-checklist" name="checklist" rows="5" maxlength="2500" placeholder="앱 버전, Windows 버전, 메일 서비스, 폴더 모드, 재현 단계."></textarea>
+              <p class="feedback-hint">최대 2500자. 버전이나 단계를 적으면 도움이 됩니다. 보내고 싶지 않은 내용은 지우세요.</p>
+            </div>
+          </div>
+          <div class="feedback-honeypot" aria-hidden="true">
+            <label for="feedback-website">웹사이트</label>
+            <input id="feedback-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="feedback-consent">
+            <input id="feedback-consent" name="consent" type="checkbox">
+            <label for="feedback-consent">이 메시지를 CleanYourMail Discord로 보내는 데 동의합니다.</label>
+          </div>
+          <div class="feedback-actions">
+            <button class="button button-primary" id="feedback-submit" type="submit">피드백 보내기</button>
+            <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+          </div>
+          <p class="feedback-hint">이 양식은 텔레메트리를 수집하지 않습니다. 보내기를 누르기 전까지는 브라우저를 벗어나는 것이 없습니다.</p>
+        </form>
+        <noscript>
+          <p class="feedback-hint">피드백 양식에는 JavaScript가 필요합니다. GitHub Discussions를 통해서도 연락할 수 있습니다.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-inner">
+        <h2>계획부터 시작하세요.<br>승인하기 전에는 아무것도 바꾸지 마세요.</h2>
+        <p>무료 오픈 소스입니다. 계정도, 텔레메트리도, 영구 삭제도 없습니다.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> 스킬 열기</a>
+          <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> 앱 다운로드</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="" width="26" height="26">
+        <span>CleanYour<span class="brand-accent">Mail</span></span>
+      </div>
+      <nav class="footer-nav" aria-label="바닥글">
+        <a href="https://github.com/jparedesDS/cleanyourmail-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> 앱</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cli"/></svg> CLI</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/tree/master/docs" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-docs"/></svg> 문서</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/SECURITY.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg> 보안</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/discussions" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg> 토론</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/LICENSE" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-license"/></svg> MIT</a>
+        <a href="es.html" hreflang="es" lang="es"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg> Español</a>
+      </nav>
+    </div>
+    <div class="container">
+      <p class="footer-note">받은편지함에서 소음만 덜어냅니다. 쿠키 없음. 분석 도구 없음. 피드백은 양식을 제출할 때만 전송됩니다. 타사 리소스를 불러오지 않으며 어떤 메일 서비스와도 제휴하지 않습니다.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CleanYourMail — 可還原 IMAP 清理的 AI 代理技能</title>
+  <meta name="description" content="一個用於可還原 IMAP 清理的開源 AI 代理技能。僅讀取郵件標頭，先提出計畫，保護重要郵件，每一次移動都能復原。另有選用的本機應用程式與 CLI。">
+  <meta name="author" content="Jose Paredes">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#121316">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; img-src 'self' data:; style-src 'self'; script-src 'self' 'sha256-KZn90Nr5V9R+JoQr7OdB7HoiDAF6AP4LjSlD/oayFX4='; connect-src https://cleanyourmail-feedback.subtitleme.workers.dev; font-src 'self'; upgrade-insecure-requests">
+  <link rel="canonical" href="https://jparedesds.github.io/cleanyourmail-web/zh-TW.html">
+  <link rel="alternate" hreflang="en" href="https://jparedesds.github.io/cleanyourmail-web/">
+  <link rel="alternate" hreflang="es" href="https://jparedesds.github.io/cleanyourmail-web/es.html">
+  <link rel="alternate" hreflang="pt-BR" href="https://jparedesds.github.io/cleanyourmail-web/pt-BR.html">
+  <link rel="alternate" hreflang="fr" href="https://jparedesds.github.io/cleanyourmail-web/fr.html">
+  <link rel="alternate" hreflang="de" href="https://jparedesds.github.io/cleanyourmail-web/de.html">
+  <link rel="alternate" hreflang="it" href="https://jparedesds.github.io/cleanyourmail-web/it.html">
+  <link rel="alternate" hreflang="ja" href="https://jparedesds.github.io/cleanyourmail-web/ja.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://jparedesds.github.io/cleanyourmail-web/zh-CN.html">
+  <link rel="alternate" hreflang="zh-TW" href="https://jparedesds.github.io/cleanyourmail-web/zh-TW.html">
+  <link rel="alternate" hreflang="ko" href="https://jparedesds.github.io/cleanyourmail-web/ko.html">
+  <link rel="alternate" hreflang="x-default" href="https://jparedesds.github.io/cleanyourmail-web/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CleanYourMail">
+  <meta property="og:url" content="https://jparedesds.github.io/cleanyourmail-web/zh-TW.html">
+  <meta property="og:title" content="CleanYourMail — 可還原 IMAP 清理的 AI 代理技能">
+  <meta property="og:description" content="一個開源 AI 代理技能，可還原地清理收件匣。僅讀取郵件標頭、保護重要郵件、計畫可檢視，每一次移動都能復原。">
+  <meta property="og:image" content="https://jparedesds.github.io/cleanyourmail-web/assets/og.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="CleanYourMail：本機、可還原的 IMAP 收件匣清理">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="es_ES">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta property="og:locale:alternate" content="ko_KR">
+  <meta property="og:locale:alternate" content="pt_BR">
+  <meta property="og:locale:alternate" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CleanYourMail — 可還原 IMAP 清理的 AI 代理技能">
+  <meta name="twitter:description" content="一個開源 AI 代理技能，可還原地清理收件匣。僅讀取郵件標頭、保護重要郵件、計畫可檢視，每一次移動都能復原。">
+  <meta name="twitter:image" content="https://jparedesds.github.io/cleanyourmail-web/assets/og.png">
+  <meta name="twitter:image:alt" content="CleanYourMail：本機、可還原的 IMAP 收件匣清理">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CleanYourMail",
+    "description": "開源的 AI 代理技能，可還原地清理 IMAP 收件匣，並提供選用的本機應用程式與 CLI。僅讀取郵件標頭、計畫可檢視、保護重要郵件、移動可復原，且不會永久刪除。",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "softwareVersion": "1.2.2",
+    "softwareRequirements": "Python 3.11+",
+    "downloadUrl": "https://github.com/jparedesDS/cleanyourmail-app/releases/latest",
+    "isAccessibleForFree": true,
+    "featureList": [
+      "僅掃描 IMAP 郵件標頭",
+      "可檢視的清理計畫",
+      "排除受保護郵件",
+      "記錄日誌且可還原的移動",
+      "不會永久刪除"
+    ],
+    "license": "https://opensource.org/licenses/MIT",
+    "codeRepository": "https://github.com/jparedesDS/cleanyourmail",
+    "url": "https://jparedesds.github.io/cleanyourmail-web/zh-TW.html",
+    "inLanguage": "zh-TW",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Jose Paredes",
+      "url": "https://github.com/jparedesDS"
+    }
+  }
+  </script>
+</head>
+<body>
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" stroke="none" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></symbol>
+    <symbol id="i-skill" viewBox="0 0 16 16"><path d="M2.5 3.5h3A2.5 2.5 0 0 1 8 6v8a2.5 2.5 0 0 0-2.5-2.5h-3zM13.5 3.5h-3A2.5 2.5 0 0 0 8 6v8a2.5 2.5 0 0 1 2.5-2.5h3z"/></symbol>
+    <symbol id="i-app" viewBox="0 0 16 16"><rect x="2" y="2.5" width="12" height="11" rx="2"/><path d="M2 5.5h12M4.5 8h5M4.5 10.5h3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 16 16"><path d="M8 2v8m0 0 3-3m-3 3L5 7M2.5 13.5h11"/></symbol>
+    <symbol id="i-cli" viewBox="0 0 16 16"><rect x="1.5" y="2.5" width="13" height="11" rx="2"/><path d="m4.5 6 2 2-2 2M9 10h2.5"/></symbol>
+    <symbol id="i-docs" viewBox="0 0 16 16"><path d="M4 1.5h5l3 3v10H4z"/><path d="M9 1.5v3h3M6 8h4M6 10.5h4"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 16 16"><path d="M8 1.5 13 3.5v4c0 3-2 5.3-5 6.5-3-1.2-5-3.5-5-6.5v-4z"/><path d="m5.8 8 1.5 1.5L10.5 6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 16 16"><path d="M2 3.5h12v7H8.5L5 13.5v-3H2z"/></symbol>
+    <symbol id="i-license" viewBox="0 0 16 16"><path d="M3.5 2h9v12h-9z"/><path d="M6 5h4M6 7.5h4M6 10h2.5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c2 2 2 10 0 12M8 2c-2 2-2 10 0 12"/></symbol>
+  </svg>
+  <a class="skip-link" href="#main">跳至內容</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="CleanYourMail 首頁">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>CleanYour<span class="brand-accent">Mail</span></span>
+      </a>
+      <nav class="nav" aria-label="主要導覽">
+        <a class="nav-start" href="#start">開始</a>
+        <a href="#how">運作方式</a>
+        <a href="#providers">服務商</a>
+        <a href="#safety">安全</a>
+        <a href="#faq">常見問題</a>
+        <a href="#feedback">意見回饋</a>
+        <a class="nav-clean" href="https://jparedesds.github.io/cleanyourphone-web" rel="noopener">CleanYour<span class="phone-accent">Phone</span></a>
+        <a class="nav-github" href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub</a>
+        <label class="lang-select-wrap">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg>
+          <select class="lang-select" id="language-select" aria-label="語言">
+            <option value="index.html">English</option>
+            <option value="es.html">Español</option>
+            <option value="de.html">Deutsch</option>
+            <option value="fr.html">Français</option>
+            <option value="it.html">Italiano</option>
+            <option value="ja.html">日本語</option>
+            <option value="ko.html">한국어</option>
+            <option value="pt-BR.html">Português (BR)</option>
+            <option value="zh-CN.html">简体中文</option>
+            <option value="zh-TW.html" selected>繁體中文</option>
+          </select>
+        </label>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">開源 · 代理技能 · 本機應用程式</p>
+          <h1>清理你的收件匣。<br><em>每一步都能復原。</em></h1>
+          <p class="lede">CleanYourMail 是一個開源代理技能，用於清理 IMAP 信箱，並可選用本機應用程式。它只讀取郵件標頭，在變更任何內容前先顯示計畫，保護重要郵件，並提供復原指令。取消訂閱一律獨立進行，且無法復原。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> 開啟技能</a>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> 下載應用程式</a>
+          </div>
+          <p class="trust-line">免費 · MIT · 不需帳號 · 無遙測 · 不會永久刪除</p>
+        </div>
+
+        <div class="hero-card">
+          <div class="app-window" aria-label="CleanYourMail 技能提示詞預覽">
+            <div class="app-bar"><span></span><span></span><span></span><em>CleanYourMail · 技能</em></div>
+            <div class="app-body">
+              <div class="app-head"><span class="app-badge">代理技能</span><span class="app-step">主要產品</span></div>
+              <h3>交給你的 AI 代理。</h3>
+              <pre class="skill-prompt"><code>從以下網址讀取 SKILL.md
+https://github.com/jparedesDS/cleanyourmail
+並完全遵照執行。
+使用 python tools/mail.py。
+僅讀取郵件標頭。絕不永久刪除。
+在變更任何內容之前，先給我看計畫。
+先移動，確認無誤後，再單獨取消訂閱。
+給我復原指令。</code></pre>
+              <div class="app-actions"><button class="copy-button copy-button-inline" type="button" data-copy="從以下網址讀取 SKILL.md https://github.com/jparedesDS/cleanyourmail 並完全遵照執行。使用 python tools/mail.py。僅讀取郵件標頭。絕不永久刪除。在變更任何內容之前，先給我看計畫。先移動，確認無誤後，再單獨取消訂閱。給我復原指令。">複製提示詞</button></div>
+              <p class="app-note">貼到 Claude Code、Cursor、OpenCode，或任何能存取 shell 的代理中。</p>
+            </div>
+          </div>
+          <p class="hero-note">技能優先 · 應用程式選用 · CLI 在 GitHub</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="provider-strip" aria-hidden="true">
+      <div class="container provider-strip-viewport">
+        <div class="provider-strip-track">
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/providers/gmail.png" alt="" width="22" height="22">Gmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/outlook.png" alt="" width="22" height="22">Outlook</span>
+            <span class="provider-strip-item"><img src="assets/providers/yahoo.png" alt="" width="22" height="22">Yahoo</span>
+            <span class="provider-strip-item"><img src="assets/providers/icloud.png" alt="" width="22" height="22">iCloud</span>
+            <span class="provider-strip-item"><img src="assets/providers/fastmail.png" alt="" width="22" height="22">Fastmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/proton.png" alt="" width="22" height="22">Proton</span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/providers/gmail.png" alt="" width="22" height="22">Gmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/outlook.png" alt="" width="22" height="22">Outlook</span>
+            <span class="provider-strip-item"><img src="assets/providers/yahoo.png" alt="" width="22" height="22">Yahoo</span>
+            <span class="provider-strip-item"><img src="assets/providers/icloud.png" alt="" width="22" height="22">iCloud</span>
+            <span class="provider-strip-item"><img src="assets/providers/fastmail.png" alt="" width="22" height="22">Fastmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/proton.png" alt="" width="22" height="22">Proton</span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/providers/gmail.png" alt="" width="22" height="22">Gmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/outlook.png" alt="" width="22" height="22">Outlook</span>
+            <span class="provider-strip-item"><img src="assets/providers/yahoo.png" alt="" width="22" height="22">Yahoo</span>
+            <span class="provider-strip-item"><img src="assets/providers/icloud.png" alt="" width="22" height="22">iCloud</span>
+            <span class="provider-strip-item"><img src="assets/providers/fastmail.png" alt="" width="22" height="22">Fastmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/proton.png" alt="" width="22" height="22">Proton</span>
+          </div>
+          <div class="provider-strip-group">
+            <span class="provider-strip-item"><img src="assets/providers/gmail.png" alt="" width="22" height="22">Gmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/outlook.png" alt="" width="22" height="22">Outlook</span>
+            <span class="provider-strip-item"><img src="assets/providers/yahoo.png" alt="" width="22" height="22">Yahoo</span>
+            <span class="provider-strip-item"><img src="assets/providers/icloud.png" alt="" width="22" height="22">iCloud</span>
+            <span class="provider-strip-item"><img src="assets/providers/fastmail.png" alt="" width="22" height="22">Fastmail</span>
+            <span class="provider-strip-item"><img src="assets/providers/proton.png" alt="" width="22" height="22">Proton</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="start">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">選擇你的方式</p>
+          <h2>使用技能，或使用應用程式。</h2>
+          <p>技能是主要產品：交給你的程式開發代理，並檢視計畫。應用程式是更簡單的方式，適合偏好按鈕操作的人。CLI 仍為進階使用者保留在 GitHub 上。</p>
+        </div>
+        <div class="start-grid">
+          <article class="start-card">
+            <span class="start-icon start-icon-skill" aria-hidden="true"><svg class="icon" focusable="false"><use href="#i-skill"/></svg></span>
+            <span class="start-label">技能 · 主要產品</span>
+            <h3>使用技能</h3>
+            <p>交給 Claude Code、Cursor、OpenCode 或其他能存取 shell 的代理。它只讀取郵件標頭，先顯示計畫，並提供復原指令。</p>
+            <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> 開啟技能</a>
+            <p class="start-note">或者<button class="text-button" type="button" data-copy="從以下網址讀取 SKILL.md https://github.com/jparedesDS/cleanyourmail 並完全遵照執行。使用 python tools/mail.py。僅讀取郵件標頭。絕不永久刪除。在變更任何內容之前，先給我看計畫。先移動，確認無誤後，再單獨取消訂閱。給我復原指令。">複製提示詞</button>，貼到 Claude Code、Cursor 或 OpenCode 中。</p>
+          </article>
+          <article class="start-card">
+            <span class="start-icon"><img src="assets/logo.svg" alt="" width="40" height="40"></span>
+            <span class="start-label">應用程式 · 早期 MVP</span>
+            <h3>下載應用程式</h3>
+            <p>一款本機、安全的應用程式，適合偏好按鈕操作而非提示詞的人。在同一個畫面中掃描郵件標頭、檢視計畫、執行可還原的移動並復原。不需帳號、無遙測；意見回饋完全自願。</p>
+            <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> 下載 Windows 版</a>
+            <p class="start-note">Windows 10/11 · 安裝程式 · 早期 MVP</p>
+          </article>
+        </div>
+        <p class="section-note">偏好終端機？CLI 仍保留在 <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener">GitHub</a> 上。</p>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">運作方式</p>
+          <h2>在你核准計畫之前，不會有任何變更。</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-number">01</span>
+            <h3>本機連線</h3>
+            <p>在代理中開啟技能，或使用應用程式。選擇服務商並輸入認證資訊。它會先測試連線，再進行其他操作。</p>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <h3>掃描並檢視</h3>
+            <p>技能或應用程式只讀取郵件標頭中繼資料：寄件者、主旨、日期、大小和標記。它會顯示分類、受保護郵件、目的地資料夾和取消訂閱目標。此時還不會有任何變更。</p>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <h3>小批量移動</h3>
+            <p>執行少量移動。日誌會記錄這次執行，復原可將其還原。先檢查結果，再單獨處理取消訂閱。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="providers">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">服務商</p>
+          <h2>支援你的郵件服務商。</h2>
+          <p>無需遷移。你需要 IMAP 存取權限，以及服務商允許的驗證方式。</p>
+        </div>
+        <ul class="provider-grid">
+          <li><span class="provider-logo"><img src="assets/providers/gmail.png" alt="" width="40" height="40"></span><div><b>Gmail</b><span>應用程式密碼 + 兩步驟驗證</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/outlook.png" alt="" width="40" height="40"></span><div><b>Outlook / Microsoft 365</b><span>Microsoft 365：租用戶系統管理員同意</span></div></li>
+          <li><span class="provider-logo provider-logo-wide"><img src="assets/providers/yahoo.png" alt="" width="40" height="40"></span><div><b>Yahoo</b><span>應用程式密碼</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/icloud.png" alt="" width="40" height="40"></span><div><b>iCloud</b><span>應用程式專用密碼</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/fastmail.png" alt="" width="40" height="40"></span><div><b>Fastmail</b><span>應用程式密碼 + Sieve</span></div></li>
+          <li><span class="provider-logo"><img src="assets/providers/proton.png" alt="" width="40" height="40"></span><div><b>Proton</b><span>Proton Bridge</span></div></li>
+        </ul>
+        <p class="section-note">任何支援 UIDPLUS 或 MOVE，且能解析垃圾桶、垃圾郵件和封存資料夾的 IMAP 伺服器皆可使用。<a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/PROVIDERS.md" rel="noopener">服務商說明</a> · <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/VALIDATION.md" rel="noopener">驗證狀態</a>。</p>
+        <p class="section-note">服務商名稱和標誌是其各自所有者的商標。</p>
+      </div>
+    </section>
+
+    <section class="section" id="safety">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">安全</p>
+          <h2>先檢視。移動可復原。</h2>
+        </div>
+        <div class="safety-grid">
+          <article class="safety-card">
+            <h3>不會永久刪除</h3>
+            <p>沒有永久刪除指令。CleanYourMail 從不清空垃圾桶或垃圾郵件，也從不執行整個信箱的永久清除。</p>
+          </article>
+          <article class="safety-card">
+            <h3>僅讀取郵件標頭</h3>
+            <p>它會讀取寄件者、主旨、日期、大小、標記和取消訂閱標頭，並將這些中繼資料儲存在本機。它從不下載郵件內文或附件。</p>
+          </article>
+          <article class="safety-card">
+            <h3>受保護郵件維持原位</h3>
+            <p>個人、交易、安全、銀行、發票、旅遊、醫療、政府、法律類郵件，以及已加星號、已回覆和近期郵件，都不會被自動移動或提出取消訂閱要求。</p>
+          </article>
+          <article class="safety-card">
+            <h3>檢視、移動、復原</h3>
+            <p><code>scan</code>、<code>report</code> 和 <code>plan</code> 不會變更任何內容。檢視計畫，先從少量移動開始，並使用日誌和 <code>undo</code> 還原這次執行。取消訂閱是獨立操作，且無法復原。</p>
+          </article>
+        </div>
+        <p class="section-note" id="why">本機執行：沒有 CleanYourMail 代管服務、不需帳號、無遙測。查看<a href="https://github.com/jparedesDS/cleanyourmail/blob/master/tools/mail.py" rel="noopener">程式碼</a>、<a href="https://github.com/jparedesDS/cleanyourmail/blob/master/docs/SAFETY.md" rel="noopener">安全模型</a>和<a href="https://github.com/jparedesDS/cleanyourmail/tree/master/tests" rel="noopener">測試</a>。</p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">常見問題</p>
+          <h2>連線前的常見問題。</h2>
+        </div>
+        <div class="faq">
+          <details><summary>它會刪除郵件嗎？</summary><p>不會。它沒有永久刪除指令，從不清空垃圾桶或垃圾郵件，也從不執行整個信箱的永久清除。移動和封存都會記入日誌；取消訂閱要求無法復原。</p></details>
+          <details><summary>它會讀取什麼？</summary><p>僅讀取郵件標頭：寄件者、主旨、日期、大小、標記和取消訂閱標頭。它從不下載郵件內文或附件。本機快取只儲存中繼資料，不儲存郵件內文。</p></details>
+          <details><summary>需要具備技術背景嗎？</summary><p>應用程式是更簡單的方式。技能是主要產品，需要能存取 shell 的程式開發代理。CLI 適合偏好終端機的開發人員。三者都採用相同的計畫與復原機制。</p></details>
+          <details><summary>支援我的郵件服務商嗎？</summary><p>Gmail、Outlook/Microsoft 365、Yahoo、iCloud、Fastmail、Proton Bridge，以及相容的自訂 IMAP 伺服器。Gmail 需要開啟兩步驟驗證並使用應用程式密碼；Microsoft 365 登入需要租用戶系統管理員同意；個人 Outlook.com 需要已驗證的發行者（待完成）；Proton 需要 Bridge。自訂 IMAP 移動需要 UIDPLUS 或 MOVE。服務商或租用戶原則可能會封鎖存取，本工具不會繞過這些限制。</p></details>
+          <details><summary>如果出了問題怎麼辦？</summary><p>停下來並檢查錯誤。技能、CLI 和應用程式會在執行前重新檢查計畫，並記錄每一次執行。使用輸出的 <code>undo</code> 指令復原該次執行的移動。如果找不到某封郵件，日誌仍會保留，供手動復原。取消訂閱要求無法復原。</p></details>
+          <details><summary>真的免費嗎？</summary><p>是的。採用 MIT 授權，沒有付費方案，不需 CleanYourMail 帳號，也沒有遙測。你需要自備電腦、安裝 Python，並擁有郵件服務商的存取權限。</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">意見回饋</p>
+          <h2>告訴我們哪裡需要修正。</h2>
+          <p>發現錯誤，或有新的想法？請傳送到 CleanYourMail 的 Discord。不會自動傳送任何內容：填寫詳細資訊、勾選同意聲明，然後按下傳送。請移除你不想送出的內容，切勿包含密碼、權杖或完整的郵件內容。</p>
+        </div>
+        <form class="feedback-form" id="feedback-form" data-endpoint="https://cleanyourmail-feedback.subtitleme.workers.dev">
+          <div class="feedback-grid">
+            <div class="feedback-field">
+              <label for="feedback-kind">類型</label>
+              <select id="feedback-kind" name="kind">
+                <option value="feedback">改進建議</option>
+                <option value="bug">錯誤</option>
+              </select>
+            </div>
+            <div class="feedback-field">
+              <label for="feedback-contact">聯絡方式（選填）</label>
+              <input id="feedback-contact" name="contact" type="text" maxlength="200" autocomplete="off" placeholder="Discord、GitHub 或電子郵件">
+              <p class="feedback-hint">僅在你希望收到回覆時填寫。</p>
+            </div>
+            <div class="feedback-field feedback-field-wide">
+              <label for="feedback-message">訊息</label>
+              <textarea id="feedback-message" name="message" rows="6" maxlength="2800" placeholder="發生了什麼、你預期什麼，以及你嘗試過什麼。"></textarea>
+              <p class="feedback-hint">最多 2800 個字元。</p>
+            </div>
+            <div class="feedback-field feedback-field-wide">
+              <label for="feedback-checklist">檢查清單（選填）</label>
+              <textarea id="feedback-checklist" name="checklist" rows="5" maxlength="2500" placeholder="應用程式版本、Windows 版本、服務商、資料夾模式、重現步驟。"></textarea>
+              <p class="feedback-hint">最多 2500 個字元。提供版本或步驟很有幫助。請移除你不想送出的內容。</p>
+            </div>
+          </div>
+          <div class="feedback-honeypot" aria-hidden="true">
+            <label for="feedback-website">網站</label>
+            <input id="feedback-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="feedback-consent">
+            <input id="feedback-consent" name="consent" type="checkbox">
+            <label for="feedback-consent">我同意將此訊息傳送到 CleanYourMail 的 Discord。</label>
+          </div>
+          <div class="feedback-actions">
+            <button class="button button-primary" id="feedback-submit" type="submit">傳送意見回饋</button>
+            <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+          </div>
+          <p class="feedback-hint">此表單不收集遙測資料。在你按下傳送之前，任何內容都不會離開瀏覽器。</p>
+        </form>
+        <noscript>
+          <p class="feedback-hint">意見回饋表單需要 JavaScript。你仍然可以透過 GitHub Discussions 與我們聯絡。</p>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-inner">
+        <h2>從計畫開始。<br>在你同意之前，不做任何變更。</h2>
+        <p>免費且開源。不需帳號、無遙測，也不會永久刪除。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="https://github.com/jparedesDS/cleanyourmail/blob/master/SKILL.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-skill"/></svg> 開啟技能</a>
+          <a class="button button-ghost" href="https://github.com/jparedesDS/cleanyourmail-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> 下載應用程式</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="" width="26" height="26">
+        <span>CleanYour<span class="brand-accent">Mail</span></span>
+      </div>
+      <nav class="footer-nav" aria-label="頁尾">
+        <a href="https://github.com/jparedesDS/cleanyourmail-app/releases/latest" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-app"/></svg> 應用程式</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cli"/></svg> CLI</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-github"/></svg> GitHub</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/tree/master/docs" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-docs"/></svg> 文件</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/SECURITY.md" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-shield"/></svg> 安全</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/discussions" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg> 討論</a>
+        <a href="https://github.com/jparedesDS/cleanyourmail/blob/master/LICENSE" rel="noopener"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-license"/></svg> MIT</a>
+        <a href="zh-CN.html" hreflang="zh-CN" lang="zh-CN"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg> 简体中文</a>
+      </nav>
+    </div>
+    <div class="container">
+      <p class="footer-note">你的收件匣，減去噪音。沒有 Cookie。沒有分析統計。只有你送出表單時才會傳送意見回饋。頁面不載入任何第三方資源，且與任何郵件服務商均無關聯。</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
