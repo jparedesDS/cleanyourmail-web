@@ -2,6 +2,10 @@
   <img src="assets/banner.png" alt="CleanYourMail — your inbox, minus the noise" width="100%">
 </p>
 
+<p align="center">
+  <a href="https://cleanyourmail.org/"><img src="https://img.shields.io/badge/live-cleanyourmail.org-a78bfa?labelColor=121316" alt="Live site"></a>
+</p>
+
 # CleanYourMail — website
 
 Static landing page for [CleanYourMail](https://github.com/jparedesDS/cleanyourmail), the
