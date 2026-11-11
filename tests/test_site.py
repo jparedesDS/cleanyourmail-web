@@ -362,7 +362,7 @@ class SiteTest(unittest.TestCase):
                 payload = json.loads(block.group(1))
                 self.assertEqual(payload["downloadUrl"], APP_RELEASE_URL)
                 # The schema describes the skill/CLI, so its version and Python requirement stay.
-                self.assertEqual(payload["softwareVersion"], "1.2.2")
+                self.assertEqual(payload["softwareVersion"], "1.3.0")
                 self.assertEqual(payload["operatingSystem"], "Windows, macOS, Linux")
                 self.assertEqual(payload["softwareRequirements"], "Python 3.11+")
 
@@ -375,7 +375,7 @@ class SiteTest(unittest.TestCase):
                 self.assertIsNotNone(block)
                 payload = json.loads(block.group(1))
                 self.assertEqual(payload["downloadUrl"], APP_RELEASE_URL)
-                self.assertEqual(payload["softwareVersion"], "1.2.2")
+                self.assertEqual(payload["softwareVersion"], "1.3.0")
 
     def test_cleanyourphone_nav_link(self):
         for name, _label in LANGUAGES:
